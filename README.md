@@ -40,3 +40,12 @@ It is not an app. There is nothing to run. The value is in the structure and the
 **Setting up compliance (NIST/FIPS)?** → [docs/07-compliance/](docs/07-compliance/)
 
 **Need a full directory listing?** → [REPO_MAP.md](REPO_MAP.md)
+
+## GitHub Actions enforcement pack
+
+This repository includes a professional GitHub Actions enforcement pack for repository health, Pull Request standards, documentation quality, security scanning, dependency review, CodeQL analysis, workflow linting, and artifact provenance examples.
+
+Start with: `docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md`
+
+For branch protection setup, read: `docs/10-github-actions/BRANCH_PROTECTION_AND_RULESETS.md`
+

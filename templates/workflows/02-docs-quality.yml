@@ -1,0 +1,49 @@
+name: 02 Documentation Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdownlint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          globs: |
+            **/*.md
+            !node_modules
+            !examples/**/node_modules
+
+  local-link-check:
+    name: Local markdown link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate local markdown links
+        run: python3 scripts/check_markdown_links.py
+
+  external-link-check:
+    name: External link check
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check external links with lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --accept 200,206,301,302,307,308 './**/*.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

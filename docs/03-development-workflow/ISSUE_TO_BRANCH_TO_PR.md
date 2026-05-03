@@ -142,3 +142,9 @@ git branch -d feature/issue-42-user-login
 ```
 
 Check that the issue was auto-closed. If not, close it manually with a comment linking to the merged PR.
+
+---
+
+## Next Step
+
+→ [Build the daily git command habits](docs/03-development-workflow/DAILY_WORKFLOW.md)

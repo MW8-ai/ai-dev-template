@@ -106,3 +106,9 @@ Before merging any PR that contains AI-generated code:
 - [ ] I checked for any unexpected network calls, file writes, or external dependencies
 - [ ] I confirmed the AI did not use any deprecated APIs for the libraries in this project
 - [ ] At least one other developer reviewed and approved the PR
+
+---
+
+## Next Step
+
+→ [Choose your project type and governance level](docs/05-project-types/HOBBY.md)

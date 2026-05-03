@@ -152,3 +152,9 @@ Pre-builds consume GitHub Actions minutes. Check your usage under **Settings →
 - `docs/02-dev-environment/VS_CODE_SETUP.md` — extensions and settings that apply inside Codespaces too
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — Codespaces handles GitHub auth automatically, but you may need SSH keys for other services
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — commit and push from inside a Codespace
+
+---
+
+## Next Step
+
+→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)

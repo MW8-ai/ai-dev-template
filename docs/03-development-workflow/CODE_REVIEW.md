@@ -126,3 +126,9 @@ Common self-review catches:
 - Commented-out code that should be deleted
 - TODO comments that you actually need to address before merging
 - Files that should not have changed (accidental edits)
+
+---
+
+## Next Step
+
+→ [Understand merge strategies: merge commit, squash, and rebase](docs/03-development-workflow/MERGE_STRATEGIES.md)

@@ -144,3 +144,9 @@ Use Copilot as a typing accelerator, not as a source of truth:
 | Free | $0 | Verified students and maintainers of popular open source projects |
 
 Apply for the free plan at: https://education.github.com/pack (students) or through GitHub's open source program.
+
+---
+
+## Next Step
+
+→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)

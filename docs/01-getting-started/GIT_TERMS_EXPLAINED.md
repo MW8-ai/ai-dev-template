@@ -302,3 +302,9 @@ git log --oneline
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — put these concepts into practice
 - `docs/01-getting-started/BRANCH_PULL_MERGE.md` — branches, merges, and pull requests in depth
 - `docs/01-getting-started/COMMON_MISTAKES.md` — what goes wrong and how to fix it
+
+---
+
+## Next Step
+
+→ [Make your first commit and push](docs/01-getting-started/FIRST_COMMIT_PUSH.md)

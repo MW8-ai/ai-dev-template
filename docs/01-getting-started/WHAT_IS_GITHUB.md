@@ -98,3 +98,9 @@ Most daily development happens locally. GitHub is where collaboration, review, a
 - `docs/01-getting-started/GIT_TERMS_EXPLAINED.md` — every key term defined with an analogy and example
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — make your first commit and push it
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — set up secure authentication with GitHub
+
+---
+
+## Next Step
+
+→ [Learn the Git vocabulary used throughout this playbook](docs/01-getting-started/GIT_TERMS_EXPLAINED.md)

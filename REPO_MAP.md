@@ -226,3 +226,8 @@ Detailed standards documents that define specific rules. These go deeper than th
 | standards/testing-standards.md | Required test types, minimum coverage percentage, test naming conventions |
 | standards/documentation-standards.md | Header format, file naming, cross-reference rules, how to keep docs current |
 | standards/release-standards.md | Versioning scheme, release checklist, who can approve a release |
+
+## docs/10-github-actions
+
+Explains the automation and enforcement layer: repository health checks, Pull Request standards, documentation checks, security scanning, CodeQL, branch protection, and rulesets.
+

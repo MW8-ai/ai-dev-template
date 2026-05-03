@@ -1,0 +1,61 @@
+name: 01 Pull Request Standards
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: pr-standards-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-metadata:
+    name: Validate PR description, title, branch, and safety notes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate PR metadata
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_DRAFT: ${{ github.event.pull_request.draft }}
+        run: python3 scripts/enforce_repo_policy.py --mode pr-metadata
+
+  changed-files:
+    name: Validate changed-file expectations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate docs for workflow/template changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 scripts/enforce_repo_policy.py --mode changed-files
+
+  pr-summary:
+    name: PR standards summary
+    runs-on: ubuntu-latest
+    needs: [pr-metadata, changed-files]
+    if: always()
+    steps:
+      - name: Print summary
+        run: |
+          echo "Pull Request Standards results:"
+          echo "- Metadata: ${{ needs.pr-metadata.result }}"
+          echo "- Changed files: ${{ needs.changed-files.result }}"
+          if [ "${{ needs.pr-metadata.result }}" != "success" ] || [ "${{ needs.changed-files.result }}" != "success" ]; then
+            exit 1
+          fi
