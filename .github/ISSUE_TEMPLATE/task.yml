@@ -1,0 +1,16 @@
+name: Task
+description: Track implementation, cleanup, or maintenance work
+title: "Task: "
+labels: [task]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+    validations:
+      required: true
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      value: "- [ ] Define scope\n- [ ] Make change\n- [ ] Validate\n- [ ] Update docs"

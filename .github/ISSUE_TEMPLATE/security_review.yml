@@ -1,0 +1,21 @@
+name: Security review
+description: Review a security-sensitive change
+title: "Security review: "
+labels: [security]
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Change under review
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: No secrets are committed
+        - label: Least privilege was considered
+        - label: Logging avoids sensitive values
+        - label: Auth, input validation, and data handling were reviewed
+        - label: Rollback path is documented

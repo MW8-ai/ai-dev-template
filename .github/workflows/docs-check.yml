@@ -1,0 +1,14 @@
+name: Docs Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required docs
+        run: bash scripts/check_required_docs.sh
