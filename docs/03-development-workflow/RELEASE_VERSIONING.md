@@ -84,3 +84,9 @@ Every production release should answer:
 ## Golden Rule
 
 > A release is not just code shipped. It is risk accepted.
+
+---
+
+## Next Step
+
+→ [docs/04-ai-workflows/AI_OVERVIEW.md](docs/04-ai-workflows/AI_OVERVIEW.md) — an overview of AI coding tools (Copilot, Claude Code, Codex), when to use each, and the safety rules that apply to all of them

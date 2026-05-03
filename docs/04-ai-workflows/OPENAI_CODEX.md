@@ -42,6 +42,38 @@ OpenAI Codex CLI is a command-line tool that sends your prompts to OpenAI's mode
 
 ---
 
+## When NOT to Use It
+
+- **Multi-file refactors** — Use Claude Code, which reads and edits files across the codebase
+- **Anything you cannot verify** — If you cannot read and understand the output, do not run it
+- **Production scripts without review** — Generated shell commands can delete data; always review before executing
+- **Security-sensitive code** — Cryptography, authentication, and authorization logic require human expertise to validate
+- **Replacing understanding** — Using Codex to generate code you do not understand creates hidden technical debt
+
+---
+
+## Common Failure Modes
+
+| Failure | What Happens | Prevention |
+|---|---|---|
+| API hallucination | Calls a function or flag that does not exist | Run the code; check against official docs |
+| Outdated patterns | Suggests deprecated syntax or removed APIs | Specify the library version in your prompt |
+| Scope creep | Adds features not requested | Be specific: "only do X, nothing else" |
+| Silent wrong output | Returns plausible but incorrect logic | Test with known inputs and expected outputs |
+
+---
+
+## Required Human Validation
+
+Before running or committing Codex output:
+
+- [ ] Read the generated code — do not run blind
+- [ ] Test the output with a concrete input/output pair
+- [ ] Verify any APIs used actually exist at the version you are running
+- [ ] If it is a shell command, understand what it does before executing
+
+---
+
 ## Setup
 
 **Install:**
@@ -165,4 +197,4 @@ codex "explain each line of this Dockerfile — respond as a numbered list with 
 
 ## Next Step
 
-→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+→ [docs/04-ai-workflows/CLAUDE_CODE.md](docs/04-ai-workflows/CLAUDE_CODE.md) — setup and usage guide for Claude Code: multi-file tasks, CLAUDE.md configuration, hooks, and slash commands

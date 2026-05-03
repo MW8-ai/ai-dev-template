@@ -111,4 +111,4 @@ Before merging any PR that contains AI-generated code:
 
 ## Next Step
 
-→ [Choose your project type and governance level](docs/05-project-types/HOBBY.md)
+→ [docs/06-standards/COMMIT_CONVENTION.md](docs/06-standards/COMMIT_CONVENTION.md) — commit message conventions, prefixes, and standards for keeping a readable project history

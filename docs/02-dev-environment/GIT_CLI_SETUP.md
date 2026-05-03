@@ -525,4 +525,4 @@ git undo     # undo last commit, keep changes
 
 ## Next Step
 
-→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)
+→ [docs/02-dev-environment/SSH_KEYS_AND_AUTH.md](docs/02-dev-environment/SSH_KEYS_AND_AUTH.md) — set up SSH key authentication so Git can communicate securely with GitHub

@@ -206,4 +206,4 @@ which git
 
 ## Next Step
 
-→ [Configure VS Code for development](docs/02-dev-environment/VS_CODE_SETUP.md)
+→ [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md) — install essential extensions and configure VS Code for development

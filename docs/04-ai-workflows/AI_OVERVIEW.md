@@ -77,4 +77,4 @@ These rules apply regardless of which tool you use:
 
 ## Next Step
 
-→ Choose your AI tool: [OpenAI Codex](docs/04-ai-workflows/OPENAI_CODEX.md), [Claude Code](docs/04-ai-workflows/CLAUDE_CODE.md), or [GitHub Copilot](docs/04-ai-workflows/GITHUB_COPILOT.md)
+→ [docs/04-ai-workflows/OPENAI_CODEX.md](docs/04-ai-workflows/OPENAI_CODEX.md) — setup and usage guide for OpenAI Codex CLI: terminal-based coding assistance and prompt tips

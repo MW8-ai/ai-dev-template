@@ -192,4 +192,6 @@ Deleted branches are not gone — Git keeps all their commits. You can restore a
 
 ## Next Step
 
-→ [See the most common mistakes and how to fix them](docs/01-getting-started/COMMON_MISTAKES.md)
+Set up your development environment:
+- Windows → [docs/02-dev-environment/WINDOWS_SETUP.md](docs/02-dev-environment/WINDOWS_SETUP.md)
+- Mac → [docs/02-dev-environment/MAC_SETUP.md](docs/02-dev-environment/MAC_SETUP.md)

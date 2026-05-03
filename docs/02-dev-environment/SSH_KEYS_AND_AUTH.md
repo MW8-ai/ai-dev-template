@@ -262,4 +262,4 @@ chmod 700 ~/.ssh/
 
 ## Next Step
 
-→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)
+→ [docs/03-development-workflow/ISSUE_TO_BRANCH_TO_PR.md](docs/03-development-workflow/ISSUE_TO_BRANCH_TO_PR.md) — walk through the full development workflow from opening an issue to merging a PR
