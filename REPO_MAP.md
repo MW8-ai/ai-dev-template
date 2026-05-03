@@ -71,7 +71,26 @@ Note: Additional workflow starters (repo health checks, markdown linting, link c
 
 ## docs/
 
-All documentation, organized by topic. Each subfolder covers one area of knowledge.
+All documentation, organized by topic.
+
+**Two naming conventions exist in this folder — both are intentional:**
+
+| Convention | Purpose | Audience |
+|---|---|---|
+| `01-getting-started/` (hyphen) | Human-readable developer playbook | Developers reading the docs |
+| `01_governance/` (underscore) | Claude-native agent context layer | AI agents reading for task context |
+
+The hyphenated folders are the teaching and reference content. The underscore folders are the AI-native operating layer — prompt libraries, tool snapshots, model routing, and governance rules for AI agents. Both layers are active and cross-referenced.
+
+---
+
+### docs/00-start-here/
+
+Visual onboarding material for users who prefer diagrams before text.
+
+| File | Topic |
+|---|---|
+| VISUAL_GUIDE.md | Six Mermaid flowcharts: learning flow, daily workflow, enforcement, AI-assisted dev, repo structure, system summary |
 
 ### docs/01-getting-started/
 
@@ -108,9 +127,11 @@ The professional development workflow used by real software teams.
 |---|---|
 | ISSUE_TO_BRANCH_TO_PR.md | The full cycle: open an issue, create a branch, submit a PR, and merge |
 | DAILY_WORKFLOW.md | Day-to-day Git commands and habits — what to run every morning and evening |
+| WHY_THIS_WORKFLOW.md | The reasoning behind every step — why branches, PRs, commits, and CI/CD exist |
 | CODE_REVIEW.md | How to give useful feedback and how to receive it constructively |
 | MERGE_STRATEGIES.md | Merge, squash, and rebase — what each does and when to use it |
 | RELEASE_PROCESS.md | How to tag a version, write release notes, and publish a release |
+| RELEASE_VERSIONING.md | Semantic versioning guide — MAJOR/MINOR/PATCH with worked examples |
 
 ### docs/04-ai-workflows/
 
@@ -119,11 +140,13 @@ Using AI tools safely and effectively in your development workflow.
 | File | Topic |
 |---|---|
 | AI_OVERVIEW.md | Side-by-side comparison of AI coding tools and when to use each |
-| OPENAI_CODEX.md | OpenAI Codex and the Codex CLI — setup and usage |
-| CLAUDE_CODE.md | Claude Code — setup, slash commands, hooks, and safe usage patterns |
-| GITHUB_COPILOT.md | GitHub Copilot — install, configure, and use inside VS Code |
+| OPENAI_CODEX.md | OpenAI Codex and the Codex CLI — setup, usage, failure modes, required validation |
+| CLAUDE_CODE.md | Claude Code — setup, slash commands, hooks, failure modes, required validation |
+| GITHUB_COPILOT.md | GitHub Copilot — install, configure, failure modes, required validation |
 | PROMPT_STRATEGIES.md | How to write prompts that get accurate, useful results |
 | HUMAN_IN_LOOP.md | When and how to review AI output before it enters your codebase |
+| LOCAL_LLMS.md | Running AI models locally — tools, hardware requirements, Apple Silicon benchmarks, model recommendations |
+| AI_CERTIFICATIONS.md | Vendor AI certifications with costs, status, and living-updates tracking (Microsoft, AWS, Google, NVIDIA, CompTIA) |
 
 ### docs/05-project-types/
 
@@ -282,7 +305,18 @@ Answers the questions that send developers to Stack Overflow. Covers common pitf
 
 ---
 
-## docs/10-github-actions
+### docs/10-maintenance/
+
+Processes for keeping this template itself accurate and up to date.
+
+| File | Topic |
+|---|---|
+| KEEPING_THIS_REPO_UPDATED.md | Weekly/monthly/quarterly review schedule; signs the repo needs attention |
+| RELEASE_CADENCE.md | Versioning policy, step-by-step release process, CHANGELOG format, ownership |
+
+---
+
+## docs/10-github-actions/
 
 Explains the automation and enforcement layer: repository health checks, Pull Request standards, documentation checks, security scanning, CodeQL, branch protection, and rulesets.
 
