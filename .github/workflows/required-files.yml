@@ -1,0 +1,75 @@
+name: Required Project Docs Check
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  check-project-docs:
+    name: Check Required Project Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required project documentation files
+        shell: bash
+        run: |
+          # These project-specific docs are required for every project in this repo.
+          # They are distinct from general repo health files checked by repo-health.yml.
+          # If any are missing, copy the template from templates/project/ and fill it in.
+
+          REQUIRED_DOCS=(
+            "DESIGN.md"
+            "TESTING.md"
+            "DEPLOYMENT.md"
+          )
+
+          MISSING=()
+
+          for DOC in "${REQUIRED_DOCS[@]}"; do
+            if [ ! -f "$DOC" ]; then
+              MISSING+=("$DOC")
+            fi
+          done
+
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "::error::The following required project documentation files are missing:"
+            echo ""
+            for DOC in "${MISSING[@]}"; do
+              echo "::error::  - $DOC"
+            done
+            echo ""
+            echo "----------------------------------------"
+            echo "FAILED: Required project docs are missing"
+            echo "----------------------------------------"
+            echo ""
+            echo "Missing files:"
+            for DOC in "${MISSING[@]}"; do
+              echo "  - $DOC"
+            done
+            echo ""
+            echo "How to fix:"
+            echo "  Each missing file has a starter template in templates/project/."
+            echo "  Copy the appropriate template and fill in your project details:"
+            echo ""
+            for DOC in "${MISSING[@]}"; do
+              TEMPLATE_NAME=$(echo "$DOC" | tr '[:upper:]' '[:lower:]')
+              echo "    cp templates/project/${TEMPLATE_NAME} ${DOC}"
+            done
+            echo ""
+            echo "  Then commit the completed docs before merging."
+            exit 1
+          else
+            echo "SUCCESS: All required project documentation files are present."
+            echo ""
+            echo "Checked files:"
+            for DOC in "${REQUIRED_DOCS[@]}"; do
+              echo "  ✓ $DOC"
+            done
+          fi

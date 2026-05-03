@@ -1,0 +1,63 @@
+name: Markdown Lint
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  markdownlint:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Create markdownlint config
+        shell: bash
+        run: |
+          cat > .markdownlint.json << 'EOF'
+          {
+            "default": true,
+            "MD013": false,
+            "MD033": false,
+            "MD041": false
+          }
+          EOF
+          echo "Created .markdownlint.json with the following config:"
+          cat .markdownlint.json
+
+      - name: Install markdownlint-cli
+        shell: bash
+        run: npm install -g markdownlint-cli
+
+      - name: Lint all markdown files
+        shell: bash
+        run: |
+          echo "Running markdownlint on all .md files..."
+          echo ""
+
+          MARKDOWN_FILES=$(find . -name "*.md" -not -path "./.git/*" -not -path "./node_modules/*")
+
+          if [ -z "$MARKDOWN_FILES" ]; then
+            echo "No markdown files found."
+            exit 0
+          fi
+
+          FILE_COUNT=$(echo "$MARKDOWN_FILES" | wc -l)
+          echo "Found ${FILE_COUNT} markdown file(s) to lint."
+          echo ""
+
+          markdownlint --config .markdownlint.json $(find . -name "*.md" -not -path "./.git/*" -not -path "./node_modules/*")
+
+          echo ""
+          echo "Markdown lint passed. All ${FILE_COUNT} file(s) are clean."

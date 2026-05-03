@@ -1,0 +1,82 @@
+name: New Team Member Onboarding
+description: Use this template to track onboarding a new developer to the team and repository.
+labels:
+  - onboarding
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Onboarding Tracker
+
+        Use this issue to track the onboarding progress of a new team member.
+        Work through the checklist below and check off each item as it is completed.
+        Leave notes or blockers in the final field so the team can help unblock quickly.
+
+        **Tip:** Assign this issue to the person doing the onboarding (not the new hire),
+        and mention the new hire in the comments once they have GitHub access.
+
+  - type: input
+    id: new-member-name
+    attributes:
+      label: New Team Member Name
+      description: Full name of the person being onboarded.
+      placeholder: "e.g. Jane Smith"
+    validations:
+      required: true
+
+  - type: input
+    id: role
+    attributes:
+      label: Role
+      description: What role is this person joining as?
+      placeholder: "e.g. Developer, Designer, DevOps, QA, Product Manager"
+    validations:
+      required: true
+
+  - type: input
+    id: start-date
+    attributes:
+      label: Start Date
+      description: When does (or did) this team member start? Use YYYY-MM-DD format.
+      placeholder: "e.g. 2026-05-03"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: onboarding-checklist
+    attributes:
+      label: Onboarding Checklist
+      description: Check off each item as it is completed. It is okay if some items are done out of order.
+      options:
+        - label: Shared `START_HERE.md` with them
+          required: false
+        - label: They have a GitHub account
+          required: false
+        - label: Added to the repository with correct permissions
+          required: false
+        - label: "They completed `docs/01-getting-started/WHAT_IS_GITHUB.md`"
+          required: false
+        - label: They set up their dev environment (Windows or Mac)
+          required: false
+        - label: They made their first commit on a test branch
+          required: false
+        - label: They opened their first pull request
+          required: false
+        - label: "Reviewed AI tool options with them (`docs/04-ai-workflows/AI_OVERVIEW.md`)"
+          required: false
+        - label: "Explained code review process (`docs/03-development-workflow/CODE_REVIEW.md`)"
+          required: false
+        - label: Added to team Slack/chat channel
+          required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / Blockers
+      description: >
+        Use this space to capture anything that is slowing down onboarding,
+        questions the new team member raised, or any follow-up items.
+      placeholder: "e.g. Waiting on GitHub org invite approval. VPN setup blocked by IT ticket #1234."
+    validations:
+      required: false

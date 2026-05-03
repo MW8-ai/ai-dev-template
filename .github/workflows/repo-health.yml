@@ -1,0 +1,63 @@
+name: Repo Health Check
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  check-required-files:
+    name: Check Required Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files exist
+        shell: bash
+        run: |
+          REQUIRED_FILES=(
+            "README.md"
+            "START_HERE.md"
+            "AGENTS.md"
+            "CHANGELOG.md"
+            "DESIGN.md"
+            "TESTING.md"
+            "DEPLOYMENT.md"
+            "SECURITY.md"
+            "LICENSE"
+          )
+
+          MISSING=()
+
+          for FILE in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$FILE" ]; then
+              MISSING+=("$FILE")
+            fi
+          done
+
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "::error::The following required files are missing from the repository:"
+            for MISSING_FILE in "${MISSING[@]}"; do
+              echo "::error::  - $MISSING_FILE"
+            done
+            echo ""
+            echo "FAILED: Repo health check — missing required files:"
+            for MISSING_FILE in "${MISSING[@]}"; do
+              echo "  - $MISSING_FILE"
+            done
+            echo ""
+            echo "Please add the missing files before merging."
+            exit 1
+          else
+            echo "SUCCESS: All required files are present."
+            echo ""
+            echo "Checked files:"
+            for FILE in "${REQUIRED_FILES[@]}"; do
+              echo "  ✓ $FILE"
+            done
+          fi
