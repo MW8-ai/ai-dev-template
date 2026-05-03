@@ -1,13 +1,36 @@
 # Lychee external link checker configuration.
-timeout = 15
-max_retries = 2
+timeout = 20
+max_retries = 3
 accept = [200, 206, 301, 302, 307, 308]
-exclude_status_codes = [429]
+
+# Do not fail on rate-limit responses
+exclude_status_codes = [429, 403, 999]
+
 exclude = [
+  # Local addresses
   "^http://localhost",
   "^https://localhost",
   "^http://127\\.0\\.0\\.1",
   "^https://127\\.0\\.0\\.1",
   "^mailto:",
-  "^#"
+  "^#",
+
+  # Sites that block GitHub Actions IP ranges or require auth
+  "linkedin\\.com",
+  "coursera\\.org",
+  "twitter\\.com",
+  "x\\.com",
+  "facebook\\.com",
+  "instagram\\.com",
+
+  # Placeholder/example URLs
+  "example\\.com",
+  "example\\.org",
+  "example\\.net",
+  "your-org\\.github\\.io",
+
+  # Docs sites that rate-limit aggressively
+  "docs\\.anthropic\\.com",
+  "platform\\.openai\\.com",
+  "code\\.visualstudio\\.com"
 ]

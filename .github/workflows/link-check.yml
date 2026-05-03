@@ -15,40 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Create lychee config
-        shell: bash
-        run: |
-          cat > .lychee.toml << 'EOF'
-          # Lychee link checker configuration
-
-          # Timeout per link in seconds
-          timeout = 10
-
-          # Number of retries per link
-          max_retries = 3
-
-          # Exclude patterns — skip localhost and anchor-only links
-          exclude = [
-            "^http://localhost",
-            "^https://localhost",
-            "^http://127\\.0\\.0\\.1",
-            "^https://127\\.0\\.0\\.1",
-            "^#"
-          ]
-
-          # Accept these HTTP status codes as valid
-          accept = [200, 206, 301, 302, 307, 308]
-
-          # Do not fail on rate-limit responses (429)
-          exclude_status_codes = [429]
-
-          # User agent to use for requests
-          user_agent = "lychee/link-checker"
-          EOF
-          echo "Created .lychee.toml config:"
-          cat .lychee.toml
+        uses: actions/checkout@v4
 
       - name: Check links in all markdown files
         uses: lycheeverse/lychee-action@v1

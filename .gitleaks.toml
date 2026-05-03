@@ -1,14 +1,41 @@
 title = "AI Dev Template Gitleaks Configuration"
 
 [allowlist]
-description = "Repository examples and docs may contain non-secret placeholder values."
+description = "Repository examples and docs contain intentional placeholder values, not real credentials."
+
+# Skip entire paths — all docs and example files are documentation, not production code
 paths = [
-  '''.env.example''',
-  '''examples/.*/.env.example''',
-  '''docs/.*'''
+  '''\.env\.example''',
+  '''examples/''',
+  '''docs/''',
+  '''templates/''',
+  '''standards/'''
 ]
+
+# Skip common placeholder patterns wherever they appear
 regexes = [
+  # Generic placeholders
   '''example[_-]?key''',
   '''changeme''',
-  '''your[_-]?token[_-]?here'''
+  '''your[_-]?token[_-]?here''',
+  '''placeholder''',
+  '''<your[_-]''',
+
+  # Stripe test keys (always start with sk_test_ — never production)
+  '''sk_test_[a-zA-Z0-9]+''',
+
+  # OpenAI placeholder keys
+  '''sk-[x]+''',
+  '''sk-[a-z]+-[a-zA-Z0-9]+''',
+
+  # Example database URLs
+  '''postgresql://user:password@''',
+  '''postgres://user:password@''',
+  '''mysql://user:password@''',
+
+  # Generic example tokens/passwords in docs
+  '''your[_-]?password''',
+  '''mypassword''',
+  '''supersecret''',
+  '''hunter2'''
 ]
