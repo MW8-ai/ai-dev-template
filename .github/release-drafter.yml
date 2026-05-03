@@ -1,0 +1,65 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+
+categories:
+  - title: "🚀 Features"
+    labels:
+      - "type: feature"
+      - "feat"
+  - title: "🐛 Fixes"
+    labels:
+      - "type: bug"
+      - "fix"
+  - title: "🛡 Security"
+    labels:
+      - "type: security"
+      - "security"
+  - title: "📚 Documentation"
+    labels:
+      - "type: documentation"
+      - "docs"
+  - title: "⚙️ CI/CD"
+    labels:
+      - "type: ci-cd"
+      - "ci"
+  - title: "🧹 Maintenance"
+    labels:
+      - "type: chore"
+      - "chore"
+      - "dependencies"
+
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-title-escapes: '\<*_&'
+
+version-resolver:
+  major:
+    labels:
+      - "release: major"
+      - "breaking-change"
+  minor:
+    labels:
+      - "release: minor"
+      - "type: feature"
+      - "feat"
+  patch:
+    labels:
+      - "release: patch"
+      - "type: bug"
+      - "fix"
+      - "type: documentation"
+      - "docs"
+      - "type: chore"
+      - "chore"
+  default: patch
+
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Release Checklist
+
+  - [ ] CI passed
+  - [ ] Version reviewed
+  - [ ] Deployment notes reviewed
+  - [ ] Rollback notes reviewed if needed

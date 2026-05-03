@@ -17,8 +17,9 @@ It is not tied to a specific app, game, agency, or company.
   TESTING.md
   DEPLOYMENT.md
   CHANGELOG.md
-  ROADMAP.md
   docs/
+    project/
+      ROADMAP.md
     00_start_here/
     01_governance/
     02_workflows/
