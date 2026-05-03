@@ -131,4 +131,4 @@ Common self-review catches:
 
 ## Next Step
 
-→ [Understand merge strategies: merge commit, squash, and rebase](docs/03-development-workflow/MERGE_STRATEGIES.md)
+→ [docs/03-development-workflow/MERGE_STRATEGIES.md](docs/03-development-workflow/MERGE_STRATEGIES.md) — merge commit vs. squash vs. rebase: trade-offs, diagrams, and when to use each strategy

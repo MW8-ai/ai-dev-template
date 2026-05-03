@@ -302,4 +302,4 @@ This is why you can check out any commit and see exactly what the project looked
 
 ## Next Step
 
-→ `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — make your first commit and push using these concepts
+→ [docs/01-getting-started/FIRST_COMMIT_PUSH.md](docs/01-getting-started/FIRST_COMMIT_PUSH.md) — make your first commit and push using these concepts

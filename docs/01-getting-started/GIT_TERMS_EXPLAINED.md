@@ -307,4 +307,4 @@ git log --oneline
 
 ## Next Step
 
-→ [Make your first commit and push](docs/01-getting-started/FIRST_COMMIT_PUSH.md)
+→ [docs/01-getting-started/MISCONCEPTIONS.md](docs/01-getting-started/MISCONCEPTIONS.md) — clear up the most common misunderstandings about Git and GitHub

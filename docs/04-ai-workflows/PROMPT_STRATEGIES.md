@@ -191,4 +191,4 @@ One iteration with a refined prompt is more efficient than multiple rounds of "t
 
 ## Next Step
 
-→ [Understand when and how to keep humans in the review loop](docs/04-ai-workflows/HUMAN_IN_LOOP.md)
+→ [docs/04-ai-workflows/HUMAN_IN_LOOP.md](docs/04-ai-workflows/HUMAN_IN_LOOP.md) — when and how to keep humans in the review loop: what always needs scrutiny and the pre-merge checklist

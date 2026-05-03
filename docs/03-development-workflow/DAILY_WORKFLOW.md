@@ -224,4 +224,4 @@ Always run `git diff --staged` before `git commit` to confirm exactly what is ab
 
 ## Next Step
 
-→ [Learn how to give and receive effective code reviews](docs/03-development-workflow/CODE_REVIEW.md)
+→ [docs/03-development-workflow/CODE_REVIEW.md](docs/03-development-workflow/CODE_REVIEW.md) — how to give and receive code reviews: what to check, how to comment, and how to keep PRs moving

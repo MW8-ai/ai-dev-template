@@ -46,6 +46,42 @@ Claude Code is not a real-time typing assistant. Use GitHub Copilot for that. Cl
 
 ---
 
+## When NOT to Use It
+
+- **Keystroke-level suggestions** — Use GitHub Copilot for inline completions as you type
+- **Simple one-liner questions** — A regular Claude.ai chat is cheaper and faster for Q&A
+- **Production database migrations** — Claude Code can write the migration; a human runs it after review
+- **Secrets management** — Never ask Claude Code to handle, store, or rotate real credentials
+- **Unreviewed auto-merge** — Do not configure any pipeline where Claude Code's output merges to `main` without human approval
+- **Debugging issues you haven't reproduced** — Give it a failing test or a concrete error, not "it seems slow sometimes"
+
+---
+
+## Common Failure Modes
+
+| Failure | What Happens | Prevention |
+|---|---|---|
+| Scope drift | Expands the task beyond what was asked | Give a specific, bounded scope in `CLAUDE.md` and the prompt |
+| Confident hallucination | Generates plausible but incorrect code | Always read the full diff before approving |
+| Missing context | Gets a detail wrong because it missed a key file | Pin important context files in `CLAUDE.md` |
+| Circular fixing | Makes the same mistake repeatedly | Stop and start fresh — don't iterate 5 times on a broken approach |
+| Context overflow | Large reads degrade later responses in the session | Use sub-agents for large searches; see `CONTEXT_MANAGEMENT.md` |
+
+---
+
+## Required Human Validation
+
+Before merging any Claude Code output:
+
+- [ ] Read the full diff — not just the summary
+- [ ] Confirm the change is scoped to what was requested
+- [ ] Verify tests pass and no new failures were introduced
+- [ ] Check that no secrets, tokens, or credentials appear anywhere in the diff
+- [ ] Confirm CHANGELOG.md was updated if this is a meaningful change
+- [ ] Confirm no files outside the expected scope were modified
+
+---
+
 ## Models
 
 Claude Code routes tasks to different models based on complexity:
@@ -239,4 +275,4 @@ See `docs/09_claude_native/SUBAGENT_PATTERNS.md` for full patterns including con
 
 ## Next Step
 
-→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+→ [docs/04-ai-workflows/GITHUB_COPILOT.md](docs/04-ai-workflows/GITHUB_COPILOT.md) — setup and usage guide for GitHub Copilot: inline completions, Copilot Chat, and editor integration

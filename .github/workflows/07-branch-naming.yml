@@ -1,0 +1,59 @@
+name: "07 · Branch Naming"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  pull-requests: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  check-branch-name:
+    name: Validate branch name
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check branch name format
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          echo "Branch: $BRANCH"
+
+          # Allowed prefixes (matches OPINIONATED_DEFAULTS.md)
+          PATTERN='^(feature|fix|docs|chore|hotfix|release|test|ci|refactor|perf|experiment)/[a-z0-9]'
+
+          if echo "$BRANCH" | grep -qE "$PATTERN"; then
+            echo "✓ Branch name '$BRANCH' matches required format."
+          else
+            echo ""
+            echo "✗ Branch name '$BRANCH' does not match the required format."
+            echo ""
+            echo "Required format: <prefix>/<short-description>"
+            echo "Allowed prefixes: feature/, fix/, docs/, chore/, hotfix/, release/, test/, ci/, refactor/, perf/, experiment/"
+            echo ""
+            echo "Examples:"
+            echo "  feature/user-authentication"
+            echo "  fix/login-redirect-loop"
+            echo "  docs/update-api-reference"
+            echo "  chore/upgrade-node-20"
+            echo ""
+            echo "See docs/06-standards/OPINIONATED_DEFAULTS.md for the full naming convention."
+            exit 1
+          fi
+
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Branch Naming Check Failed\n\nBranch \`${branch}\` does not match the required format.\n\n**Required:** \`<prefix>/<description>\`\n\n**Allowed prefixes:** \`feature/\`, \`fix/\`, \`docs/\`, \`chore/\`, \`hotfix/\`, \`release/\`, \`test/\`, \`ci/\`, \`refactor/\`, \`perf/\`\n\nTo fix: rename your branch locally, force-push, and reopen the PR.\n\n\`\`\`bash\ngit branch -m ${branch} feature/your-description\ngit push origin feature/your-description --force\n\`\`\`\n\nSee [OPINIONATED_DEFAULTS.md](docs/06-standards/OPINIONATED_DEFAULTS.md) for the full convention.`
+            });

@@ -47,6 +47,37 @@ Copilot is always-on during your editing session. You do not invoke it manually 
 
 ---
 
+## When NOT to Use It
+
+- **Accepting suggestions without reading them** — The Tab key is not an approval that you understand the code
+- **Security-critical logic** — Copilot can generate authentication and cryptography code that looks correct but has subtle vulnerabilities; these require expert review
+- **Cross-file reasoning** — Copilot does not see the full codebase; use Claude Code for changes that need to stay consistent across many files
+- **As a substitute for knowing a language** — Using Copilot to write code in a language you cannot read means you cannot catch its mistakes
+
+---
+
+## Common Failure Modes
+
+| Failure | What Happens | Prevention |
+|---|---|---|
+| Autocomplete blindness | You Tab-accept without reading | Pause, read, then accept |
+| Outdated API | Suggests a function signature that changed | Check official docs for the exact version |
+| Logic error in suggestion | Code runs but produces wrong results | Test with expected inputs and outputs |
+| Hallucinated test | Generates a test that always passes | Verify the test actually catches the failure it claims to test for |
+
+---
+
+## Required Human Validation
+
+Before committing Copilot-assisted code:
+
+- [ ] You read every suggestion before accepting it
+- [ ] You understand what the accepted code does
+- [ ] You ran the relevant tests and they pass
+- [ ] You did not accept a test that only passes trivially (always-true assertions)
+
+---
+
 ## Setup
 
 1. **Install the extension in VS Code:**
@@ -149,4 +180,4 @@ Apply for the free plan at: https://education.github.com/pack (students) or thro
 
 ## Next Step
 
-→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+→ [docs/04-ai-workflows/PROMPT_STRATEGIES.md](docs/04-ai-workflows/PROMPT_STRATEGIES.md) — how to write effective AI prompts: patterns, anatomy of a good prompt, and what to never include

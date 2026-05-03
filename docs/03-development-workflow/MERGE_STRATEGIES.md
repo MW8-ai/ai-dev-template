@@ -165,4 +165,4 @@ This prevents developers from accidentally using the wrong strategy even if they
 
 ## Next Step
 
-→ [Learn how to tag and release a version](docs/03-development-workflow/RELEASE_PROCESS.md)
+→ [docs/03-development-workflow/RELEASE_PROCESS.md](docs/03-development-workflow/RELEASE_PROCESS.md) — how to tag, changelog, and publish a versioned release on GitHub

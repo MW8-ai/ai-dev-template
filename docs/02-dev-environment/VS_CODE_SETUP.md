@@ -187,4 +187,4 @@ Create this file at `.vscode/extensions.json` in your project root and commit it
 
 ## Next Step
 
-→ [Set up SSH key authentication for GitHub](docs/02-dev-environment/SSH_KEYS_AND_AUTH.md)
+→ [docs/02-dev-environment/GIT_CLI_SETUP.md](docs/02-dev-environment/GIT_CLI_SETUP.md) — full Git CLI command reference organized by workflow stage
