@@ -24,7 +24,7 @@ jobs:
           echo "Branch: $BRANCH"
 
           # Allowed prefixes (matches OPINIONATED_DEFAULTS.md)
-          PATTERN='^(feature|fix|docs|chore|hotfix|release|test|ci|refactor|perf|experiment)/[a-z0-9]'
+          PATTERN='^(feature|fix|docs|chore|hotfix|release|test|ci|refactor|perf|experiment|claude)/[a-zA-Z0-9]'
 
           if echo "$BRANCH" | grep -qE "$PATTERN"; then
             echo "✓ Branch name '$BRANCH' matches required format."
@@ -33,7 +33,7 @@ jobs:
             echo "✗ Branch name '$BRANCH' does not match the required format."
             echo ""
             echo "Required format: <prefix>/<short-description>"
-            echo "Allowed prefixes: feature/, fix/, docs/, chore/, hotfix/, release/, test/, ci/, refactor/, perf/, experiment/"
+            echo "Allowed prefixes: feature/, fix/, docs/, chore/, hotfix/, release/, test/, ci/, refactor/, perf/, experiment/, claude/"
             echo ""
             echo "Examples:"
             echo "  feature/user-authentication"
