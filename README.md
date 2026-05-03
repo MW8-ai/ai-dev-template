@@ -61,6 +61,26 @@ Most repos give you code. This gives you:
 
 ---
 
+## Automated Enforcement
+
+This repository uses GitHub Actions to enforce standards automatically on every pull request:
+
+| Workflow | What It Enforces |
+|---|---|
+| `00-repo-health.yml` | Required files present (SECURITY.md, AGENTS.md, CODEOWNERS) |
+| `01-pr-standards.yml` | PR description filled out; no WIP merges |
+| `02-docs-quality.yml` | No broken links; markdown lint passes |
+| `03-security-supply-chain.yml` | No secrets committed; dependency audit |
+| `04-codeql.yml` | Static code analysis for security vulnerabilities |
+| `07-branch-naming.yml` | Branch name follows `type/description` convention |
+| `08-commit-lint.yml` | All commits follow Conventional Commits format |
+
+**Bypass is not the answer.** When a check fails, fix the underlying issue — do not use `--no-verify` or skip the workflow.
+
+→ Full details: [docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md](docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md)
+
+---
+
 ## Repository Overview
 
 → Full directory listing: **[REPO_MAP.md](REPO_MAP.md)**
