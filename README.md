@@ -63,6 +63,8 @@ See a complete working example: [examples/enterprise-project/](examples/enterpri
 - CI/CD enforcement via GitHub Actions
 - Enterprise and government-ready practices (NIST/FIPS)
 
+---
+
 ## What Makes This Different
 
 Most repos give you code. This gives you:
@@ -105,7 +107,6 @@ templates/    Copy-paste starting points for projects, workflows, and prompts
 examples/     Working examples showing templates in real project structures
 scripts/      Repo validation and maintenance scripts
 .github/      GitHub Actions workflows, issue templates, PR template
-standards/    Detailed coding, review, testing, and documentation standards
 ```
 
 Key root files:
@@ -116,6 +117,46 @@ Key root files:
 | `TECH_STACK.md` | Technology choices and rationale |
 | `DESIGN.md` | Architecture and design decisions |
 | `SECURITY.md` | Security policies and responsible disclosure |
+
+---
+
+## Latest AI & GitHub Updates
+
+Detected by the [Living Updates system](docs/06-living-updates/README.md) — updated weekly. Full notes in [docs/06-living-updates/incoming/](docs/06-living-updates/incoming/).
+
+| Date | Source | Update |
+|---|---|---|
+| 2026-05-03 | GitHub Copilot | GPT-5.5 now GA — strongest on multi-step agentic coding tasks |
+| 2026-05-03 | GitHub Copilot | GPT-5.2 and GPT-5.2-Codex deprecation announced |
+| 2026-05-03 | GitHub Copilot | Copilot code review will consume Actions minutes from June 1 |
+| 2026-05-03 | GitHub Copilot | Copilot Chat now has richer context and diff awareness in PRs |
+| 2026-05-03 | GitHub Copilot | Inline agent mode in preview for JetBrains IDEs |
+| 2026-05-03 | GitHub Copilot | Cloud agent 20% faster with Actions custom images |
+| 2026-05-03 | OpenAI | API changelog updated — check for model and rate limit changes |
+| 2026-05-03 | OpenAI | Codex CLI changelog updated |
+
+→ [Review all incoming notes](docs/06-living-updates/incoming/) · [How the system works](docs/06-living-updates/README.md) · [Tracked sources](docs/06-living-updates/sources/update-sources.yml)
+
+---
+
+## AI Certifications at a Glance
+
+Top vendor-certified paths for AI and ML. Full details, costs, and status tracking in [docs/04-ai-workflows/AI_CERTIFICATIONS.md](docs/04-ai-workflows/AI_CERTIFICATIONS.md).
+
+| Cert | Vendor | Level | Cost | Notes |
+|---|---|---|---|---|
+| Azure AI Fundamentals (AI-900) | Microsoft | Beginner | ~$165 | Best first cert for Azure AI |
+| Azure AI Engineer Associate (AI-102) | Microsoft | Associate | ~$165 | Most in-demand Azure AI role cert |
+| Applied Skills — GenAI / Prompt Engineering | Microsoft | Task-based | **Free** | Lab assessments, no exam fee |
+| AWS Certified AI Practitioner | AWS | Foundational | ~$150 | New 2024 — GenAI-focused entry point |
+| AWS ML Engineer Associate | AWS | Associate | ~$150 | New 2024 — replaces old specialty track |
+| Professional ML Engineer | Google Cloud | Professional | ~$200 | GCP's core ML credential |
+| CompTIA AI+ | CompTIA | Intermediate | ~$239 | Vendor-neutral; governance and ethics |
+| DLI — Deep Learning / GenAI | NVIDIA | Course | ~$30–90 | Respected in infra/MLOps roles |
+
+**Free learning (no cert):** [fast.ai](https://course.fast.ai) · [Hugging Face](https://huggingface.co/learn) · [DeepLearning.AI](https://www.deeplearning.ai) · [Google ML Crash Course](https://developers.google.com/machine-learning/crash-course)
+
+→ [Choosing a path + full cert list](docs/04-ai-workflows/AI_CERTIFICATIONS.md)
 
 ---
 
