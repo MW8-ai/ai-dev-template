@@ -5,8 +5,6 @@
 ![Markdown Lint](https://github.com/MW8-ai/ai-dev-template/actions/workflows/markdown-lint.yml/badge.svg)
 ![Link Check](https://github.com/MW8-ai/ai-dev-template/actions/workflows/link-check.yml/badge.svg)
 ![CodeQL](https://github.com/MW8-ai/ai-dev-template/actions/workflows/04-codeql.yml/badge.svg)
-![License](https://img.shields.io/github/license/MW8-ai/ai-dev-template)
-![Last Commit](https://img.shields.io/github/last-commit/MW8-ai/ai-dev-template)
 
 A modern developer playbook for GitHub, AI-assisted development, and production-ready workflows.
 
