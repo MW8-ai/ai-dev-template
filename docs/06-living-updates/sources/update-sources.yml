@@ -1,6 +1,20 @@
-# Living update source registry. Keep this list focused.
+# Living update source registry.
+#
+# Each source is fetched weekly. New items not in seen-updates.json are written
+# to docs/06-living-updates/incoming/ for human review.
+#
+# type: rss   → parsed as RSS/Atom feed
+# type: webpage → hash-based change detection on the full page
+#
+# include_keywords: if set, only items whose title+summary+link contain at
+# least one keyword (case-insensitive) are filed. Leave empty to file all items.
 
 sources:
+
+  # ---------------------------------------------------------------------------
+  # GITHUB
+  # ---------------------------------------------------------------------------
+
   - id: github-changelog
     vendor: GitHub
     category: dev-platform
@@ -8,16 +22,118 @@ sources:
     type: rss
     priority: high
     tags: [github, pull-requests, actions, codespaces, copilot, security]
-    include_keywords: [pull request, files changed, GitHub Actions, Codespaces, Copilot, secret scanning, code scanning, branch protection, repository rules, rulesets, merge, release, security]
+    include_keywords:
+      - pull request
+      - files changed
+      - GitHub Actions
+      - Codespaces
+      - Copilot
+      - secret scanning
+      - code scanning
+      - branch protection
+      - repository rules
+      - rulesets
+      - merge queue
+      - security
+      - Models
+      - Spark
 
-  - id: openai-api-changelog
+  - id: github-blog
+    vendor: GitHub
+    category: dev-platform
+    url: https://github.blog/feed/
+    type: rss
+    priority: medium
+    tags: [github, announcements, ai, copilot]
+    include_keywords:
+      - Copilot
+      - AI
+      - model
+      - agent
+      - Actions
+      - security
+      - enterprise
+
+  # ---------------------------------------------------------------------------
+  # MICROSOFT
+  # ---------------------------------------------------------------------------
+
+  - id: microsoft-azure-openai-updates
+    vendor: Microsoft
+    category: ai-platform
+    url: https://azure.microsoft.com/en-us/updates/feed/
+    type: rss
+    priority: high
+    tags: [microsoft, azure, openai, ai-platform]
+    include_keywords:
+      - OpenAI
+      - Azure AI
+      - Copilot
+      - AI Foundry
+      - AI Studio
+      - model
+      - GPT
+      - o3
+      - o4
+      - deprecation
+      - rate limit
+      - embedding
+
+  - id: vscode-release-notes
+    vendor: Microsoft
+    category: ai-dev-tooling
+    url: https://code.visualstudio.com/updates/
+    type: webpage
+    priority: medium
+    tags: [microsoft, vscode, copilot, ai-dev]
+    include_keywords:
+      - Copilot
+      - AI
+      - agent
+      - edit
+      - inline chat
+      - MCP
+      - extension
+
+  - id: microsoft-dev-blog
+    vendor: Microsoft
+    category: ai-platform
+    url: https://devblogs.microsoft.com/visualstudio/feed/
+    type: rss
+    priority: low
+    tags: [microsoft, visualstudio, copilot, ai-dev]
+    include_keywords:
+      - Copilot
+      - AI
+      - GitHub
+      - agent
+      - MCP
+
+  # ---------------------------------------------------------------------------
+  # OPENAI
+  # ---------------------------------------------------------------------------
+
+  - id: openai-platform-changelog
     vendor: OpenAI
     category: ai-platform
-    url: https://developers.openai.com/api/docs/changelog
+    url: https://platform.openai.com/docs/changelog
     type: webpage
     priority: high
     tags: [openai, api, models, pricing, rate-limits]
-    include_keywords: [API, model, rate limit, pricing, Responses API, Codex, deprecation, breaking]
+    include_keywords:
+      - API
+      - model
+      - GPT
+      - o1
+      - o3
+      - o4
+      - rate limit
+      - pricing
+      - deprecation
+      - breaking
+      - embedding
+      - function calling
+      - tool
 
   - id: openai-codex-changelog
     vendor: OpenAI
@@ -26,7 +142,77 @@ sources:
     type: webpage
     priority: high
     tags: [openai, codex, cli, ai-dev]
-    include_keywords: [Codex CLI, coding agent, review, sandbox, GitHub, pull request, security]
+    include_keywords:
+      - Codex CLI
+      - coding agent
+      - review
+      - sandbox
+      - GitHub
+      - pull request
+      - security
+
+  - id: openai-news
+    vendor: OpenAI
+    category: ai-platform
+    url: https://openai.com/news/rss.xml
+    type: rss
+    priority: high
+    tags: [openai, models, research, announcements]
+    include_keywords:
+      - GPT
+      - o1
+      - o3
+      - o4
+      - model
+      - API
+      - Codex
+      - Sora
+      - deprecation
+      - pricing
+      - agent
+      - reasoning
+
+  # ---------------------------------------------------------------------------
+  # ANTHROPIC
+  # ---------------------------------------------------------------------------
+
+  - id: anthropic-news
+    vendor: Anthropic
+    category: ai-platform
+    url: https://www.anthropic.com/news
+    type: webpage
+    priority: high
+    tags: [anthropic, claude, models, research]
+    include_keywords:
+      - Claude
+      - model
+      - API
+      - pricing
+      - context window
+      - tool use
+      - computer use
+      - agent
+      - safety
+      - deprecation
+
+  - id: anthropic-api-changelog
+    vendor: Anthropic
+    category: ai-platform
+    url: https://docs.anthropic.com/en/changelog
+    type: webpage
+    priority: high
+    tags: [anthropic, api, models, claude]
+    include_keywords:
+      - Claude
+      - model
+      - API
+      - tool use
+      - caching
+      - token
+      - deprecation
+      - breaking
+      - batch
+      - streaming
 
   - id: anthropic-claude-code-changelog
     vendor: Anthropic
@@ -35,7 +221,15 @@ sources:
     type: webpage
     priority: high
     tags: [anthropic, claude-code, ai-dev, cli]
-    include_keywords: [Claude Code, permissions, hooks, MCP, GitHub, pull request, terminal, security]
+    include_keywords:
+      - Claude Code
+      - permissions
+      - hooks
+      - MCP
+      - GitHub
+      - pull request
+      - terminal
+      - security
 
   - id: anthropic-claude-code-github-releases
     vendor: Anthropic
@@ -44,16 +238,37 @@ sources:
     type: rss
     priority: medium
     tags: [anthropic, claude-code, releases]
-    include_keywords: [Claude Code, permissions, MCP, GitHub, hooks]
+    include_keywords:
+      - Claude Code
+      - permissions
+      - MCP
+      - GitHub
+      - hooks
+
+  # ---------------------------------------------------------------------------
+  # GOOGLE
+  # ---------------------------------------------------------------------------
 
   - id: google-gemini-api-release-notes
     vendor: Google
     category: ai-platform
     url: https://ai.google.dev/gemini-api/docs/changelog
     type: webpage
-    priority: medium
+    priority: high
     tags: [google, gemini, api, models]
-    include_keywords: [Gemini, model, API, function calling, tool, grounding, deprecation]
+    include_keywords:
+      - Gemini
+      - model
+      - API
+      - function calling
+      - tool
+      - grounding
+      - deprecation
+      - context window
+      - pricing
+      - Flash
+      - Pro
+      - Ultra
 
   - id: google-gemini-code-assist-release-notes
     vendor: Google
@@ -62,7 +277,33 @@ sources:
     type: rss
     priority: medium
     tags: [google, gemini-code-assist, ai-dev]
-    include_keywords: [Gemini Code Assist, code, IDE, GitHub, pull request, review]
+    include_keywords:
+      - Gemini Code Assist
+      - code
+      - IDE
+      - GitHub
+      - pull request
+      - review
+      - agent
+
+  - id: google-deepmind-blog
+    vendor: Google
+    category: ai-platform
+    url: https://deepmind.google/blog/rss.xml
+    type: rss
+    priority: medium
+    tags: [google, deepmind, research, models]
+    include_keywords:
+      - Gemini
+      - model
+      - agent
+      - reasoning
+      - multimodal
+      - API
+
+  # ---------------------------------------------------------------------------
+  # XAI
+  # ---------------------------------------------------------------------------
 
   - id: xai-release-notes
     vendor: xAI
@@ -71,4 +312,75 @@ sources:
     type: webpage
     priority: medium
     tags: [xai, grok, api, models]
-    include_keywords: [API, model, cost, rate limit, files, image, video, deprecation]
+    include_keywords:
+      - API
+      - model
+      - Grok
+      - cost
+      - rate limit
+      - context
+      - image
+      - video
+      - deprecation
+
+  # ---------------------------------------------------------------------------
+  # META / LLAMA
+  # ---------------------------------------------------------------------------
+
+  - id: meta-ai-blog
+    vendor: Meta
+    category: ai-platform
+    url: https://ai.meta.com/blog/
+    type: webpage
+    priority: medium
+    tags: [meta, llama, open-source, models]
+    include_keywords:
+      - Llama
+      - model
+      - open source
+      - release
+      - API
+      - agent
+      - multimodal
+
+  # ---------------------------------------------------------------------------
+  # MISTRAL
+  # ---------------------------------------------------------------------------
+
+  - id: mistral-news
+    vendor: Mistral
+    category: ai-platform
+    url: https://mistral.ai/news/
+    type: webpage
+    priority: low
+    tags: [mistral, models, open-source, api]
+    include_keywords:
+      - model
+      - release
+      - API
+      - pricing
+      - Mistral
+      - agent
+      - reasoning
+
+  # ---------------------------------------------------------------------------
+  # HUGGING FACE
+  # ---------------------------------------------------------------------------
+
+  - id: huggingface-blog
+    vendor: Hugging Face
+    category: ai-platform
+    url: https://huggingface.co/blog/feed.xml
+    type: rss
+    priority: low
+    tags: [huggingface, open-source, models, tools]
+    include_keywords:
+      - release
+      - model
+      - agent
+      - tool
+      - LLM
+      - inference
+      - fine-tuning
+      - safety
+      - benchmark
