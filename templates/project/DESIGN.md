@@ -20,7 +20,7 @@ It is used by [audience size/type] and is responsible for [key business function
      Show major components, how they communicate, and where data flows.
      Tools: draw.io, Mermaid, Lucidchart. Export to PNG and link it, or keep ASCII for simplicity. -->
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                        Clients                              │
 │              (Browser / Mobile / CLI / API)                 │
@@ -91,6 +91,7 @@ It is used by [audience size/type] and is responsible for [key business function
 - **[Entity C]** — [what it represents, key fields]
 
 **Relationships:**
+
 - A [Entity A] has many [Entity B] records (one-to-many)
 - A [Entity B] belongs to exactly one [Entity A]
 

@@ -23,6 +23,7 @@ The container is fully Linux. You have a terminal, can install packages, run ser
 ## devcontainer.json
 
 The `devcontainer.json` file controls everything about your Codespace environment. Place it at:
+
 - `.devcontainer/devcontainer.json` (preferred), or
 - `.devcontainer.json` at the repo root
 
@@ -108,6 +109,7 @@ Codespaces is billed by compute time (hours used) and storage.
 **Practical note:** 120 core-hours on a 2-core machine = 60 hours of actual time per month. That is roughly 3 hours per workday, which is enough for light use but not for full-time development.
 
 **Control costs:**
+
 - Idle Codespaces auto-suspend after 30 minutes (configurable: 5, 30, 60, or 240 minutes)
 - Suspended Codespaces still consume storage. Delete Codespaces you are done with.
 - Set a spending limit in your GitHub billing settings to prevent unexpected charges.

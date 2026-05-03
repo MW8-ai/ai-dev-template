@@ -15,6 +15,7 @@ npm install -g @openai/codex
 ```
 
 Requires Node.js 18+. Verify the install:
+
 ```bash
 codex --version
 ```
@@ -24,9 +25,11 @@ codex --version
 1. Create an account at platform.openai.com
 2. Go to API Keys → Create new secret key
 3. Set the environment variable:
+
    ```bash
    export OPENAI_API_KEY=sk-...
    ```
+
    Add this to your `.bashrc` or `.zshrc` to persist across sessions. Never put the actual key in a `.env` file that gets committed.
 
 ### Modes
@@ -136,6 +139,7 @@ console.log(response.choices[0].message.content);
 GPT-4o (GPT-4 omni) is OpenAI's current best model for code tasks. It handles complex reasoning, multi-file context, and nuanced instructions.
 
 **What it is good at:**
+
 - Code generation in any common language
 - Explaining code and architecture
 - Debugging with a detailed error and stack trace
@@ -143,6 +147,7 @@ GPT-4o (GPT-4 omni) is OpenAI's current best model for code tasks. It handles co
 - Code review with specific criteria
 
 **What it is less good at:**
+
 - Very large codebases (context window limits apply)
 - Understanding undocumented, proprietary frameworks
 - Tasks that require running code to verify (it predicts, it does not execute)
@@ -158,6 +163,7 @@ GPT-4o (GPT-4 omni) is OpenAI's current best model for code tasks. It handles co
 | Batch processing, offline analysis | `gpt-4o-mini` with the Batch API | Async, 50% discount on already cheap pricing |
 
 **Cost estimate:** Check current pricing at platform.openai.com/pricing. Prices change frequently. As a rough guide:
+
 - `gpt-4o`: ~$2.50 per 1M input tokens, ~$10 per 1M output tokens (2025 pricing)
 - `gpt-4o-mini`: ~$0.15 per 1M input tokens, ~$0.60 per 1M output tokens
 

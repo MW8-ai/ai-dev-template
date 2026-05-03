@@ -13,7 +13,7 @@ jobs:
     name: Package docs and generate provenance attestation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - name: Create documentation archive
         run: |
@@ -29,6 +29,6 @@ jobs:
             ai-dev-template-docs.sha256
 
       - name: Generate artifact attestation
-        uses: actions/attest@v4
+        uses: actions/attest@v2
         with:
           subject-path: ai-dev-template-docs.tar.gz

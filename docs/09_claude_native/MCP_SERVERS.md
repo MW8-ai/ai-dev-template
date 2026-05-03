@@ -113,24 +113,27 @@ await server.connect(transport);
 Useful custom servers for an AI dev template workflow:
 
 ### CI Status Server
+
 Expose GitHub Actions run results as a tool. Claude Code can check CI status without you copying output into the chat.
 
-```
+```text
 tool: get_ci_status(branch) → latest workflow run + failed steps
 tool: get_pr_checks(pr_number) → all check results for a PR
 ```
 
 ### Doc Freshness Server
+
 Expose a tool that compares doc mtimes against the source files they describe.
 
-```
+```text
 tool: check_doc_freshness(doc_path) → last modified, related source files, drift score
 ```
 
 ### Secrets Scanner
+
 Wrap `trufflehog` or `gitleaks` as a tool Claude can call before committing.
 
-```
+```text
 tool: scan_for_secrets(file_path) → list of potential secrets found
 ```
 

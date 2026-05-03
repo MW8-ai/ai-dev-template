@@ -11,6 +11,7 @@
 **Coverage minimum:** 75% line coverage, enforced in CI. Currently at ~82%.
 
 **Testing principles:**
+
 - Tests live adjacent to source code: `src/services/task-service.js` tested by `tests/task-service.test.js`
 - All service layer functions have unit tests
 - All API routes have at least one integration test covering the happy path and one for auth failure
@@ -94,6 +95,7 @@ CI fails if any metric drops below the minimum. Coverage is reported to Codecov 
 The coverage badge in README reflects the latest `main` branch.
 
 **Intentionally excluded from coverage:**
+
 - `src/server.js` (entry point — tests run the app, not start it)
 - `src/db/migrations/` (SQL migration files)
 - `src/config/` (environment variable parsing — covered implicitly)
@@ -141,7 +143,7 @@ Workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
 
 **Required GitHub secrets for CI:**
 
-```
+```text
 TEST_DATABASE_URL=postgresql://testuser:testpass@localhost:5432/teamtracker_test
 JWT_SECRET=test-jwt-secret-ci-only
 SENDGRID_API_KEY=SG.sandbox-key-for-testing
@@ -172,6 +174,7 @@ k6 run tests/performance/load-test.js \
 ```
 
 Performance tests run:
+
 - Manually before every major release
 - Automatically in CI on the `release/*` branch
 - Quarterly baseline test against production (read-only endpoints only)
@@ -183,6 +186,7 @@ Performance tests run:
 Run this smoke test after every staging deploy before promoting to production.
 
 ### Authentication
+
 - [ ] Register new account — confirm welcome email arrives (SendGrid activity feed)
 - [ ] Log in with valid credentials — confirm JWT returned
 - [ ] Log in with wrong password — confirm 401 response, not 500
@@ -190,11 +194,13 @@ Run this smoke test after every staging deploy before promoting to production.
 - [ ] Call protected endpoint with expired token — confirm 401 (not 403 or 500)
 
 ### Teams
+
 - [ ] Create a team — confirm it appears in `GET /teams`
 - [ ] Invite a user to a team — confirm invitation email arrives
 - [ ] Accept invitation — confirm new member appears in team member list
 
 ### Tasks
+
 - [ ] Create a task — confirm it appears in `GET /tasks`
 - [ ] Assign task to a team member — confirm assignee field updates
 - [ ] Update task status to "done" — confirm status change persists
@@ -202,10 +208,12 @@ Run this smoke test after every staging deploy before promoting to production.
 - [ ] Upload a file attachment — confirm file accessible via pre-signed S3 URL
 
 ### Error handling
+
 - [ ] Create a task with missing `title` field — confirm 400 with validation error body
 - [ ] Access another team's tasks — confirm 403 (not 404 or 500)
 - [ ] Upload a file > 10MB — confirm 413 with clear error message
 
 ### Observability
+
 - [ ] Check Datadog APM — confirm requests appear and latency is within targets
 - [ ] Check error rate — confirm 0% error rate during smoke test

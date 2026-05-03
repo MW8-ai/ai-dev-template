@@ -1,9 +1,11 @@
 # Incoming Update: GitHub — Inline agent mode in preview and more in GitHub Copilot for JetBrains IDEs
 
 ## Status
+
 Needs human review.
 
 ## Source
+
 - Source ID: `github-changelog`
 - Vendor: GitHub
 - Category: dev-platform
@@ -15,9 +17,11 @@ Needs human review.
 - Tags: github, pull-requests, actions, codespaces, copilot, security
 
 ## Auto-Detected Summary
+
 This update introduces inline agent mode in preview, enhancements to Next Edit Suggestions, global auto approve, and more flexible controls for terminal commands and file edits. It also includes several&#8230; The post Inline agent mode in preview and more in GitHub Copilot for JetBrains IDEs appeared first on The GitHub Blog .
 
 ## Human Review Questions
+
 1. Is this meaningful for our repo, team, AI workflow, CI/CD, or security posture?
 2. Does this change any existing guidance?
 3. Should this become an impact note?
@@ -25,6 +29,7 @@ This update introduces inline agent mode in preview, enhancements to Next Edit S
 5. Should this be archived with no action?
 
 ## Suggested Disposition
+
 - [ ] Convert to impact note
 - [ ] Update existing docs
 - [ ] Add to AI guardrails

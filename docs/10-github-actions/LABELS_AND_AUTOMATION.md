@@ -50,12 +50,14 @@ Labels make issues, PRs, releases, dashboards, and automation easier to manage.
 ## WHY Labels Matter
 
 Without labels:
+
 - Issues become a junk drawer.
 - Release notes are harder.
 - Work is harder to prioritize.
 - Automation has nothing reliable to act on.
 
 With labels:
+
 - PRs can generate cleaner release notes.
 - Teams can filter work quickly.
 - Metrics become easier.

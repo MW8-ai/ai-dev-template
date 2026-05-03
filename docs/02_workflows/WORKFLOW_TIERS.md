@@ -3,11 +3,13 @@
 ## Tier 0 — Free / Nearly Free
 
 Use for:
+
 - learning
 - static prototypes
 - personal experiments
 
 Tools:
+
 - GitHub free
 - VS Code
 - free chat tools
@@ -15,6 +17,7 @@ Tools:
 - local terminal
 
 Docs:
+
 - README.md
 - AGENTS.md
 - TESTING.md
@@ -23,12 +26,14 @@ Docs:
 ## Tier 1 — Hobby / Weekend Paid
 
 Use for:
+
 - indie tools
 - browser games
 - small apps
 - small automations
 
 Tools:
+
 - paid chat plan
 - Claude Code or Codex CLI as needed
 - private GitHub repo
@@ -37,6 +42,7 @@ Tools:
 - light GitHub Actions
 
 Docs:
+
 - Tier 0 docs
 - TECH_STACK.md
 - DEPLOYMENT.md
@@ -46,11 +52,13 @@ Docs:
 ## Tier 2 — Serious Builder / Small Team
 
 Use for:
+
 - MVPs
 - internal tools
 - products with users
 
 Tools:
+
 - GitHub org/private repos
 - branch protection
 - pull requests
@@ -60,6 +68,7 @@ Tools:
 - model routing
 
 Docs:
+
 - Tier 1 docs
 - ENVIRONMENTS.md
 - ROLLBACK.md
@@ -70,12 +79,14 @@ Docs:
 ## Tier 3 — Enterprise
 
 Use for:
+
 - production systems
 - sensitive data
 - team development
 - regulated environments
 
 Tools:
+
 - GitHub Enterprise / Azure DevOps / GitLab Enterprise
 - SSO
 - required reviews
@@ -86,6 +97,7 @@ Tools:
 - formal change control
 
 Docs:
+
 - Tier 2 docs
 - SECURITY.md
 - DATA_SAFETY.md
@@ -97,6 +109,7 @@ Docs:
 ## Tier 4 — Government / NIST / FIPS-Aware
 
 Use for:
+
 - government
 - public sector
 - CJIS/HIPAA/FERPA/FISMA adjacent systems
@@ -104,6 +117,7 @@ Use for:
 - controlled production environments
 
 Tools:
+
 - enterprise repo platform
 - formal access reviews
 - approved cloud environment
@@ -114,6 +128,7 @@ Tools:
 - records retention where applicable
 
 Docs:
+
 - Tier 3 docs
 - `docs/04_compliance/government_nist_fips/GOV_NIST_FIPS_LEVELS.md`
 - `NIST_CONTROL_MAP.md`

@@ -13,6 +13,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 **Definition:** Intentionally released for public consumption. Disclosure causes no harm.
 
 **Examples:**
+
 - Press releases and public announcements
 - Public documentation and help articles
 - Marketing materials and product brochures
@@ -20,6 +21,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 - Published APIs and their documentation
 
 **Controls:**
+
 - Standard integrity controls: prevent unauthorized modification (someone defacing your public docs is still an incident)
 - No confidentiality requirements — disclosure is the point
 - Monitor for tampering (unexpected changes to public content)
@@ -31,6 +33,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 **Definition:** Not public, but not subject to regulatory requirements. General business information whose unauthorized disclosure would be inconvenient but not damaging.
 
 **Examples:**
+
 - Meeting notes and internal agendas
 - Internal wikis and runbooks
 - Non-sensitive source code and configuration files
@@ -38,6 +41,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 - Vendor lists and non-sensitive contracts
 
 **Controls:**
+
 - Authentication required to access
 - Standard access controls (employees only, or specific teams)
 - Standard encryption in transit (TLS)
@@ -50,6 +54,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 **Definition:** Unauthorized disclosure would cause measurable harm — business impact, reputational damage, or violation of individual privacy.
 
 **Examples:**
+
 - Employee records (salary, performance reviews, HR files)
 - Unreleased product plans and roadmaps
 - Financial projections and M&A activity
@@ -59,6 +64,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 - Authentication credentials and API keys
 
 **Controls:**
+
 - Need-to-know access: only people who need it for their job can access it
 - Encrypted at rest (AES-256 minimum) and in transit (TLS 1.2+)
 - Audit logging on all access and modifications (see [AUDIT_LOGGING.md](./AUDIT_LOGGING.md))
@@ -72,6 +78,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 **Definition:** Data that can identify a specific individual, either directly or in combination with other data.
 
 **Examples:**
+
 - Full name combined with address, phone number, or email address
 - Social Security Number (SSN)
 - Date of birth
@@ -92,6 +99,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 | COPPA (Children's Online Privacy Protection Act) | Data of children under 13 in the U.S. | Parental consent required before collecting any data |
 
 **Controls (in addition to Sensitive/Confidential controls):**
+
 - **Data minimization:** collect only what you actually need. If you don't need a birth date, don't collect it.
 - **Retention limits:** define how long you keep data and delete it when the retention period ends. Automate deletion where possible.
 - **Breach notification:** have a documented process. Most regulations require notification within 72 hours (GDPR) or 60 days (HIPAA) of discovering a breach.
@@ -105,6 +113,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 **Definition:** Government information that requires protection but is not classified. CUI is defined by the CUI Registry maintained by the National Archives.
 
 **Examples:**
+
 - Law enforcement sensitive information
 - Privacy Act data (records about U.S. persons held by federal agencies)
 - Export controlled technical data (EAR — Export Administration Regulations, ITAR — International Traffic in Arms Regulations)
@@ -113,6 +122,7 @@ Classify your data before you build. Changing controls after the fact is expensi
 - Critical infrastructure information
 
 **Controls:**
+
 - NIST SP 800-171 compliance is required for all contractors handling CUI — 110 security requirements across 14 families
 - Documents must be marked with the appropriate CUI designation
 - Access control: limited to authorized users with a need to know

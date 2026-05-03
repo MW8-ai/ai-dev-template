@@ -18,6 +18,7 @@ Enable extended thinking when:
 - The model has given shallow or incorrect answers on a task without thinking
 
 Do not enable it for:
+
 - Routine implementation of a known pattern (adds cost and latency with no benefit)
 - Simple docs or formatting tasks
 - Tasks where speed matters more than depth

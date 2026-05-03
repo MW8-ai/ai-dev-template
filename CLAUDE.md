@@ -56,6 +56,7 @@ Hooks run shell commands in response to Claude Code lifecycle events. Configure 
 ```
 
 Common hook uses:
+
 - `PreToolUse` on `Bash` — block dangerous shell patterns (e.g. `rm -rf`, `git push --force`)
 - `PostToolUse` on `Edit|Write` — run doc freshness checks or linters
 - `Stop` — remind agent to write end report, trigger CI dry-run
@@ -65,7 +66,7 @@ Common hook uses:
 
 Custom slash commands live in `.claude/commands/`. Each is a `.md` file whose content becomes the prompt.
 
-```
+```text
 .claude/
   commands/
     review.md         # /review  — runs REVIEW_PROMPTS checklist
@@ -115,7 +116,7 @@ Keep destructive operations in `deny`. Add read-only operations to `allow` to re
 
 Use the Agent tool to parallelize independent work or protect the main context window.
 
-```
+```text
 Agent(Research) ──→ findings
 Agent(Build A)  ──→ diff A   } run in parallel
 Agent(Build B)  ──→ diff B   }

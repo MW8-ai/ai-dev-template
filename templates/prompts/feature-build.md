@@ -14,7 +14,7 @@
 
 ---
 
-```
+```text
 Role: You are a [LANGUAGE] developer implementing a feature in a [FRAMEWORK] project.
 
 Context:
@@ -70,7 +70,7 @@ Output format — respond with:
 
 ## Example (filled in)
 
-```
+```text
 Role: You are a TypeScript developer implementing a feature in an Express/Node.js project.
 
 Context:

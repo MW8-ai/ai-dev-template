@@ -11,6 +11,7 @@ A reference glossary for people learning Git. Every term includes a plain defini
 **Analogy:** A repository is like a filing cabinet for a project, except this filing cabinet remembers every document that was ever stored in it, who put it there, when, and what it used to look like before any edits.
 
 **Example:**
+
 ```bash
 # Create a new repository in the current folder
 git init my-project
@@ -29,6 +30,7 @@ ls -a
 **Analogy:** A commit is like a save point in a video game. When you commit, you're saying "this is a good state — I can always come back here." Unlike hitting Ctrl+S to save a file, commits are intentional checkpoints with a description of what changed.
 
 **Example:**
+
 ```bash
 # After editing files:
 git add README.md
@@ -46,6 +48,7 @@ git commit -m "Add project overview to README"
 **Analogy:** Think of a river that splits into channels. Each channel goes its own direction. Eventually some channels merge back into the main river, and some are abandoned. The `main` branch is the main channel; every feature branch is a tributary.
 
 **Example:**
+
 ```bash
 # Create a new branch and switch to it
 git checkout -b feature/add-login-page
@@ -62,6 +65,7 @@ git checkout -b feature/add-login-page
 **Analogy:** Imagine two authors each editing different chapters of the same book and then combining their manuscripts. Usually this works seamlessly. Occasionally they both edited the same paragraph — that conflict needs a human to decide which version to keep.
 
 **Example:**
+
 ```bash
 # Switch to main and merge the feature branch into it
 git checkout main
@@ -89,6 +93,7 @@ Push your branch, then on GitHub click **Compare & pull request**. Fill in a tit
 **Analogy:** Cloning is like photocopying an entire filing cabinet, not just one drawer. You get everything: the current files and the complete history. From that point, your copy and the original are independent — you can make changes without affecting the original until you explicitly push.
 
 **Example:**
+
 ```bash
 # Clone the repository to a folder called "my-project"
 git clone git@github.com:your-org/my-project.git
@@ -106,6 +111,7 @@ cd my-project
 
 **Example:**
 On GitHub, navigate to `github.com/some-org/their-project` and click **Fork**. GitHub creates `github.com/your-username/their-project`. Clone your fork:
+
 ```bash
 git clone git@github.com:your-username/their-project.git
 ```
@@ -119,6 +125,7 @@ git clone git@github.com:your-username/their-project.git
 **Analogy:** Your local repository is your personal notebook. A remote is the shared whiteboard at the office. You write things in your notebook, then periodically update the whiteboard. Your teammates update the whiteboard too, and you periodically refresh your notebook from it.
 
 **Example:**
+
 ```bash
 # List all remotes and their URLs
 git remote -v
@@ -138,6 +145,7 @@ git remote add upstream git@github.com:original-org/their-project.git
 **Analogy:** If "remote" is a phone contact, "origin" is the contact named "Home." It's just the default, familiar one.
 
 **Example:**
+
 ```bash
 # When you clone, Git automatically sets up origin
 git clone git@github.com:your-org/my-project.git
@@ -157,6 +165,7 @@ git push origin main
 **Analogy:** `main` is the published edition of a book. Feature branches are drafts. You only merge a draft into the published edition after it has been reviewed and approved.
 
 **Example:**
+
 ```bash
 # Switch to the main branch
 git checkout main
@@ -174,6 +183,7 @@ git pull origin main
 **Analogy:** The staging area is like a packing table. You have a pile of things you changed (your working directory). You pick up the specific items you want to ship and place them on the table (staging). Then you seal the box and label it (commit). Items still in the pile aren't shipped yet.
 
 **Example:**
+
 ```bash
 # You edited three files: auth.js, styles.css, README.md
 # Only commit the auth changes right now
@@ -196,6 +206,7 @@ git commit -m "Implement email/password authentication"
 **Analogy:** A `.gitignore` is like a list on the packing table that says "never ship these." Even if they're sitting right there, you always skip them.
 
 **Example:**
+
 ```gitignore
 # .gitignore
 
@@ -230,6 +241,7 @@ git status
 **Analogy:** HEAD is a "you are here" marker on a map. The map is your commit history. When you move to a different branch, the marker moves to the tip of that branch.
 
 **Example:**
+
 ```bash
 # See what HEAD points to
 cat .git/HEAD
@@ -252,6 +264,7 @@ git log -1 HEAD
 **Analogy:** Stashing is like stuffing your work-in-progress into a desk drawer so you can clear your desk quickly. Later you open the drawer and pull it back out exactly as you left it.
 
 **Example:**
+
 ```bash
 # You're halfway through editing auth.js when you need to switch branches
 git stash
@@ -276,6 +289,7 @@ git stash pop
 **Analogy:** Imagine you started writing a report based on the January draft. Meanwhile, your colleague updated the January draft into a February draft. Rebasing is like going back and rewriting your additions as if you had started from the February draft all along — the result looks seamless.
 
 **Example:**
+
 ```bash
 # You're on feature/add-login-page and main has moved ahead
 git checkout feature/add-login-page
@@ -307,4 +321,4 @@ git log --oneline
 
 ## Next Step
 
-→ [Make your first commit and push](docs/01-getting-started/FIRST_COMMIT_PUSH.md)
+→ [docs/01-getting-started/MISCONCEPTIONS.md](docs/01-getting-started/MISCONCEPTIONS.md) — clear up the most common misunderstandings about Git and GitHub

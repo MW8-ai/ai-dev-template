@@ -17,6 +17,7 @@
 | End-to-end tests | [e.g., 5%] | Validate critical user journeys; slow but high confidence |
 
 **Testing principles for this project:**
+
 - Tests live next to the code they test (`*.test.js` alongside `*.js`, or in a `/tests` mirror)
 - Tests must pass before any PR is merged
 - Flaky tests are treated as bugs — fix or delete, never skip
@@ -133,12 +134,14 @@ CI will fail if coverage drops below the minimum. To view a coverage report loca
      Link to the workflow file and explain any parallelization or matrix strategies. -->
 
 Tests run automatically in GitHub Actions on:
+
 - Every push to any branch
 - Every pull request targeting `main` or `develop`
 
 Workflow file: [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)
 
 **Test stages in CI:**
+
 1. Lint (fails fast — runs in ~30 seconds)
 2. Unit tests (parallelized across [N] workers)
 3. Integration tests (runs against service containers)
@@ -147,7 +150,7 @@ Workflow file: [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)
 
 **CI environment variables required:**
 
-```
+```text
 TEST_DATABASE_URL=postgresql://localhost:5432/test
 JWT_SECRET=test-secret-not-used-in-production
 [OTHER_REQUIRED_TEST_VARS]
@@ -181,25 +184,30 @@ Performance tests run manually before major releases and quarterly on the stagin
 Perform this smoke test after deploying to staging. Check each item before promoting to production.
 
 ### Authentication
+
 - [ ] User can register a new account
 - [ ] User can log in with valid credentials
 - [ ] Invalid credentials return an error (not a 500)
 - [ ] Password reset flow sends email and allows new password
 
 ### Core Features
+
 - [ ] [Core feature 1] works end to end
 - [ ] [Core feature 2] works end to end
 - [ ] [Core feature 3] works end to end
 
 ### Error Handling
+
 - [ ] 404 page displays correctly for unknown routes
 - [ ] API returns JSON error body (not HTML) on 4xx/5xx
 - [ ] Form validation errors display clearly to the user
 
 ### Performance
+
 - [ ] Home/main page loads in < [N] seconds on a standard connection
 - [ ] No obvious memory leaks after 10 minutes of use (check browser dev tools)
 
 ### Accessibility (if applicable)
+
 - [ ] Page is navigable by keyboard
 - [ ] Screen reader reads important content in logical order

@@ -111,6 +111,7 @@ DATABASE_URL=[STAGING_DB_URL] npm run db:migrate
 ### Production
 
 > **Before deploying to production:**
+>
 > - [ ] Staging deploy succeeded and has been tested
 > - [ ] PR has been approved and merged
 > - [ ] Deployment has been scheduled (no Friday deploys without on-call coverage)
@@ -206,6 +207,7 @@ If any check fails, initiate the rollback procedure immediately.
 | Production | [AWS Secrets Manager / HashiCorp Vault] | IAM role; app reads at startup |
 
 **Rotating a secret:**
+
 1. Generate a new secret value
 2. Add the new value to [Secrets Manager] alongside the old value
 3. Deploy the application (it will pick up the new value)

@@ -12,7 +12,7 @@ This doc explains the three main strategies, when to use each, and what this rep
 
 Everyone commits to a single branch (`main` or `trunk`). Long-lived feature branches are avoided. Instead, unfinished work is hidden behind feature flags.
 
-```
+```text
 main: A → B → C → D → E → F  (continuous flow)
             ↑       ↑
         tiny short  tiny short
@@ -22,18 +22,21 @@ main: A → B → C → D → E → F  (continuous flow)
 ```
 
 **Rules:**
+
 - No branch lives longer than 1–2 days
 - Incomplete features use feature flags, not long branches
 - CI must pass before merging
 - Deployments happen continuously or on a schedule from `main`
 
 **Best for:**
+
 - Teams practicing continuous delivery / continuous deployment
 - Small to mid-size teams (2–15 engineers) with strong test coverage
 - Products that ship frequently (multiple times per day or week)
 - Teams with high discipline and good CI coverage
 
 **Not ideal for:**
+
 - Large, distributed teams where coordination is hard
 - Projects with long QA cycles or external approval gates
 - Open-source projects with untrusted external contributors
@@ -44,7 +47,7 @@ main: A → B → C → D → E → F  (continuous flow)
 
 A structured model with dedicated branches for each phase of development: features, releases, and hotfixes. Popularized by Vincent Driessen's 2010 blog post.
 
-```
+```text
 main:    ────●──────────────────●──────────────●──────
              │                  │              │
 develop: ─●──●──●───●───●───●───●──●───●───●──●──────
@@ -61,6 +64,7 @@ hotfix/critical: ─────────────────────
 ```
 
 **Branches:**
+
 | Branch | Purpose | Lifetime |
 |---|---|---|
 | `main` | Production-ready code, every commit is a release | Permanent |
@@ -70,12 +74,14 @@ hotfix/critical: ─────────────────────
 | `hotfix/*` | Emergency production fixes | Hours |
 
 **Best for:**
+
 - Teams with scheduled release cycles (monthly, quarterly)
 - Products with multiple supported versions
 - Large teams where `develop` provides a buffer before production
 - Projects with formal QA / sign-off processes
 
 **Not ideal for:**
+
 - Continuous delivery teams — the overhead kills velocity
 - Small teams — two permanent branches doubles the merge work
 - Teams that want a simple history — GitFlow creates complex merge chains
@@ -86,7 +92,7 @@ hotfix/critical: ─────────────────────
 
 A simpler version of trunk-based development. One long-lived branch (`main`) plus short-lived feature branches. No `develop`, no `release` branches.
 
-```
+```text
 main:       A ─────────────────● ─────────────●
                                ↑              ↑
 feature/login: ─B─C─D (PR) ──┘              │
@@ -94,12 +100,14 @@ feature/search:    ─E─F─G (PR) ─────────────┘
 ```
 
 **Rules:**
+
 1. `main` is always deployable
 2. Work on named feature branches (`feature/`, `fix/`, `docs/`, etc.)
 3. Open a PR to merge into `main`
 4. Deploy from `main` after merging
 
 **Best for:**
+
 - Teams deploying frequently
 - Small to mid-size teams
 - Projects where every merged PR can go to production immediately
@@ -115,7 +123,7 @@ We use GitHub Flow with additional guardrails:
 
 ### Branch Naming Convention
 
-```
+```text
 feature/<short-description>    # new functionality
 fix/<short-description>        # bug fix
 docs/<short-description>       # documentation only
@@ -125,7 +133,8 @@ release/<version>              # release prep (optional, for versioned projects)
 ```
 
 Examples:
-```
+
+```text
 feature/user-authentication
 fix/login-redirect-loop
 docs/update-api-reference
@@ -147,7 +156,7 @@ Why naming matters: CI workflows can trigger selectively by branch pattern. Code
 
 Squash merge by default. Each PR becomes one commit on `main`. This keeps `main`'s history clean: one line per feature/fix, not a tangled web of WIP commits.
 
-```
+```text
 main before: A → B → C
              (clean, readable)
 
@@ -196,6 +205,7 @@ if (featureFlags.isEnabled("new-checkout-flow", userId)) {
 The incomplete code ships to production, but no users see it. When it's ready, flip the flag. This is how large companies (Google, Facebook, Netflix) ship — not by maintaining months-long branches.
 
 **When feature flags are overkill:**
+
 - Small teams with fast PR cycles (< 1 week per PR)
 - Projects where every commit is isolated and self-contained
 - Open-source where you can't coordinate flags across contributors
@@ -216,6 +226,7 @@ Sometimes a long-lived branch is the right call:
 | Experimental proof-of-concept | `experiment/<name>` branch, no expectation of merging |
 
 Rules for long-lived branches:
+
 1. Rebase against `main` at least weekly to prevent divergence
 2. Have a clear merge-or-abandon decision date
 3. Assign an owner who is responsible for keeping it mergeable

@@ -46,6 +46,42 @@ Claude Code is not a real-time typing assistant. Use GitHub Copilot for that. Cl
 
 ---
 
+## When NOT to Use It
+
+- **Keystroke-level suggestions** — Use GitHub Copilot for inline completions as you type
+- **Simple one-liner questions** — A regular Claude.ai chat is cheaper and faster for Q&A
+- **Production database migrations** — Claude Code can write the migration; a human runs it after review
+- **Secrets management** — Never ask Claude Code to handle, store, or rotate real credentials
+- **Unreviewed auto-merge** — Do not configure any pipeline where Claude Code's output merges to `main` without human approval
+- **Debugging issues you haven't reproduced** — Give it a failing test or a concrete error, not "it seems slow sometimes"
+
+---
+
+## Common Failure Modes
+
+| Failure | What Happens | Prevention |
+|---|---|---|
+| Scope drift | Expands the task beyond what was asked | Give a specific, bounded scope in `CLAUDE.md` and the prompt |
+| Confident hallucination | Generates plausible but incorrect code | Always read the full diff before approving |
+| Missing context | Gets a detail wrong because it missed a key file | Pin important context files in `CLAUDE.md` |
+| Circular fixing | Makes the same mistake repeatedly | Stop and start fresh — don't iterate 5 times on a broken approach |
+| Context overflow | Large reads degrade later responses in the session | Use sub-agents for large searches; see `CONTEXT_MANAGEMENT.md` |
+
+---
+
+## Required Human Validation
+
+Before merging any Claude Code output:
+
+- [ ] Read the full diff — not just the summary
+- [ ] Confirm the change is scoped to what was requested
+- [ ] Verify tests pass and no new failures were introduced
+- [ ] Check that no secrets, tokens, or credentials appear anywhere in the diff
+- [ ] Confirm CHANGELOG.md was updated if this is a meaningful change
+- [ ] Confirm no files outside the expected scope were modified
+
+---
+
 ## Models
 
 Claude Code routes tasks to different models based on complexity:
@@ -63,27 +99,32 @@ The model routing matrix is documented in `docs/02_workflows/MODEL_ROUTING.md`. 
 ## Setup
 
 **Install:**
+
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
 **Set your API key:**
+
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."
 ```
 
 Add to your shell profile for persistence:
+
 ```bash
 echo 'export ANTHROPIC_API_KEY="sk-ant-..."' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 **Verify:**
+
 ```bash
 claude --version
 ```
 
 **Start a session in your project directory:**
+
 ```bash
 cd /path/to/your-project
 claude
@@ -96,6 +137,7 @@ claude
 `CLAUDE.md` is a Markdown file at the root of your repository that tells Claude Code how to behave in your specific project. It is read at the start of every session.
 
 What to include in `CLAUDE.md`:
+
 - The tech stack (language, framework, runtime versions)
 - Coding conventions (naming, file structure, test patterns)
 - What commands to run to build, test, and lint
@@ -104,6 +146,7 @@ What to include in `CLAUDE.md`:
 - Any project-specific rules ("never use `console.log` in production code")
 
 Example snippet:
+
 ```markdown
 ## Tech Stack
 - Python 3.11, Django 4.2, PostgreSQL 15
@@ -128,7 +171,7 @@ See this project's [CLAUDE.md](../../CLAUDE.md) for a complete example.
 
 Custom slash commands live in `.claude/commands/` as `.md` files. Each file's content becomes the prompt when you type the command name.
 
-```
+```text
 /review     — runs the full code review checklist on the current diff
 /security   — runs a security-focused review
 /audit      — runs a full repo audit
@@ -137,7 +180,8 @@ Custom slash commands live in `.claude/commands/` as `.md` files. Each file's co
 ```
 
 Run a command:
-```
+
+```text
 claude> /review
 ```
 
@@ -214,6 +258,7 @@ The `.claude/settings.json` file controls what Claude Code is and is not allowed
 ```
 
 Critical deny rules for any project:
+
 - `git push --force` — prevents rewriting shared history
 - `rm -rf` — prevents bulk file deletion
 - `git reset --hard` — prevents discarding uncommitted work
@@ -226,7 +271,7 @@ Claude Code will ask for permission before running any command not in the allow 
 
 For complex tasks, Claude Code can use sub-agents to work in parallel:
 
-```
+```text
 Agent(Research) ──→ reads files, gathers findings
 Agent(Build A)  ──→ implements the backend change     } parallel
 Agent(Build B)  ──→ implements the frontend change    }
@@ -239,4 +284,4 @@ See `docs/09_claude_native/SUBAGENT_PATTERNS.md` for full patterns including con
 
 ## Next Step
 
-→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+→ [docs/04-ai-workflows/GITHUB_COPILOT.md](docs/04-ai-workflows/GITHUB_COPILOT.md) — setup and usage guide for GitHub Copilot: inline completions, Copilot Chat, and editor integration

@@ -14,6 +14,7 @@ Related docs: [CLAUDE_CODE.md](./CLAUDE_CODE.md) | [GITHUB_COPILOT.md](./GITHUB_
 | Claude Code | Anthropic | Multi-file tasks, architecture, CLI agent | Usage-based |
 | OpenAI Codex CLI | OpenAI | Terminal-based coding assistant, quick scripts | Usage-based |
 | Gemini CLI | Google | Terminal assistant, Google Cloud integration | Free tier + usage |
+| Local LLMs (Ollama) | Open source / various | Private, offline, zero cost per token | Free (hardware) |
 
 ---
 
@@ -25,7 +26,9 @@ Related docs: [CLAUDE_CODE.md](./CLAUDE_CODE.md) | [GITHUB_COPILOT.md](./GITHUB_
 
 **Use OpenAI Codex CLI when** you work mostly in the terminal and need a quick assistant for generating scripts, explaining commands, or running one-shot coding tasks without opening an editor.
 
-**Use multiple tools together** — they complement each other rather than compete. A common pattern: Copilot for in-editor typing, Claude Code for delegated feature work, Codex CLI for quick terminal questions.
+**Use local LLMs (Ollama) when** the task is routine, the data is sensitive, or you want zero API cost. Summarizing a diff, writing a changelog entry, explaining a function, generating test stubs — local 32B models handle these well. Route complex architecture decisions and security reviews to cloud models. See [LOCAL_LLMS.md](./LOCAL_LLMS.md) for hardware requirements and model recommendations.
+
+**Use multiple tools together** — they complement each other rather than compete. A common pattern: Copilot for in-editor typing, Claude Code for complex delegated work, a local model (Qwen2.5-Coder via Ollama) for routine private tasks, Codex CLI for quick terminal questions.
 
 ---
 
@@ -77,4 +80,4 @@ These rules apply regardless of which tool you use:
 
 ## Next Step
 
-→ Choose your AI tool: [OpenAI Codex](docs/04-ai-workflows/OPENAI_CODEX.md), [Claude Code](docs/04-ai-workflows/CLAUDE_CODE.md), or [GitHub Copilot](docs/04-ai-workflows/GITHUB_COPILOT.md)
+→ [docs/04-ai-workflows/OPENAI_CODEX.md](docs/04-ai-workflows/OPENAI_CODEX.md) — setup and usage guide for OpenAI Codex CLI: terminal-based coding assistance and prompt tips

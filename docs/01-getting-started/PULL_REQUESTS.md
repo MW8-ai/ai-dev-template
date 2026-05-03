@@ -9,14 +9,14 @@ A pull request (PR) is how code gets reviewed and merged. It is the central coll
 git push origin feature/my-feature
 ```
 
-2. Go to your repository on GitHub — a yellow banner appears: "Compare & pull request." Click it.
-3. Write a clear title and a description that explains what changed, why, and how to test it.
-4. In the right sidebar, assign one or more **Reviewers**.
-5. Click **Create pull request**.
-6. Respond to review comments: make changes locally, commit, push — the PR updates automatically.
-7. Once a reviewer clicks **Approve**, click **Merge pull request** → **Confirm merge**.
-8. Delete the branch when GitHub prompts you to (it is safe — the commits live in `main` now).
-9. Update your local copy:
+1. Go to your repository on GitHub — a yellow banner appears: "Compare & pull request." Click it.
+2. Write a clear title and a description that explains what changed, why, and how to test it.
+3. In the right sidebar, assign one or more **Reviewers**.
+4. Click **Create pull request**.
+5. Respond to review comments: make changes locally, commit, push — the PR updates automatically.
+6. Once a reviewer clicks **Approve**, click **Merge pull request** → **Confirm merge**.
+7. Delete the branch when GitHub prompts you to (it is safe — the commits live in `main` now).
+8. Update your local copy:
 
 ```bash
 git checkout main
@@ -92,6 +92,7 @@ N/A — no UI changes
 After submitting the PR, assigned reviewers receive an email notification.
 
 **As the author, during review:**
+
 - Watch for review comments in your GitHub notifications or email
 - For each comment: either make the change and push, or reply explaining why you disagree
 - After pushing fixes: reply to comments with "Fixed in [commit hash]" or click "Resolve conversation" if the reviewer asked you to make a call
@@ -108,13 +109,13 @@ After submitting the PR, assigned reviewers receive an email notification.
 
 A common practice: distinguish between blocking and non-blocking feedback in comments. Use "nit:" prefix for minor style preferences that are not blockers:
 
-```
+```text
 nit: this variable name could be more descriptive, but it's fine as is
 ```
 
 vs.
 
-```
+```text
 This will panic with a null pointer if `user.profile` is not set —
 we need to add a null check here before the PR can merge
 ```
@@ -136,7 +137,7 @@ GitHub offers three merge strategies. The repository settings may restrict which
 **Merge commit** (`git merge --no-ff`)
 Creates a merge commit that ties the two branch histories together. The commit history shows when the branch diverged and when it merged. Best for: tracking feature completions, preserving full context.
 
-```
+```text
 * merge commit (main)
 |\
 | * commit 3 (feature branch)
@@ -149,7 +150,7 @@ Creates a merge commit that ties the two branch histories together. The commit h
 **Squash and merge**
 Combines all commits from the PR into one single commit on `main`. The feature branch's messy intermediate commits ("fix typo", "WIP", "oops forgot to save") disappear. Best for: keeping `main` history clean and readable.
 
-```
+```text
 * squashed commit (main) ← all feature branch commits combined
 * previous commit (main)
 ```
@@ -192,4 +193,7 @@ Deleted branches are not gone — Git keeps all their commits. You can restore a
 
 ## Next Step
 
-→ [See the most common mistakes and how to fix them](docs/01-getting-started/COMMON_MISTAKES.md)
+Set up your development environment:
+
+- Windows → [docs/02-dev-environment/WINDOWS_SETUP.md](docs/02-dev-environment/WINDOWS_SETUP.md)
+- Mac → [docs/02-dev-environment/MAC_SETUP.md](docs/02-dev-environment/MAC_SETUP.md)

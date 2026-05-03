@@ -10,7 +10,7 @@ production-grade example project demonstrating enterprise Node.js/TypeScript API
 
 TeamTracker follows a 3-tier architecture:
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │            API Layer                    │
 │  Express routes, auth middleware,       │
@@ -31,6 +31,7 @@ TeamTracker follows a 3-tier architecture:
 ```
 
 **External services:**
+
 - SendGrid — transactional email (invitations, notifications)
 - AWS S3 — file attachments on tasks
 
@@ -92,6 +93,29 @@ curl http://localhost:3000/health
 | [CONTRIBUTING.md](../../templates/project/CONTRIBUTING.md) | How to contribute |
 | [docs/architecture.md](docs/architecture.md) | Detailed system architecture |
 | [SECURITY.md](../../templates/project/SECURITY.md) | Security policy and controls |
+
+---
+
+## What This Demonstrates
+
+This project is a working example of every pattern taught in the playbook. Use it as a reference when starting your own project.
+
+| Pattern | Where to See It |
+|---|---|
+| 3-tier architecture (API / Service / Data) | Architecture diagram above; [DESIGN.md](DESIGN.md) |
+| Conventional Commits format | [CHANGELOG.md](CHANGELOG.md) — every entry follows `type(scope): message` |
+| Branch → PR → Merge workflow | [CONTRIBUTING.md](../../templates/project/CONTRIBUTING.md) |
+| Test strategy: unit + integration layers | [TESTING.md](TESTING.md) — coverage thresholds defined |
+| Environment config with `.env.example` | `cp .env.example .env` in Quick Start above |
+| Database migrations (never manual schema changes) | `npm run db:migrate` |
+| Soft-delete pattern | `DELETE /tasks/:id` soft-deletes; no hard data loss |
+| Health check endpoint | `GET /health` — returns version and DB status |
+| JWT authentication | `POST /auth/login` returns token; all endpoints validate it |
+| External service isolation (SendGrid, S3) | Wrapped in service classes — swap providers without touching routes |
+| Deployment runbook | [DEPLOYMENT.md](DEPLOYMENT.md) — staging → production steps |
+| Security policy | [SECURITY.md](../../templates/project/SECURITY.md) |
+
+→ **Playbook reference:** [AI Dev Template](../../README.md)
 
 ---
 

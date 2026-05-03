@@ -8,7 +8,7 @@ This repo follows the **Conventional Commits** specification.
 
 ## The Format
 
-```
+```text
 <type>(<scope>): <short description>
 
 [optional body]
@@ -18,7 +18,7 @@ This repo follows the **Conventional Commits** specification.
 
 ### The subject line (required)
 
-```
+```text
 feat(auth): add OAuth2 login with Google
 ^    ^       ^
 │    │       └─ short description — imperative, lowercase, no period
@@ -27,6 +27,7 @@ feat(auth): add OAuth2 login with Google
 ```
 
 **Rules for the subject line:**
+
 - 50 characters or fewer (72 max if you must)
 - Imperative mood: "add" not "added" or "adding"
 - Lowercase
@@ -54,14 +55,17 @@ feat(auth): add OAuth2 login with Google
 ### Choosing between types
 
 **`feat` vs `fix`:**
+
 - `feat`: users gain a new capability they couldn't do before
 - `fix`: existing behavior that was broken now works correctly
 
 **`refactor` vs `fix`:**
+
 - `refactor`: the external behavior is identical, the internal structure changed
 - `fix`: the external behavior was wrong and is now correct
 
 **`chore` vs `ci`:**
+
 - `chore`: anything that's not user-facing and not CI (bump dependency versions, update `.gitignore`, regenerate lockfile)
 - `ci`: changes to `.github/workflows/`, `Dockerfile`, `Makefile` targets, CI config files
 
@@ -71,7 +75,7 @@ feat(auth): add OAuth2 login with Google
 
 Scopes are optional but recommended. They tell reviewers where to look.
 
-```
+```text
 feat(auth): ...
 fix(api): ...
 docs(getting-started): ...
@@ -101,13 +105,13 @@ Breaking changes MUST be called out. Two ways:
 
 **Option 1: `!` after the type/scope**
 
-```
+```text
 feat(api)!: remove deprecated /v1/users endpoint
 ```
 
 **Option 2: `BREAKING CHANGE:` in the footer**
 
-```
+```text
 refactor(db): migrate from MySQL to PostgreSQL
 
 BREAKING CHANGE: DATABASE_URL format changed.
@@ -124,7 +128,7 @@ Both options trigger a **major version bump** in semantic versioning tools. Use 
 
 The body is optional. Use it when the subject line can't tell the whole story.
 
-```
+```text
 fix(auth): prevent session fixation on login
 
 Before this fix, session IDs were not regenerated after successful
@@ -136,6 +140,7 @@ Fixes #42
 ```
 
 **Body guidelines:**
+
 - Blank line between subject and body (required for git log to parse correctly)
 - Wrap at 72 characters
 - Explain *why* — the code shows *what*, the commit message explains *why*
@@ -147,7 +152,7 @@ Fixes #42
 
 Footers go after the body, separated by a blank line.
 
-```
+```text
 feat(payments): add Stripe webhook verification
 
 Adds HMAC signature verification to the Stripe webhook endpoint.
@@ -159,6 +164,7 @@ BREAKING CHANGE: STRIPE_WEBHOOK_SECRET env var is now required.
 ```
 
 Common footer tokens:
+
 - `Fixes #<n>` — closes the issue when the PR is merged
 - `Closes #<n>` — same as Fixes
 - `Refs #<n>` — references without closing
@@ -172,11 +178,11 @@ Common footer tokens:
 
 ### Good commits
 
-```
+```text
 feat(cart): add item quantity controls to cart page
 ```
 
-```
+```text
 fix(api): return 404 instead of 500 when user not found
 
 The user lookup was throwing an unhandled exception when the user
@@ -186,15 +192,15 @@ didn't exist in the database. Now returns a proper 404 with
 Fixes #88
 ```
 
-```
+```text
 docs: add MISCONCEPTIONS.md explaining Git vs GitHub
 ```
 
-```
+```text
 chore(deps): upgrade express from 4.18.2 to 4.19.2
 ```
 
-```
+```text
 feat(auth)!: require email verification before login
 
 Previously users could log in immediately after registration.
@@ -208,7 +214,7 @@ to existing users.
 
 ### Bad commits (and why)
 
-```
+```text
 fix stuff                     # no type, no scope, no description
 WIP                           # not a real commit message
 Added new feature for users   # past tense, no type
@@ -314,7 +320,7 @@ When squash-merging a PR, GitHub uses the PR title as the commit message. This i
 
 ## Quick Reference Card
 
-```
+```text
 feat(scope): description          → new feature (minor version bump)
 fix(scope): description           → bug fix (patch version bump)
 feat(scope)!: description         → breaking feature (major version bump)

@@ -1,6 +1,7 @@
 ## Documentation Standards
 
 ### What Needs Documentation
+
 - Public APIs and their parameters
 - Architecture decisions (use DESIGN.md)
 - Non-obvious implementation choices (inline comments)
@@ -8,11 +9,13 @@
 - Changes (CHANGELOG.md)
 
 ### What Does Not Need Documentation
+
 - Self-explanatory code (a function named `validateEmail` doesn't need a comment saying "validates email")
 - Obvious configuration
 - Generated code
 
 ### File Structure
+
 - README.md: project overview, quick start, links to other docs
 - DESIGN.md: architecture, decisions, diagrams
 - TESTING.md: how to run tests, what CI checks exist
@@ -21,6 +24,7 @@
 - API docs: close to the code (inline docstrings or auto-generated)
 
 ### Writing Style
+
 - Active voice: "Run the tests" not "The tests should be run"
 - Short sentences: one idea per sentence
 - Second person: "You can configure..." not "One can configure..."
@@ -28,6 +32,7 @@
 - Link related docs: don't duplicate, reference
 
 ### Changelog Format
+
 ```markdown
 ## Unreleased
 ### Added
@@ -42,6 +47,7 @@
 ```
 
 ### Keeping Docs Fresh
+
 - Update docs in the same PR that changes the behavior
 - Stale docs are worse than no docs — they mislead
 - Use CI checks (docs-check.yml, required-files.yml) to catch gaps

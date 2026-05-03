@@ -44,7 +44,7 @@ No single person should have unilateral end-to-end control over critical operati
 
 Users are assigned roles. Roles have permissions. This is the most common model and is easy to audit.
 
-```
+```text
 Role: Developer
   Permissions:
     → read: all code repositories
@@ -83,6 +83,7 @@ When to use RBAC: most systems. It is simple, auditable, and scales well.
 ABAC grants access based on attributes of the user, the resource, and the environment. It is more granular than RBAC and better suited to complex authorization logic.
 
 **Example ABAC rules:**
+
 - A user with attribute `department=legal` can access documents with attribute `classification=legal-privileged`
 - A user with attribute `clearance=secret` can access resources with attribute `required_clearance=secret` but not `required_clearance=top-secret`
 - Access to `environment=production` is only allowed from IP ranges in `approved-corporate-ranges` during `business-hours`
@@ -104,6 +105,7 @@ GitHub's built-in access levels map well to RBAC:
 | Admin | Full control: settings, collaborators, can delete repo | Repo owners, platform admins |
 
 **Guidelines:**
+
 - Reviewers who only review code get **Write** (required to approve PRs on most GitHub configurations)
 - External contributors (open source): start them with **Triage** until trust is established
 - Non-technical stakeholders: **Read** or **Triage**
@@ -116,6 +118,7 @@ GitHub's built-in access levels map well to RBAC:
 A service account is a machine identity — credentials used by a service or automation, not a human.
 
 **Rules for service accounts:**
+
 1. **One account per service.** Never share credentials between services. If one service is compromised, its credentials can be revoked without affecting others.
 2. **No interactive login.** Service accounts should not be able to log in to a console or SSH to a server. Machine use only.
 3. **Minimum permissions.** Apply least privilege strictly. A service that reads data gets a read-only credential. A service that writes to one table gets write access to that table, not the whole database.
@@ -129,11 +132,13 @@ A service account is a machine identity — credentials used by a service or aut
 Access reviews are periodic audits of who has access to what. They are required for most compliance frameworks and are good practice regardless.
 
 **Cadence:**
+
 - Standard access: quarterly
 - Privileged access (admin, production): monthly
 - After organizational changes (team restructuring, layoffs, role changes): immediately
 
 **What to review:**
+
 - List of users with access to each system and their permission level
 - Service accounts and their current usage (revoke if unused)
 - Third-party integrations with OAuth grants
@@ -141,6 +146,7 @@ Access reviews are periodic audits of who has access to what. They are required 
 - API keys and when they were last rotated
 
 **What to do:**
+
 - Remove access for anyone who changed roles or left the team
 - Downgrade overly permissive access
 - Revoke unused service accounts and API keys

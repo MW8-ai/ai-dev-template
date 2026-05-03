@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+
 - `docs/09_claude_native/` — new section for Claude/Anthropic-specific design patterns:
   - `PROMPT_CACHING.md` — `cache_control` placement, cache hit verification, cost model
   - `SUBAGENT_PATTERNS.md` — parallel tasks, research/build separation, worktree isolation, role-based orchestration
@@ -21,9 +22,11 @@
 - Updated `docs/02_workflows/MODEL_ROUTING.md` with Claude model/feature matrix (Haiku 4.5, Sonnet 4.6, Opus 4.7), feature availability table, and cost optimization rules
 
 ### Previously Added
+
 - Expanded root-level project templates.
 - Added GitHub issue templates.
 - Added compliance, testing, release, and documentation standards.
 
 ## 0.1.0
+
 - Initial AI-native development repo scaffold.

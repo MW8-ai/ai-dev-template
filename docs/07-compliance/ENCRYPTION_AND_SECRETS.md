@@ -19,23 +19,27 @@ Encryption at rest protects data stored on disk, in a database, in object storag
 ### Implementation Options
 
 **Database:**
+
 - PostgreSQL: `pgcrypto` extension for column-level encryption of specific sensitive fields. Alternatively, enable Transparent Data Encryption (TDE) at the database cluster level if your managed database provider supports it.
 - MySQL / MariaDB: `AES_ENCRYPT()` / `AES_DECRYPT()` for column-level, or enable InnoDB tablespace encryption.
 - MongoDB Atlas: encryption at rest is enabled by default in Atlas.
 - Application-level encryption: encrypt values in application code before writing to the database. The database stores ciphertext. This is the most portable approach and works regardless of the database engine.
 
 **File and object storage:**
+
 - AWS S3: Server-Side Encryption (SSE) with SSE-S3 (Amazon-managed keys), SSE-KMS (AWS KMS-managed keys, gives you rotation control and audit logs), or SSE-C (customer-provided keys).
 - GCP Cloud Storage: default encryption with Google-managed keys, or Customer-Managed Encryption Keys (CMEK) via Cloud KMS.
 - Azure Blob Storage: Storage Service Encryption (SSE) with Microsoft-managed keys, or Customer-Managed Keys (CMK) via Azure Key Vault.
 
 **Disk / volume:**
+
 - Linux: LUKS (Linux Unified Key Setup) for full-disk encryption. Enabled at OS install time or on attached volumes via `cryptsetup`.
 - Windows: BitLocker for volume encryption. Enable via Group Policy for enterprise environments.
 - macOS: FileVault for the system disk. Enable in System Settings > Privacy & Security.
 - Cloud VMs: Enable encrypted root volumes when provisioning. On AWS, set `Encrypted: true` on EBS volumes. On GCP, use CMEK for persistent disks.
 
 **Backups:**
+
 - Encrypt backups before transmission and storage.
 - Store the encryption key separately from the backup — if they are in the same place, an attacker who gets the backup gets the key too.
 - Test restoration from encrypted backups quarterly. Unrestorable backups are not backups.
@@ -47,6 +51,7 @@ Encryption at rest protects data stored on disk, in a database, in object storag
 Encryption in transit protects data moving across a network. Without it, anyone on the network path can read the data (and on the internet, many parties are on the path).
 
 **Rules:**
+
 - Use TLS (Transport Layer Security) 1.2 minimum. TLS 1.3 is preferred for new systems.
 - Never serve authenticated or sensitive content over plain HTTP in production.
 - Redirect HTTP to HTTPS at the load balancer or CDN (Content Delivery Network) — do not serve anything over HTTP.
@@ -54,6 +59,7 @@ Encryption in transit protects data moving across a network. Without it, anyone 
 - Do not accept self-signed certificates in production clients. Use a trusted CA (Certificate Authority) — Let's Encrypt for public internet, your organization's internal CA for internal services.
 
 **Certificate management:**
+
 - Automate certificate renewal. Manual renewal fails when someone forgets.
 - AWS: ACM (AWS Certificate Manager) auto-renews certificates for load balancers and CloudFront.
 - Let's Encrypt: use certbot with a cron job or a service like cert-manager in Kubernetes.
@@ -83,6 +89,7 @@ Encryption is only as strong as the protection of the keys. A plaintext key sitt
 | Production | Secrets manager (mandatory); HSM for high-impact or regulated systems |
 
 **Secrets manager options:**
+
 - **AWS Secrets Manager:** stores secrets, rotates them automatically (built-in rotation lambdas for RDS, Redshift, DocumentDB), integrates with IAM for access control. $0.40/secret/month.
 - **AWS KMS (Key Management Service):** manages cryptographic keys (not arbitrary secrets). Use for data encryption keys. Automatic annual rotation, FIPS 140-2 Level 2 validated.
 - **HashiCorp Vault:** open source, self-hosted or managed. Dynamic secrets (generates credentials on demand, revokes after use), fine-grained policies, audit log of every secret access.
@@ -102,12 +109,14 @@ Encryption is only as strong as the protection of the keys. A plaintext key sitt
 3. **Use `.env` files locally, gitignored.** The `.env` file lives on each developer's machine. It is listed in `.gitignore`. It is never committed.
 
 4. **Use `.env.example` to document what secrets exist.** This file is committed. It lists every required variable with fake example values:
-   ```
+
+   ```dotenv
    DATABASE_URL=postgresql://user:password@localhost:5432/mydb
    STRIPE_API_KEY=sk_test_xxxxxxxxxxxxxxxxxxxxxxxx
    OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    JWT_SECRET=change-me-to-a-random-64-char-string
-   ```
+   ```dotenv
+
    Real values go in `.env`, which is gitignored. The `.env.example` tells new developers what to fill in.
 
 5. **Production secrets go in your platform's secret store, not on the server filesystem.** Servers can be imaged, snapshotted, and shared. A secret in a file on a server can end up in unexpected places.
@@ -119,12 +128,13 @@ This happens. Handle it immediately:
 1. **Rotate the secret now.** Before doing anything else. Assume the secret is already compromised — it has been in the git history, potentially pushed to a remote, potentially indexed by a code scanning tool. Rotation is the only way to contain the damage.
 
 2. **Remove from git history.** Use `git filter-repo` (preferred over the deprecated BFG Repo Cleaner):
+
    ```bash
    # Install git-filter-repo (pip install git-filter-repo)
    git filter-repo --path path/to/file --invert-paths
    # Or to scrub a specific string:
    git filter-repo --replace-text <(echo 'sk_live_real_secret==>REDACTED')
-   ```
+   ```dotenv
 
 3. **Force push all branches.** History rewrite requires force push. Coordinate with your team — everyone will need to re-clone or rebase their local copies.
 

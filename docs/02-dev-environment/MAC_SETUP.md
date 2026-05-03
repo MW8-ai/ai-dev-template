@@ -27,7 +27,7 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-7. Next: `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — set up SSH (Secure Shell) keys to authenticate with GitHub
+1. Next: `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — set up SSH (Secure Shell) keys to authenticate with GitHub
 
 ---
 
@@ -51,17 +51,20 @@ brew upgrade            # update everything
 Everything Homebrew installs goes into `/opt/homebrew/` (Apple Silicon) or `/usr/local/` (Intel), which avoids conflicts with macOS system files.
 
 **Install Homebrew:**
+
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 This command downloads and runs the official Homebrew install script. The script:
+
 1. Installs Xcode Command Line Tools if missing (see below)
 2. Creates the Homebrew directory
 3. Downloads Homebrew
 4. Adds Homebrew to your PATH (shell search path)
 
 On Apple Silicon Macs, the installer will print instructions to add Homebrew to your PATH. Run those commands exactly — they look like:
+
 ```bash
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -86,12 +89,14 @@ You do not need the full Xcode application (which is 15 GB+) unless you're devel
 Since macOS Catalina (10.15, released 2019), the default shell is **zsh** (Z Shell). Before that, it was **bash** (Bourne Again Shell). Both are shells — programs that interpret your terminal commands — but they have different configuration files and some syntax differences.
 
 **How to check your shell:**
+
 ```bash
 echo $SHELL
 # /bin/zsh
 ```
 
 **Configuration files:**
+
 - zsh reads `~/.zshrc` on every new terminal session
 - bash reads `~/.bashrc` (or `~/.bash_profile` on Mac)
 
@@ -112,6 +117,7 @@ source ~/.bashrc
 Apple Silicon Macs (any Mac from late 2020 onward with "M1", "M2", "M3", or "M4" in the name) use ARM-based processors instead of Intel x86. Most developer tools now have native Apple Silicon builds and work correctly without any special handling.
 
 **Check your chip:**
+
 ```bash
 uname -m
 # arm64    (Apple Silicon)
@@ -119,6 +125,7 @@ uname -m
 ```
 
 **Homebrew path difference:**
+
 - Apple Silicon: `/opt/homebrew/`
 - Intel: `/usr/local/`
 
@@ -134,6 +141,7 @@ After dragging VS Code to `/Applications`, install the shell command so you can 
 4. Click "Shell Command: Install 'code' command in PATH"
 
 Now from any terminal:
+
 ```bash
 code .                        # open current folder in VS Code
 code /path/to/project        # open a specific folder
@@ -206,4 +214,4 @@ which git
 
 ## Next Step
 
-→ [Configure VS Code for development](docs/02-dev-environment/VS_CODE_SETUP.md)
+→ [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md) — install essential extensions and configure VS Code for development

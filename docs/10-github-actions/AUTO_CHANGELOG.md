@@ -16,6 +16,7 @@ Use two layers:
 Manual changelogs get skipped when teams are busy.
 
 Automated changelogs:
+
 - Reduce release prep time
 - Improve visibility
 - Encourage better PR titles

@@ -55,6 +55,7 @@ Think of it like a padlock. You give GitHub the padlock (public key). You keep t
 The algorithm determines how the key pair is generated and how strong it is.
 
 **Ed25519** is the right choice for new SSH keys:
+
 - Keys are much shorter (68 characters vs 3000+ for RSA)
 - Faster to generate and verify
 - More secure than equivalent RSA key lengths
@@ -118,7 +119,7 @@ Add `id_ed25519_work.pub` to your work GitHub account via the same Settings → 
 
 **Step 2: Create or edit `~/.ssh/config`:**
 
-```
+```text
 # Personal GitHub account
 Host github.com
   HostName github.com
@@ -166,7 +167,7 @@ ssh -T -p 443 git@ssh.github.com
 
 To use port 443 for all GitHub SSH connections, add to `~/.ssh/config`:
 
-```
+```text
 Host github.com
   Hostname ssh.github.com
   Port 443
@@ -200,6 +201,7 @@ ssh -vT git@github.com
 ```
 
 Look for:
+
 - "Trying private key: /Users/you/.ssh/id_ed25519" — confirm it's trying the right key
 - "Server accepts key" — the key matched, but something else failed (rare)
 - "No more authentication methods to try" — the key wasn't accepted
@@ -231,6 +233,7 @@ GitHub's SSH host key fingerprint is public and verifiable. This error means the
 GitHub publishes its current fingerprints at [docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
 
 If you trust GitHub updated its key:
+
 ```bash
 # Remove the stale GitHub entry from known_hosts
 ssh-keygen -R github.com
@@ -262,4 +265,4 @@ chmod 700 ~/.ssh/
 
 ## Next Step
 
-→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)
+→ [docs/03-development-workflow/ISSUE_TO_BRANCH_TO_PR.md](docs/03-development-workflow/ISSUE_TO_BRANCH_TO_PR.md) — walk through the full development workflow from opening an issue to merging a PR

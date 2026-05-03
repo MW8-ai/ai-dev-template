@@ -297,5 +297,3 @@ Explains the automation and enforcement layer: repository health checks, Pull Re
 | LABELS_AND_AUTOMATION.md | GitHub labels: manual setup, labeler automation, and label-driven workflows |
 | WORKFLOW_BEST_PRACTICES.md | Patterns for reliable, fast, maintainable GitHub Actions workflows |
 | BRANCHING_STRATEGY.md | Trunk-based vs GitFlow vs GitHub Flow — how to choose and what to enforce |
-
-

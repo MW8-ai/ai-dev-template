@@ -32,22 +32,26 @@ Related docs: [ISSUE_TO_BRANCH_TO_PR.md](./ISSUE_TO_BRANCH_TO_PR.md) | [MERGE_ST
 ### What Reviewers Should Check
 
 **Logic correctness**
+
 - Does the code do what the PR description says it does?
 - Are there edge cases that are not handled? (empty input, null values, off-by-one errors)
 - Does it handle errors gracefully or does it fail silently?
 
 **Security**
+
 - Are any inputs validated before being used?
 - Are there hardcoded credentials, tokens, or sensitive values?
 - Does the code expose data that should be private?
 - Are external inputs ever passed to shell commands, SQL queries, or file paths without sanitization?
 
 **Readability**
+
 - Can a developer unfamiliar with this code understand it in a few minutes?
 - Are variable and function names descriptive?
 - Is there complex logic that should have a comment explaining *why* (not just *what*)?
 
 **Test coverage**
+
 - Are there tests for the changed code?
 - Do the tests cover the happy path, error cases, and edge cases?
 - Would the tests catch a regression if this code were accidentally broken?
@@ -65,6 +69,7 @@ Unhelpful: `"This is wrong."`
 Helpful: `"This function will throw if \`user\` is null when the session has expired. Consider adding a null check before line 14, or returning early if the session is invalid."`
 
 The best review comments:
+
 1. Identify the specific problem
 2. Explain why it is a problem
 3. Suggest one or more ways to fix it
@@ -73,7 +78,7 @@ The best review comments:
 
 Prefix minor or optional feedback with `nit:` to signal that it is low priority and the author can use their judgment.
 
-```
+```text
 nit: You could use Array.from() here instead of the spread operator —
 same result but slightly more explicit about intent. Up to you.
 ```
@@ -83,12 +88,14 @@ Authors should not block a PR over unresolved nits. Reviewers should not re-requ
 ### Blocking vs Non-Blocking Comments
 
 **Blocking** — the PR should not merge until this is addressed:
+
 - Logic errors that would cause bugs or data loss
 - Security vulnerabilities
 - Missing tests for critical paths
 - API contract violations
 
 **Non-blocking** — useful feedback that can be addressed in a follow-up:
+
 - Minor refactors that improve readability but do not affect behavior
 - Nit-level style suggestions
 - "Nice to have" improvements
@@ -100,6 +107,7 @@ Use GitHub's "Request changes" verdict only when there are blocking issues. Use 
 400 lines changed is a soft limit. Research on code review consistently shows that reviewers begin missing issues as PR size grows. Above roughly 400 lines, review quality drops.
 
 **How to split large PRs:**
+
 - Separate refactoring from feature work. Refactor in one PR, add the feature in the next.
 - Separate backend changes from frontend changes.
 - Add infrastructure (new tables, new API endpoints) in one PR, add the business logic that uses them in the next.
@@ -122,6 +130,7 @@ git diff main...HEAD
 Or open the PR in draft mode and use GitHub's diff view. Read every line as if you were the reviewer. Catch your own mistakes before someone else has to.
 
 Common self-review catches:
+
 - Debug `console.log` or `print` statements left in
 - Commented-out code that should be deleted
 - TODO comments that you actually need to address before merging
@@ -131,4 +140,4 @@ Common self-review catches:
 
 ## Next Step
 
-→ [Understand merge strategies: merge commit, squash, and rebase](docs/03-development-workflow/MERGE_STRATEGIES.md)
+→ [docs/03-development-workflow/MERGE_STRATEGIES.md](docs/03-development-workflow/MERGE_STRATEGIES.md) — merge commit vs. squash vs. rebase: trade-offs, diagrams, and when to use each strategy

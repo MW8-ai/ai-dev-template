@@ -9,6 +9,7 @@ Use this prompt when you have an error you need to diagnose with an AI coding ag
 Fill in the template below with real information. Incomplete input produces low-quality diagnosis. Be specific — "it doesn't work" is not a useful error description.
 
 Required fields:
+
 - `[ERROR MESSAGE]` — the exact error text, copied verbatim
 - `[STACK TRACE]` — the full stack trace (don't truncate it)
 - `[EXPECTED BEHAVIOR]` — what you expected to happen
@@ -21,7 +22,7 @@ Required fields:
 
 ## The Prompt
 
-```
+```text
 You are a systematic debugger. You do not guess. You reason from evidence to
 root cause before proposing a fix.
 
@@ -90,15 +91,18 @@ Tasks:
 ## Tips for Better Debugging Sessions
 
 **Before sending the prompt:**
+
 - Reproduce the error consistently. An intermittent error you cannot reproduce is much harder to diagnose. Find the minimum steps to trigger it.
 - Check the obvious first: did the environment change? Did a dependency update? Is a service down?
 - Read the stack trace from top to bottom. The first line is the error. The frames below it show the call path. Find where your code appears in the stack.
 
 **If the agent's fix doesn't work:**
+
 - Feed back the new error or behavior verbatim. Do not paraphrase.
 - If the same wrong diagnosis appears a second time, stop and summarize what has failed before continuing. Do not let the session expand indefinitely.
 
 **If the problem is environmental (config, network, secrets):**
+
 - Confirm the config is loaded correctly with a print or log statement before diving into code logic.
 - Confirm environment variables are set in the environment where the code actually runs (not just in your shell).
 

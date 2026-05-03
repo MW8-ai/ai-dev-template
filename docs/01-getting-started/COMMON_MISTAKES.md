@@ -354,4 +354,4 @@ After this, the file stays on your disk but Git ignores it. Your teammates shoul
 
 ## Next Step
 
-Set up your development environment → [Windows](docs/02-dev-environment/WINDOWS_SETUP.md) or [Mac](docs/02-dev-environment/MAC_SETUP.md)
+→ [docs/05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md](docs/05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md) — deeper troubleshooting for common Git and GitHub pitfalls

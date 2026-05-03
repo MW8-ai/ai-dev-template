@@ -43,7 +43,8 @@ Branch protection prevents accidental or unauthorized changes to important branc
 | Restrict who can push to matching branches | Optional | Limit to a release team for `release/` branches |
 
 **CODEOWNERS file:** Place at `.github/CODEOWNERS`. Maps file paths to required reviewers:
-```
+
+```text
 # Syntax: [path pattern] [GitHub username or team]
 /docs/        @tech-writer-team
 /src/auth/    @security-team
@@ -59,6 +60,7 @@ GitHub Actions runs automated workflows in response to repository events. Use it
 ### How Workflows Work
 
 Workflows are YAML files stored in `.github/workflows/`. Each file defines:
+
 - **Triggers (`on`):** what event starts the workflow (push, pull_request, schedule, workflow_dispatch)
 - **Jobs:** groups of steps that run together, optionally in parallel
 - **Steps:** individual commands or actions that make up a job
@@ -117,11 +119,13 @@ The Actions Marketplace (github.com/marketplace/actions) has thousands of pre-bu
 Secrets are encrypted values stored in GitHub and exposed to workflows as environment variables. Never put secrets directly in workflow YAML files.
 
 **Where to add secrets:**
+
 - Repository secrets: Settings → Secrets and variables → Actions → New repository secret
 - Organization secrets: Available to multiple repos in an organization
 - Environment secrets: Scoped to a specific deployment environment (e.g., production)
 
 **Using secrets in a workflow:**
+
 ```yaml
 steps:
   - run: aws s3 sync dist/ s3://my-bucket
@@ -132,6 +136,7 @@ steps:
 ```
 
 **Rules:**
+
 - Secrets are masked in logs: if the value appears in output, GitHub replaces it with `***`
 - Secrets are not passed to workflows triggered by PRs from forks (security measure)
 - Do not print secrets with `echo` — even masked, this is bad practice
@@ -143,11 +148,13 @@ steps:
 GitHub Pages hosts static sites directly from a repository for free.
 
 **Setup:**
+
 1. Repository → Settings → Pages
 2. Source: choose a branch (usually `gh-pages`) and folder (`/` or `/docs`)
 3. Your site is live at `https://[username].github.io/[repo]` within minutes
 
 **Common uses:**
+
 - Project documentation (using MkDocs, Docusaurus, or Jekyll)
 - API documentation (Swagger UI pointing at your OpenAPI spec)
 - Simple landing pages for open source projects
@@ -161,6 +168,7 @@ GitHub Pages hosts static sites directly from a repository for free.
 Projects is GitHub's built-in project management. It links issues and PRs into boards and tables.
 
 **Views:**
+
 - **Board:** Kanban-style columns (To Do, In Progress, Done)
 - **Table:** Spreadsheet-style view with custom fields
 - **Roadmap:** Timeline view
@@ -176,6 +184,7 @@ Projects is GitHub's built-in project management. It links issues and PRs into b
 Releases are versioned snapshots of the repository, associated with a git tag.
 
 **Creating a release:**
+
 1. Go to Releases → Draft a new release
 2. Choose a tag (create a new one, e.g., `v1.2.0`, or use an existing one)
 3. Write release notes (use the "Generate release notes" button to auto-fill from merged PRs)

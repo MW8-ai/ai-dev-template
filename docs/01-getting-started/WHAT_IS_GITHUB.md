@@ -103,4 +103,4 @@ Most daily development happens locally. GitHub is where collaboration, review, a
 
 ## Next Step
 
-→ [Learn the Git vocabulary used throughout this playbook](docs/01-getting-started/GIT_TERMS_EXPLAINED.md)
+→ [docs/01-getting-started/GIT_TERMS_EXPLAINED.md](docs/01-getting-started/GIT_TERMS_EXPLAINED.md) — every key Git term defined with analogies and real examples

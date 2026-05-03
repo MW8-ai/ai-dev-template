@@ -42,25 +42,61 @@ OpenAI Codex CLI is a command-line tool that sends your prompts to OpenAI's mode
 
 ---
 
+## When NOT to Use It
+
+- **Multi-file refactors** — Use Claude Code, which reads and edits files across the codebase
+- **Anything you cannot verify** — If you cannot read and understand the output, do not run it
+- **Production scripts without review** — Generated shell commands can delete data; always review before executing
+- **Security-sensitive code** — Cryptography, authentication, and authorization logic require human expertise to validate
+- **Replacing understanding** — Using Codex to generate code you do not understand creates hidden technical debt
+
+---
+
+## Common Failure Modes
+
+| Failure | What Happens | Prevention |
+|---|---|---|
+| API hallucination | Calls a function or flag that does not exist | Run the code; check against official docs |
+| Outdated patterns | Suggests deprecated syntax or removed APIs | Specify the library version in your prompt |
+| Scope creep | Adds features not requested | Be specific: "only do X, nothing else" |
+| Silent wrong output | Returns plausible but incorrect logic | Test with known inputs and expected outputs |
+
+---
+
+## Required Human Validation
+
+Before running or committing Codex output:
+
+- [ ] Read the generated code — do not run blind
+- [ ] Test the output with a concrete input/output pair
+- [ ] Verify any APIs used actually exist at the version you are running
+- [ ] If it is a shell command, understand what it does before executing
+
+---
+
 ## Setup
 
 **Install:**
+
 ```bash
 npm install -g @openai/codex
 ```
 
 **Set your API key:**
+
 ```bash
 export OPENAI_API_KEY="sk-..."
 ```
 
 Add the export to your `~/.bashrc` or `~/.zshrc` so it persists across sessions:
+
 ```bash
 echo 'export OPENAI_API_KEY="sk-..."' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 **Verify installation:**
+
 ```bash
 codex --version
 ```
@@ -88,6 +124,7 @@ codex "write a SQL query to find all users who have not logged in for 90 days"
 ```
 
 Codex prints the generated code to stdout. You can pipe it to a file:
+
 ```bash
 codex "write a Python script that reads a CSV and outputs JSON" > convert.py
 ```
@@ -113,6 +150,7 @@ For tasks that require editing existing project files or coordinating changes ac
 ## Safety Rules
 
 - **Always read output before running it.** Generated scripts may include destructive commands (`rm`, `DROP TABLE`, `git reset --hard`). Never pipe Codex output directly to `bash` without reviewing it first.
+
   ```bash
   # Unsafe — runs whatever the AI generates without review:
   codex "delete all temp files" | bash
@@ -122,6 +160,7 @@ For tasks that require editing existing project files or coordinating changes ac
   cat cleanup.sh   # review it
   bash cleanup.sh  # run it only after reading
   ```
+
 - **Do not include secrets in prompts.** Do not paste connection strings, API keys, or passwords into a Codex prompt to ask it to generate code around them.
 - **Verify library and API references.** Check that function names, parameters, and library versions mentioned in the output actually exist before shipping the code.
 - **Treat output as a first draft.** Codex output is a starting point. Read it, test it, and take ownership of it before committing.
@@ -133,6 +172,7 @@ For tasks that require editing existing project files or coordinating changes ac
 Codex works best with specific, structured prompts. Vague prompts return vague code.
 
 **Include the language and version:**
+
 ```bash
 # Vague:
 codex "parse a config file"
@@ -142,21 +182,25 @@ codex "write a Python 3.11 script that reads a TOML config file using the tomlli
 ```
 
 **Include the framework when relevant:**
+
 ```bash
 codex "write a FastAPI endpoint that accepts a JSON body with fields 'name' (string) and 'age' (integer) and returns a greeting"
 ```
 
 **Include constraints:**
+
 ```bash
 codex "write a bash function that backs up a directory to a timestamped tar.gz file — use only built-in commands, no third-party tools"
 ```
 
 **Give context about what already exists:**
+
 ```bash
 codex "I have a PostgreSQL table named 'orders' with columns: id (int), user_id (int), total (decimal), created_at (timestamp). Write a query to find the top 10 users by total spend in the last 30 days."
 ```
 
 **State the output format:**
+
 ```bash
 codex "explain each line of this Dockerfile — respond as a numbered list with one sentence per line"
 ```
@@ -165,4 +209,4 @@ codex "explain each line of this Dockerfile — respond as a numbered list with 
 
 ## Next Step
 
-→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+→ [docs/04-ai-workflows/CLAUDE_CODE.md](docs/04-ai-workflows/CLAUDE_CODE.md) — setup and usage guide for Claude Code: multi-file tasks, CLAUDE.md configuration, hooks, and slash commands

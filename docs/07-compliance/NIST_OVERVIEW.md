@@ -46,26 +46,31 @@ For most software development work, the families you interact with most often ar
 The NIST CSF provides a risk-management structure organized into five functions. Unlike SP 800-53, which is a control list, the CSF is a strategy framework — it describes what you should be doing at each stage of a security program.
 
 ### Identify
+
 Know what you have. Asset inventory, data classification, risk assessment, governance. You cannot protect what you cannot see.
 
 Practical: Maintain an inventory of your systems, services, data stores, and third-party integrations. Know what data each component handles.
 
 ### Protect
+
 Put controls in place to prevent incidents. Access control, training, data security, configuration management, maintenance, protective technology.
 
 Practical: Enforce least privilege, encrypt sensitive data, manage secrets properly, patch dependencies, train your team on phishing and social engineering.
 
 ### Detect
+
 Know when something is wrong. Continuous monitoring, anomaly detection, audit log review.
 
 Practical: Set up log aggregation, enable alerts for failed logins and config changes, monitor for unusual data access patterns.
 
 ### Respond
+
 Have a plan for when something goes wrong. Incident response plan, communication procedures, analysis, mitigation.
 
 Practical: Write and test an incident response runbook before you need it. Know who to call, how to contain an incident, and how to communicate to stakeholders.
 
 ### Recover
+
 Get back to normal. Recovery planning, improvements, communication during recovery.
 
 Practical: Test your backups. After any incident, run a blameless postmortem and update your controls based on what you learn.
@@ -89,26 +94,31 @@ Impact level determines which controls you must implement. Low impact systems fo
 ## How NIST Affects Software Development
 
 ### Access Control (AC)
+
 - Enforce least-privilege access for all accounts, human and machine
 - Use RBAC (Role-Based Access Control) and review access quarterly
 - Require MFA (Multi-Factor Authentication) for all privileged access
 
 ### Audit and Accountability (AU)
+
 - Log authentication events, data access, admin actions, and system changes
 - Retain logs per your impact level (see [AUDIT_LOGGING.md](./AUDIT_LOGGING.md))
 - Protect logs from modification — write to a separate, append-only system
 
 ### Configuration Management (CM)
+
 - Maintain a baseline configuration for each system
 - Track all changes — code reviews, change management tickets, deployment logs
 - Disable or remove unused services, ports, and accounts
 
 ### Identification and Authentication (IA)
+
 - Every user and service must have a unique identifier — no shared accounts
 - Enforce strong passwords and MFA
 - Use short-lived credentials where possible (OIDC tokens, AWS IAM roles) instead of long-lived API keys
 
 ### System and Communications Protection (SC)
+
 - Encrypt data in transit using TLS 1.2 minimum, TLS 1.3 preferred
 - Encrypt sensitive data at rest using AES-256
 - Segment networks — internal services should not be publicly reachable unless required

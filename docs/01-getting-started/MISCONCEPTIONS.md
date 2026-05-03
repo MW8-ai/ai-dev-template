@@ -33,7 +33,7 @@ This is the most important distinction in this entire doc.
 
 A **repository** (repo) is a folder with a hidden `.git/` subfolder inside it. That `.git/` folder is where Git stores the entire history of every change ever made to the project.
 
-```
+```text
 my-project/          ← this is the repo (what you see)
 ├── .git/            ← this is where Git lives (don't touch)
 ├── src/
@@ -53,7 +53,7 @@ Every developer working on a project typically has:
 1. **Their local copy** — on their laptop, fully functional, changes don't affect anyone else until pushed
 2. **The remote** — usually on GitHub, the shared "source of truth"
 
-```
+```text
 Your laptop              GitHub
 ┌──────────────┐         ┌──────────────┐
 │  local repo  │ ──push──▶  remote repo │
@@ -70,6 +70,7 @@ Changes you make locally are **invisible to everyone else** until you push them.
 These three commands are the source of enormous confusion.
 
 ### `git push`
+
 Sends your local commits to the remote. Your changes become visible to others.
 
 ```bash
@@ -78,6 +79,7 @@ git push origin main
 ```
 
 ### `git pull`
+
 Downloads commits from the remote AND immediately merges them into your current branch. Two operations in one.
 
 ```bash
@@ -86,6 +88,7 @@ git pull origin main
 ```
 
 ### `git fetch`
+
 Downloads commits from the remote but does NOT merge them. You can inspect what changed before deciding to merge.
 
 ```bash
@@ -95,6 +98,7 @@ git fetch origin
 ```
 
 **When to use fetch vs pull:**
+
 - Use `git fetch` when you want to see what changed before merging (safer, more controlled)
 - Use `git pull` when you trust the remote and just want to get up to date quickly
 - In a team environment, `git fetch` first is a good habit — you can review before merging
@@ -105,7 +109,7 @@ git fetch origin
 
 A branch is not a copy of the codebase. It's a lightweight pointer to a specific commit. Creating a branch costs almost nothing.
 
-```
+```text
 main:    A → B → C
                  ↑
 feature:         C → D → E
@@ -124,6 +128,7 @@ feature:         C → D → E
 A **Pull Request (PR)** is a GitHub feature, not a Git feature. Git has no concept of a PR.
 
 A PR is a request to merge one branch into another — specifically, a conversation-wrapped version of that request. It shows:
+
 - What commits will be added
 - What files changed (the "diff")
 - A place for reviewers to comment, approve, or request changes
@@ -139,9 +144,10 @@ A PR is a request to merge one branch into another — specifically, a conversat
 These are three different ways to combine branches. Each has trade-offs.
 
 ### Merge
+
 Creates a new "merge commit" that joins the two branch histories. Preserves the full history of both branches.
 
-```
+```text
 main:    A → B → C → M (merge commit)
                 ↗
 feature: D → E
@@ -150,9 +156,10 @@ feature: D → E
 **Use when:** You want to preserve the full history of what happened on the feature branch.
 
 ### Rebase
+
 Replays your branch's commits on top of the target branch as if they were always there. No merge commit.
 
-```
+```text
 Before:         After rebase:
 main:    A → B   main:    A → B
 feature: A → C   feature: A → B → C (C replayed on B)
@@ -161,9 +168,10 @@ feature: A → C   feature: A → B → C (C replayed on B)
 **Use when:** You want a clean, linear history. Avoid rebasing shared branches — rewriting history that others have already pulled causes conflicts.
 
 ### Squash
+
 Collapses all commits on your branch into a single commit before merging.
 
-```
+```text
 feature: A → B → C → D (4 commits)
 main after squash merge: ... → ABCD (one commit)
 ```
@@ -178,7 +186,7 @@ main after squash merge: ... → ABCD (one commit)
 
 Most version control systems automatically track all changes. Git doesn't — by design. You choose what goes into each commit.
 
-```
+```text
 Working directory → Staging area → Committed history
 (files on disk)     (git add)      (git commit)
 ```
@@ -229,7 +237,8 @@ When you switch branches, `HEAD` moves. When you make a new commit, `HEAD` moves
 `.gitignore` tells Git which files and folders to ignore — never track, never commit, never push.
 
 Common entries:
-```
+
+```text
 node_modules/     # dependency folder (huge, regeneratable)
 .env              # environment variables (contains secrets)
 *.log             # log files
@@ -254,24 +263,31 @@ This is why you can check out any commit and see exactly what the project looked
 ## Best Practices (With the WHY)
 
 ### Commit early and often — small, focused commits
+
 **Why:** Smaller commits are easier to review, easier to revert if something breaks, and easier to understand six months later. A commit called "Add user authentication" that's 2,000 lines long is impossible to review. Five commits across a week, each 200–400 lines, tells a story.
 
 ### Write commit messages in the imperative mood
+
 **Why:** `Add login page` not `Added login page` or `Adding login page`. Git's own conventions use imperative mood, and it reads naturally: "If applied, this commit will: *Add login page*."
 
 ### Never commit directly to `main`
+
 **Why:** `main` is the stable branch. Direct commits skip code review, can break CI, and can block teammates who need to pull. Always branch, PR, and merge.
 
 ### Pull before you push
+
 **Why:** If someone else pushed while you were working, your push will be rejected. Pulling first (or fetching + rebasing) keeps your history clean and prevents "I have to force-push" situations.
 
 ### Don't force-push to shared branches
+
 **Why:** Force-pushing rewrites history. Anyone who already pulled the old history now has a diverged repo. It causes confusion, lost work, and hard-to-resolve conflicts. Only force-push to your own private feature branches that nobody else is using.
 
 ### Keep secrets out of git, always
+
 **Why:** Git history is permanent. A secret committed by accident stays in the history even if you delete it in the next commit. Rotating the secret is the only fix. Use `.gitignore`, environment variables, and a secrets manager.
 
 ### Use branches for every change, no matter how small
+
 **Why:** Even a one-line fix should be a branch + PR. This ensures review happens, CI runs against the change, and the change is documented in the PR description. "It's too small to matter" is how small mistakes reach production.
 
 ---
@@ -302,4 +318,4 @@ This is why you can check out any commit and see exactly what the project looked
 
 ## Next Step
 
-→ `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — make your first commit and push using these concepts
+→ [docs/01-getting-started/FIRST_COMMIT_PUSH.md](docs/01-getting-started/FIRST_COMMIT_PUSH.md) — make your first commit and push using these concepts

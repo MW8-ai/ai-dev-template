@@ -1,9 +1,11 @@
 # Incoming Update: GitHub — Copilot cloud agent starts 20% faster with Actions custom images
 
 ## Status
+
 Needs human review.
 
 ## Source
+
 - Source ID: `github-changelog`
 - Vendor: GitHub
 - Category: dev-platform
@@ -15,9 +17,11 @@ Needs human review.
 - Tags: github, pull-requests, actions, codespaces, copilot, security
 
 ## Auto-Detected Summary
+
 Copilot cloud agent now starts up over 20% faster, thanks to optimized runner environments built with GitHub Actions custom images. When you assign an issue to Copilot, start a task&#8230; The post Copilot cloud agent starts 20% faster with Actions custom images appeared first on The GitHub Blog .
 
 ## Human Review Questions
+
 1. Is this meaningful for our repo, team, AI workflow, CI/CD, or security posture?
 2. Does this change any existing guidance?
 3. Should this become an impact note?
@@ -25,6 +29,7 @@ Copilot cloud agent now starts up over 20% faster, thanks to optimized runner en
 5. Should this be archived with no action?
 
 ## Suggested Disposition
+
 - [ ] Convert to impact note
 - [ ] Update existing docs
 - [ ] Add to AI guardrails

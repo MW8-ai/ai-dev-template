@@ -15,6 +15,7 @@ Audit logging is not application logging. Application logs track errors and perf
 ### Always Log
 
 **Authentication events:**
+
 - Login success (user, timestamp, IP, method: password / SSO / API key)
 - Login failure (user, timestamp, IP, reason: bad password / account locked / MFA failure)
 - Logout
@@ -23,20 +24,24 @@ Audit logging is not application logging. Application logs track errors and perf
 - Session creation and expiry
 
 **Authorization decisions:**
+
 - Access granted (user, resource, action, timestamp)
 - Access denied (user, resource, action, reason — this is often more important than granted)
 - Permission changes (who changed what permission for whom, and who authorized it)
 
 **Data access (for sensitive and PII data):**
+
 - Reads of sensitive records (which record was accessed, by whom, at what time)
 - Bulk exports or queries returning large result sets
 - Downloads of files or reports containing sensitive data
 
 **Data modification:**
+
 - Create, update, delete of sensitive records
 - Include: who changed it, what changed (old value / new value where safe to log), when
 
 **Administrative actions:**
+
 - User account creation, modification, deactivation
 - Role or group assignments
 - Configuration changes (to the application, not just deployments)
@@ -44,6 +49,7 @@ Audit logging is not application logging. Application logs track errors and perf
 - Integration changes (adding or removing third-party services)
 
 **System events:**
+
 - Application startup and shutdown
 - Service restarts and crashes
 - Deployment events (version deployed, who deployed, when)
@@ -55,7 +61,7 @@ Audit logging is not application logging. Application logs track errors and perf
 
 Each log entry must include enough context to be useful on its own. An entry that says "user login failed" is nearly useless. An entry with the following fields is actionable:
 
-```
+```text
 timestamp:    ISO 8601 — 2026-05-03T14:22:11Z
               Always use UTC. Never use local time in logs.
 
@@ -97,6 +103,7 @@ details:      Optional structured field for additional context.
 ```
 
 ### Example Log Entry (JSON)
+
 ```json
 {
   "timestamp": "2026-05-03T14:22:11Z",
@@ -121,6 +128,7 @@ details:      Optional structured field for additional context.
 ## What Not to Log
 
 **Never log:**
+
 - Passwords, in any form — plaintext, hashed, or encrypted
 - Full credit card numbers (PAN — Primary Account Number). Log only the last four digits.
 - SSNs (Social Security Numbers) or government ID numbers
@@ -155,11 +163,13 @@ Audit logs are only useful as evidence if they cannot be modified after the fact
 **Minimum requirement:** Write logs to a system that is separate from your application servers. If an attacker compromises the app server, they should not have access to the log store.
 
 **Cloud log services provide tamper-evidence by default:**
+
 - AWS CloudWatch Logs: logs are stored in a separate managed service. Enable CloudWatch Logs Insights for querying.
 - GCP Cloud Logging: managed service with access controls separate from compute
 - Azure Monitor Logs: similar separation
 
 **For higher assurance:**
+
 - Use a WORM (Write Once Read Many) store: AWS S3 with Object Lock, Azure Blob with Immutability, or a dedicated logging service (Splunk, Sumo Logic, Datadog Logs)
 - Cryptographically sign log batches: generate a hash of each batch of log entries and store the hash separately. Any modification changes the hash.
 - Forward logs in real time to a separate account or environment that the application cannot write to

@@ -1,0 +1,12 @@
+name: Init
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Init run — activates status badges"

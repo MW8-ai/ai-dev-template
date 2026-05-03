@@ -9,6 +9,7 @@ Use it for tasks where latency doesn't matter but volume or cost does.
 ## When to Use It
 
 Good batch use cases:
+
 - Nightly doc freshness review across all files in the repo
 - Bulk code review of every file in a module
 - Generating changelogs or summaries for a set of PRs or commits
@@ -17,6 +18,7 @@ Good batch use cases:
 - Pre-generating prompt variations for the prompt library
 
 Bad batch use cases:
+
 - Interactive tasks where the user is waiting
 - Tasks where result B depends on result A (batches are independent)
 - Time-sensitive CI checks
@@ -103,6 +105,7 @@ requests = [
 ### Nightly Doc Freshness Check
 
 Run every night on a schedule. For each `.md` file in `docs/`:
+
 1. Pass the file + the corresponding source files it describes
 2. Ask: "Does this doc accurately reflect the current code? List any drift."
 3. Collect results → open a GitHub issue if drift is found

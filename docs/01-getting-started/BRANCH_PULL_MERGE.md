@@ -113,7 +113,7 @@ A merge conflict happens when two branches both modified the same lines in the s
 
 **How a conflict looks in a file:**
 
-```
+```text
 <<<<<<< HEAD
 const timeout = 5000;  // your version on feature/my-feature
 =======
@@ -170,4 +170,4 @@ Modern editors like VS Code show conflicts with Accept Current / Accept Incoming
 
 ## Next Step
 
-→ [Open your first Pull Request](docs/01-getting-started/PULL_REQUESTS.md)
+→ [docs/01-getting-started/PULL_REQUESTS.md](docs/01-getting-started/PULL_REQUESTS.md) — open your first pull request and navigate the code review process

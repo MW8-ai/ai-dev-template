@@ -17,12 +17,14 @@ This is not a certification. It is a planning checklist for projects that may ne
 ## Level G0 — Public Prototype
 
 Use for:
+
 - public demo
 - no sensitive data
 - no auth
 - no production integration
 
 Controls:
+
 - no secrets in repo
 - dependency hygiene
 - clear README
@@ -31,11 +33,13 @@ Controls:
 ## Level G1 — Internal Low-Risk Tool
 
 Use for:
+
 - internal helper tools
 - no regulated data
 - limited users
 
 Controls:
+
 - private repo
 - branch protection
 - basic logging
@@ -46,11 +50,13 @@ Controls:
 ## Level G2 — Sensitive Internal Tool
 
 Use for:
+
 - internal production workflows
 - sensitive operational data
 - agency/business process support
 
 Controls:
+
 - SSO
 - role-based access
 - audit logging
@@ -64,12 +70,14 @@ Controls:
 ## Level G3 — Regulated / Government Production
 
 Use for:
+
 - regulated data
 - government production
 - FIPS expectations
 - formal audit posture
 
 Controls:
+
 - NIST 800-53 mapping
 - SSDF practices
 - formal change management
@@ -86,12 +94,14 @@ Controls:
 ## Level G4 — High Assurance / Mission Critical
 
 Use for:
+
 - critical systems
 - law enforcement/public safety
 - high confidentiality/integrity needs
 - strict audit requirements
 
 Controls:
+
 - full security plan
 - independent review
 - formal authorization process

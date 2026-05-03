@@ -1,75 +1,108 @@
 # Start Here
 
+## Prefer pictures first?
+
+See all workflows as diagrams before diving into the steps:
+
+→ **[docs/00-start-here/VISUAL_GUIDE.md](docs/00-start-here/VISUAL_GUIDE.md)**
+
+---
+
+## What You Will Learn
+
+By the end of this guide you will be able to:
+
+- Use GitHub confidently — repositories, branches, commits, and Pull Requests
+- Understand branch → commit → push → pull request → merge as a daily workflow
+- Set up a development environment on Windows or Mac
+- Write and manage code using VS Code or GitHub Codespaces
+- Use AI coding tools safely (Codex, Claude, Copilot) with human review
+- Start a real project using professional templates
+
+Estimated total time: **2–3 hours** for a complete first pass.
+
+---
+
 ## Who This Is For
 
-Anyone building software — new or experienced. This playbook teaches the professional workflow used at real software teams.
+Anyone building software — whether you have never touched a terminal or you just want a clean reference for professional workflows.
+
+The steps below go in order. If you are already past a step, skip it.
 
 ---
 
-## Your Path
+## Step 1 — Understand GitHub
 
-### Step 1 — Understand GitHub
+GitHub is where code lives, is reviewed, and is shipped. Before anything else, understand what it is and why it matters.
 
-GitHub is the platform where code is stored, reviewed, and collaborated on. Understanding it is the foundation for everything else.
+→ [docs/01-getting-started/WHAT_IS_GITHUB.md](docs/01-getting-started/WHAT_IS_GITHUB.md)
 
-- What is GitHub and why it matters
-- Link: [docs/01-getting-started/WHAT_IS_GITHUB.md](docs/01-getting-started/WHAT_IS_GITHUB.md)
-- Estimated time: 10 minutes
+*Estimated time: 10 minutes*
 
 ---
 
-### Step 2 — Set Up Your Environment
+## Step 2 — Learn the Language
 
-Before writing code you need the right tools installed and configured on your machine.
+Git has specific vocabulary. A solid grasp of the terms prevents confusion at every later step.
 
-- Choose your operating system:
-  - Windows → [docs/02-dev-environment/WINDOWS_SETUP.md](docs/02-dev-environment/WINDOWS_SETUP.md)
-  - Mac → [docs/02-dev-environment/MAC_SETUP.md](docs/02-dev-environment/MAC_SETUP.md)
-- Then configure your editor: [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md)
-- Estimated time: 30–45 minutes
+→ [docs/01-getting-started/GIT_TERMS_EXPLAINED.md](docs/01-getting-started/GIT_TERMS_EXPLAINED.md)
+
+*Estimated time: 15 minutes*
 
 ---
 
-### Step 3 — Learn the Core Workflow
+## Step 3 — Set Up Your Environment
 
-Every professional development team uses the same basic cycle: Branch → Commit → Push → Pull Request (PR) → Merge. This step teaches you each stage with real examples.
+Choose your operating system and follow the setup guide:
+
+| OS | Guide |
+|---|---|
+| Windows | [docs/02-dev-environment/WINDOWS_SETUP.md](docs/02-dev-environment/WINDOWS_SETUP.md) |
+| Mac | [docs/02-dev-environment/MAC_SETUP.md](docs/02-dev-environment/MAC_SETUP.md) |
+
+Then configure your editor: → [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md)
+
+*Estimated time: 30–45 minutes*
+
+---
+
+## Step 4 — Learn the Core Workflow
+
+Every professional team uses the same cycle. Learn each stage with real examples:
 
 1. Your first commit and push → [docs/01-getting-started/FIRST_COMMIT_PUSH.md](docs/01-getting-started/FIRST_COMMIT_PUSH.md)
 2. Branches, pull, and merge → [docs/01-getting-started/BRANCH_PULL_MERGE.md](docs/01-getting-started/BRANCH_PULL_MERGE.md)
 3. Pull Requests explained → [docs/01-getting-started/PULL_REQUESTS.md](docs/01-getting-started/PULL_REQUESTS.md)
-- Estimated time: 20–30 minutes
+
+*Estimated time: 20–30 minutes*
 
 ---
 
-### Step 4 — Pick Your Development Method
-
-There are three common ways to write and manage code. Choose the one that fits your setup.
+## Step 5 — Choose Your Development Method
 
 | Method | Description | Guide |
 |---|---|---|
-| Git CLI (Command Line Interface) | Type commands in a terminal | [docs/02-dev-environment/GIT_CLI_SETUP.md](docs/02-dev-environment/GIT_CLI_SETUP.md) |
-| VS Code (Visual Studio Code) | GUI editor with Git built in | [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md) |
-| GitHub Codespaces | Full dev environment in your browser | [docs/02-dev-environment/CODESPACES_SETUP.md](docs/02-dev-environment/CODESPACES_SETUP.md) |
+| Git CLI | Type commands in a terminal (most powerful) | [docs/02-dev-environment/GIT_CLI_SETUP.md](docs/02-dev-environment/GIT_CLI_SETUP.md) |
+| VS Code | GUI editor with Git integration (most common) | [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md) |
+| GitHub Codespaces | Full dev environment in the browser (zero local setup) | [docs/02-dev-environment/CODESPACES_SETUP.md](docs/02-dev-environment/CODESPACES_SETUP.md) |
 
 ---
 
-### Step 5 — Add an AI Tool (Optional but Recommended)
+## Step 6 — Add an AI Tool (Optional but Recommended)
 
-AI coding assistants can write boilerplate, suggest fixes, and draft documentation. They work best when a human reviews everything they produce.
+AI coding assistants accelerate writing, debugging, and documentation. They work best when a human reviews everything they produce.
 
-- Overview and comparison of AI tools → [docs/04-ai-workflows/AI_OVERVIEW.md](docs/04-ai-workflows/AI_OVERVIEW.md)
+- AI tools overview and comparison → [docs/04-ai-workflows/AI_OVERVIEW.md](docs/04-ai-workflows/AI_OVERVIEW.md)
 - OpenAI Codex CLI → [docs/04-ai-workflows/OPENAI_CODEX.md](docs/04-ai-workflows/OPENAI_CODEX.md)
 - Claude Code → [docs/04-ai-workflows/CLAUDE_CODE.md](docs/04-ai-workflows/CLAUDE_CODE.md)
 - GitHub Copilot → [docs/04-ai-workflows/GITHUB_COPILOT.md](docs/04-ai-workflows/GITHUB_COPILOT.md)
-- How to write effective prompts → [docs/04-ai-workflows/PROMPT_STRATEGIES.md](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
+- Writing effective prompts → [docs/04-ai-workflows/PROMPT_STRATEGIES.md](docs/04-ai-workflows/PROMPT_STRATEGIES.md)
 
 ---
 
-### Step 6 — Choose Your Project Type
+## Step 7 — Choose Your Project Type
 
-The amount of process and documentation your project needs depends on who is using it and what the stakes are.
-
-| Project Type | Description | Guide |
+| Type | Description | Guide |
 |---|---|---|
 | Hobby / Personal | Low stakes, learning, solo work | [docs/05-project-types/HOBBY.md](docs/05-project-types/HOBBY.md) |
 | Enterprise / Team | Production software, team collaboration | [docs/05-project-types/ENTERPRISE.md](docs/05-project-types/ENTERPRISE.md) |
@@ -77,13 +110,15 @@ The amount of process and documentation your project needs depends on who is usi
 
 ---
 
-### Step 7 — Use a Template to Start Your Project
+## Step 8 — Start a Real Project
 
-Don't start from a blank file. Copy a template, rename it for your project, and customize the sections.
+Copy templates into your own repository, customize them, and start working.
 
 - Project document templates → [templates/project/](templates/project/)
 - GitHub workflow starters → [templates/workflows/](templates/workflows/)
 - AI prompt templates → [templates/prompts/](templates/prompts/)
+
+See a complete working example: → [examples/enterprise-project/](examples/enterprise-project/)
 
 ---
 
@@ -92,9 +127,15 @@ Don't start from a blank file. Copy a template, rename it for your project, and 
 | Need | Go To |
 |---|---|
 | Git commands cheat sheet | [docs/01-getting-started/GIT_TERMS_EXPLAINED.md](docs/01-getting-started/GIT_TERMS_EXPLAINED.md) |
+| Common Git/GitHub misconceptions | [docs/01-getting-started/MISCONCEPTIONS.md](docs/01-getting-started/MISCONCEPTIONS.md) |
 | Common mistakes and fixes | [docs/01-getting-started/COMMON_MISTAKES.md](docs/01-getting-started/COMMON_MISTAKES.md) |
 | Daily workflow commands | [docs/03-development-workflow/DAILY_WORKFLOW.md](docs/03-development-workflow/DAILY_WORKFLOW.md) |
 | Code review guide | [docs/03-development-workflow/CODE_REVIEW.md](docs/03-development-workflow/CODE_REVIEW.md) |
+| Troubleshooting guide | [docs/05-confusion-troubleshooting/](docs/05-confusion-troubleshooting/) |
 | Security standards | [docs/06-standards/SECURITY.md](docs/06-standards/SECURITY.md) |
 | NIST/FIPS compliance | [docs/07-compliance/NIST_OVERVIEW.md](docs/07-compliance/NIST_OVERVIEW.md) |
 | Full repo directory | [REPO_MAP.md](REPO_MAP.md) |
+
+---
+
+You are now working like a professional developer.

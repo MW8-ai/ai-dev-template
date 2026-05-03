@@ -1,14 +1,17 @@
 # Impact Note: AI Dev Workflow Adjustments
 
 ## Triggered By
+
 - Update: AI coding tools (Copilot, Codex, Claude Code, Gemini Code Assist) now generate larger, broader changes at higher velocity
 - Source: Ongoing — tracked via `anthropic-claude-code-changelog`, `openai-codex-changelog`, `google-gemini-code-assist-release-notes`
 - Date: Living document — updated as AI tooling evolves
 
 ## Previous Guidance
+
 AI tools assist with suggestions. Developers write the majority of code. Review is a sanity check.
 
 ## Updated Guidance
+
 AI tools now routinely generate entire feature implementations, refactors, test suites, and documentation in a single step. The human role is now primarily review and approval, not generation.
 
 This is a capability shift, not just a speed improvement. It requires updated guardrails.
@@ -59,6 +62,7 @@ This impact note should be revisited when any of these sources detect a meaningf
 - `github-changelog` — Copilot Workspace or GitHub AI feature changes
 
 ## Affected Files
+
 ```text
 AGENTS.md
 .github/CODEOWNERS
@@ -69,6 +73,7 @@ docs/06-standards/SECURITY.md
 ```
 
 ## Required Action
+
 - [x] Guardrails enforced in AGENTS.md
 - [x] no-direct-main-warning.yml workflow active
 - [x] CODEOWNERS configured for sensitive paths

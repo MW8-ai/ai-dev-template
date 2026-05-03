@@ -1,0 +1,116 @@
+name: "08 · Commit Message Lint"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  pull-requests: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  commitlint:
+    name: Validate commit messages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit messages
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Conventional Commits pattern
+          # type(scope): description
+          # type!: description (breaking change)
+          PATTERN='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\([a-z0-9_-]+\))?(!)?: .{1,72}$'
+
+          echo "Checking commits from $BASE_SHA to $HEAD_SHA"
+          echo ""
+
+          FAILED=0
+          while IFS= read -r line; do
+            # Skip merge commits and empty lines
+            if echo "$line" | grep -qE '^Merge (branch|pull request)'; then
+              echo "  [skip] Merge commit: $line"
+              continue
+            fi
+            if [ -z "$line" ]; then
+              continue
+            fi
+
+            if echo "$line" | grep -qE "$PATTERN"; then
+              echo "  [✓] $line"
+            else
+              echo "  [✗] $line"
+              FAILED=1
+            fi
+          done < <(git log --format="%s" "$BASE_SHA..$HEAD_SHA")
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "One or more commit messages do not follow Conventional Commits format."
+            echo ""
+            echo "Required format:  type(scope): description"
+            echo "Breaking change:  type(scope)!: description"
+            echo ""
+            echo "Allowed types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert"
+            echo ""
+            echo "Examples:"
+            echo "  feat(auth): add OAuth2 Google login"
+            echo "  fix(api): return 404 when user not found"
+            echo "  docs: add MISCONCEPTIONS.md"
+            echo "  chore(deps): upgrade express to 4.19.2"
+            echo "  feat(payments)!: require Stripe webhook secret"
+            echo ""
+            echo "See docs/06-standards/COMMIT_CONVENTION.md for the full guide."
+            exit 1
+          fi
+
+          echo ""
+          echo "All commit messages pass Conventional Commits validation."
+
+      - name: Validate PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          PATTERN='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\([a-z0-9_-]+\))?(!)?: .{1,72}$'
+
+          echo "PR title: $PR_TITLE"
+
+          if echo "$PR_TITLE" | grep -qE "$PATTERN"; then
+            echo "✓ PR title follows Conventional Commits format."
+          else
+            echo ""
+            echo "✗ PR title does not follow Conventional Commits format."
+            echo ""
+            echo "The PR title becomes the squash-merge commit message on main."
+            echo "Required format:  type(scope): description"
+            echo ""
+            echo "Examples:"
+            echo "  feat(auth): add OAuth2 Google login"
+            echo "  fix: correct pagination offset"
+            echo "  docs: add branching strategy guide"
+            echo ""
+            echo "Edit the PR title in the GitHub UI and this check will re-run."
+            exit 1
+          fi
+
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Commit Message Lint Failed\n\nOne or more commits (or the PR title) do not follow [Conventional Commits](https://www.conventionalcommits.org/) format.\n\n**Required format:** \`type(scope): description\`\n\n**Allowed types:** \`feat\`, \`fix\`, \`docs\`, \`style\`, \`refactor\`, \`test\`, \`chore\`, \`perf\`, \`ci\`, \`build\`, \`revert\`\n\n**Examples:**\n\`\`\`\nfeat(auth): add OAuth2 Google login\nfix(api): return 404 when user not found\ndocs: add branching strategy guide\nchore(deps): upgrade express to 4.19.2\nfeat(payments)!: require Stripe webhook secret\n\`\`\`\n\nFor full guidance, see [COMMIT_CONVENTION.md](docs/06-standards/COMMIT_CONVENTION.md).`
+            });

@@ -24,35 +24,35 @@ Extensions add language support, tools, and integrations. Install them via the E
 **GitLens**
 GitLens overlays Git history information directly in the editor. Hover over any line of code and see who last changed it, when, and in what commit. Navigate through a file's full history. Compare branches. Far more powerful than the built-in Git blame.
 
-```
+```text
 Extension ID: eamodio.gitlens
 ```
 
 **Prettier - Code formatter**
 Prettier automatically reformats your code to a consistent style when you save. It handles JavaScript, TypeScript, CSS, HTML, JSON, Markdown, and more. Eliminate "style debates" in code review — just let Prettier decide.
 
-```
+```text
 Extension ID: esbenp.prettier-vscode
 ```
 
 **ESLint**
 ESLint analyzes your JavaScript and TypeScript code for errors and style violations as you type, highlighting problems with red or yellow underlines before you ever run the code.
 
-```
+```text
 Extension ID: dbaeumer.vscode-eslint
 ```
 
 **markdownlint**
 Enforces consistent Markdown style — heading hierarchy, blank lines, code block formatting. Essential for documentation-heavy projects.
 
-```
+```text
 Extension ID: DavidAnson.vscode-markdownlint
 ```
 
 **GitHub Copilot** (optional, requires subscription)
 AI pair programmer that suggests code completions as you type. Useful for boilerplate, tests, and unfamiliar APIs.
 
-```
+```text
 Extension ID: GitHub.copilot
 ```
 
@@ -63,6 +63,7 @@ VS Code has Git built in. You do not need to type `git add`, `git commit`, or `g
 **Open it:** `Ctrl/Cmd+Shift+G` or click the branching icon in the left sidebar.
 
 **Workflow in the panel:**
+
 1. Changed files appear under "Changes"
 2. Click the `+` next to a file to stage it (equivalent to `git add filename`)
 3. Type a commit message in the input box at the top
@@ -77,7 +78,7 @@ VS Code has Git built in. You do not need to type `git add`, `git commit`, or `g
 
 VS Code has a built-in terminal. Open it with:
 
-```
+```text
 Ctrl+`  (backtick)        Windows/Linux
 Cmd+`   (backtick)        Mac
 ```
@@ -87,6 +88,7 @@ Or: **View → Terminal** from the menu.
 You can have multiple terminal tabs. Open a new one with the `+` icon in the terminal panel. Each runs independently.
 
 **Change the default shell:**
+
 1. Press `Ctrl/Cmd+Shift+P`
 2. Type "Terminal: Select Default Profile"
 3. Choose your preferred shell (Git Bash on Windows, zsh or bash on Mac)
@@ -96,6 +98,7 @@ You can have multiple terminal tabs. Open a new one with the `+` icon in the ter
 VS Code can sync your extensions, settings, keybindings, and snippets across machines via your GitHub account.
 
 To enable:
+
 1. Click the person icon at the bottom-left of the VS Code window
 2. Click "Turn on Settings Sync..."
 3. Select what to sync (check all)
@@ -150,6 +153,7 @@ Common useful settings:
 ```
 
 What these do:
+
 - `formatOnSave`: runs Prettier automatically every time you save a file
 - `defaultFormatter`: specifies Prettier as the formatter (required when multiple formatters are installed)
 - `tabSize` / `insertSpaces`: 2-space indentation with spaces, not tabs
@@ -187,4 +191,4 @@ Create this file at `.vscode/extensions.json` in your project root and commit it
 
 ## Next Step
 
-→ [Set up SSH key authentication for GitHub](docs/02-dev-environment/SSH_KEYS_AND_AUTH.md)
+→ [docs/02-dev-environment/GIT_CLI_SETUP.md](docs/02-dev-environment/GIT_CLI_SETUP.md) — full Git CLI command reference organized by workflow stage

@@ -3,6 +3,7 @@ Update the tool snapshot register for a specific tool.
 Ask me: "Which tool do you want to snapshot? (e.g. claude-code, codex, gemini-cli)"
 
 Then:
+
 1. Read docs/07_snapshots/TOOL_SNAPSHOT_TEMPLATE.md for the required format
 2. Read docs/07_snapshots/CURRENT_TOOL_REGISTER.md for the current register
 3. Research the current state of the specified tool:
