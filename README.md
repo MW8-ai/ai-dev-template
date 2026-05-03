@@ -141,16 +141,22 @@ Detected by the [Living Updates system](docs/06-living-updates/README.md) — up
 
 Top vendor-certified paths for AI and ML. Full details, costs, and status tracking in [docs/04-ai-workflows/AI_CERTIFICATIONS.md](docs/04-ai-workflows/AI_CERTIFICATIONS.md).
 
-| Cert | Vendor | Level | Cost | Notes |
-|---|---|---|---|---|
-| Azure AI Fundamentals (AI-900) | Microsoft | Beginner | ~$165 | Best first cert for Azure AI |
-| Azure AI Engineer Associate (AI-102) | Microsoft | Associate | ~$165 | Most in-demand Azure AI role cert |
-| Applied Skills — GenAI / Prompt Engineering | Microsoft | Task-based | **Free** | Lab assessments, no exam fee |
-| AWS Certified AI Practitioner | AWS | Foundational | ~$150 | New 2024 — GenAI-focused entry point |
-| AWS ML Engineer Associate | AWS | Associate | ~$150 | New 2024 — replaces old specialty track |
-| Professional ML Engineer | Google Cloud | Professional | ~$200 | GCP's core ML credential |
-| CompTIA AI+ | CompTIA | Intermediate | ~$239 | Vendor-neutral; governance and ethics |
-| DLI — Deep Learning / GenAI | NVIDIA | Course | ~$30–90 | Respected in infra/MLOps roles |
+| Cert | Vendor | Level | Cost | Status | Replaced By |
+|---|---|---|---|---|---|
+| Azure AI Fundamentals (AI-900) | Microsoft | Beginner | ~$165 | 🔄 Retiring Jun 2026 | AI-901 |
+| **Azure AI Fundamentals (AI-901)** | Microsoft | Beginner | ~$165 | 🆕 Launching Jun 2026 | — |
+| Azure AI Engineer Associate (AI-102) | Microsoft | Associate | ~$165 | 🔄 Retiring Jun 2026 | AI-103 |
+| **Azure AI Services Agent Associate (AI-103)** | Microsoft | Associate | ~$165 | 🆕 Launching Jun 2026 | — |
+| Applied Skills — GenAI / Prompt Engineering | Microsoft | Task-based | **Free** | ✅ Active | — |
+| AWS Certified AI Practitioner (AIF-C01) | AWS | Foundational | ~$100 | ✅ Active | — |
+| AWS ML Engineer Associate (MLA-C01) | AWS | Associate | ~$150 | ✅ Active | — |
+| AWS ML Specialty (MLS-C01) | AWS | Specialty | ~$300 | 🔄 Retired Mar 2026 | AIP-C01 |
+| **AWS AI Practitioner+ (AIP-C01)** | AWS | Associate | ~$150 | 🆕 2026 | — |
+| Generative AI Leader | Google Cloud | Professional | ~$99 | 🆕 May 2025 | — |
+| Professional ML Engineer | Google Cloud | Professional | ~$200 | ✅ Active | — |
+| OCI Generative AI Professional | Oracle | Professional | ~$245 | ✅ Active | — |
+| **CompTIA SecAI+ (CY0-001)** | CompTIA | Intermediate | ~$239 | 🆕 Feb 2026 | — |
+| DLI — Deep Learning / GenAI | NVIDIA | Course | ~$30–90 | ✅ Active | — |
 
 **Free learning (no cert):** [fast.ai](https://course.fast.ai) · [Hugging Face](https://huggingface.co/learn) · [DeepLearning.AI](https://www.deeplearning.ai) · [Google ML Crash Course](https://developers.google.com/machine-learning/crash-course)
 
