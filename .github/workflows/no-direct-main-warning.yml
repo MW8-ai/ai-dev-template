@@ -1,0 +1,24 @@
+name: Main Branch Change Warning
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  warn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Warn about main branch changes
+        run: |
+          echo "A push occurred on main."
+          echo "If this was not the result of an approved PR merge, review branch protection settings."
+          echo "Recommended protections:"
+          echo "- Require pull request before merging"
+          echo "- Require status checks"
+          echo "- Require code owner review"
+          echo "- Block force pushes"
+          echo "- Restrict bypass permissions"

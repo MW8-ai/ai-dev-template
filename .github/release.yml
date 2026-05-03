@@ -1,0 +1,42 @@
+# GitHub automatically generated release notes configuration.
+# Used by GitHub when drafting releases.
+
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+      - duplicate
+      - invalid
+      - wontfix
+    authors:
+      - dependabot
+  categories:
+    - title: 🚀 Features
+      labels:
+        - type: feature
+        - feat
+    - title: 🐛 Fixes
+      labels:
+        - type: bug
+        - fix
+    - title: 🛡 Security
+      labels:
+        - type: security
+        - security
+    - title: 📚 Documentation
+      labels:
+        - type: documentation
+        - docs
+    - title: ⚙️ CI/CD and Automation
+      labels:
+        - type: ci-cd
+        - ci
+        - automation
+    - title: 🧹 Maintenance
+      labels:
+        - type: chore
+        - chore
+        - dependencies
+    - title: Other Changes
+      labels:
+        - "*"

@@ -1,0 +1,35 @@
+type: documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"
+
+type: ci-cd:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/**"
+
+type: source:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/**"
+          - "app/**"
+          - "lib/**"
+
+type: tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "test/**"
+          - "tests/**"
+          - "**/*.test.*"
+          - "**/*.spec.*"
+
+type: infrastructure:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "infra/**"
+          - "terraform/**"
+          - "bicep/**"
+          - "Dockerfile"
+          - "docker-compose.yml"
