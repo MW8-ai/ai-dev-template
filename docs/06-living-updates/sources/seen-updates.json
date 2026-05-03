@@ -1,0 +1,61 @@
+{
+  "last_run": "2026-05-03T19:18:50Z",
+  "seen": {
+    "github-changelog": {
+      "085000689b81759b": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-github-copilot-code-review-will-start-consuming-github-actions-minutes-on-june-1.md",
+        "title": "GitHub Copilot code review will start consuming GitHub Actions minutes on June 1, 2026"
+      },
+      "6b2cd9dd2ad12e9d": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-upcoming-deprecation-of-gpt-5-2-and-gpt-5-2-codex.md",
+        "title": "Upcoming deprecation of GPT-5.2 and GPT-5.2-Codex"
+      },
+      "8cec93037ceb6f5b": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-gpt-5-5-is-generally-available-for-github-copilot.md",
+        "title": "GPT-5.5 is generally available for GitHub Copilot"
+      },
+      "ace7c3519f5d1778": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-student-gpt-5-3-codex-removal-from-model-picker.md",
+        "title": "Copilot Student GPT-5.3-Codex removal from model picker"
+      },
+      "d5123b5b44f80000": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-cloud-agent-starts-20-faster-with-actions-custom-images.md",
+        "title": "Copilot cloud agent starts 20% faster with Actions custom images"
+      },
+      "da64852fef716ad1": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-inline-agent-mode-in-preview-and-more-in-github-copilot-for-jetbrains-ides.md",
+        "title": "Inline agent mode in preview and more in GitHub Copilot for JetBrains IDEs"
+      },
+      "db71e061d35a2ad1": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-github-copilot-in-visual-studio-april-update.md",
+        "title": "GitHub Copilot in Visual Studio \u2014 April update"
+      },
+      "e0110282c4c38e0b": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-chat-improvements-for-pull-requests.md",
+        "title": "Copilot Chat improvements for pull requests"
+      }
+    },
+    "openai-api-changelog": {
+      "91ff5658248b3284": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-openai-api-changelog-watched-page-changed-changelog-openai-api.md",
+        "title": "Watched page changed: Changelog | OpenAI API"
+      }
+    },
+    "openai-codex-changelog": {
+      "297d3e66cb843943": {
+        "detected": "2026-05-03T19:18:50Z",
+        "file": "docs/06-living-updates/incoming/2026-05-03-openai-codex-changelog-watched-page-changed-changelog-codex-openai-developers.md",
+        "title": "Watched page changed: Changelog \u2013 Codex | OpenAI Developers"
+      }
+    }
+  }
+}
