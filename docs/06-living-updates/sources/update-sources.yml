@@ -468,3 +468,81 @@ sources:
       - coder
       - math
       - reasoning
+
+  # ---------------------------------------------------------------------------
+  # CERTIFICATIONS
+  # Tracks exam retirements, new cert launches, pricing changes, and
+  # curriculum updates across Microsoft, AWS, Google, and CompTIA.
+  # ---------------------------------------------------------------------------
+
+  - id: microsoft-learn-blog
+    vendor: Microsoft
+    category: certifications
+    url: https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MicrosoftLearnBlog
+    type: rss
+    priority: high
+    tags: [microsoft, certifications, azure, ai, training]
+    include_keywords:
+      - certification
+      - exam
+      - retire
+      - retiring
+      - update
+      - new exam
+      - AI-900
+      - AI-102
+      - DP-100
+      - Applied Skills
+      - renewal
+      - pricing
+
+  - id: aws-training-blog
+    vendor: AWS
+    category: certifications
+    url: https://aws.amazon.com/blogs/training-and-certification/feed/
+    type: rss
+    priority: high
+    tags: [aws, certifications, training, ai, ml]
+    include_keywords:
+      - certification
+      - exam
+      - retire
+      - new
+      - launch
+      - AI Practitioner
+      - Machine Learning
+      - update
+      - pricing
+
+  - id: google-cloud-blog
+    vendor: Google
+    category: certifications
+    url: https://cloudblog.withgoogle.com/rss/
+    type: rss
+    priority: medium
+    tags: [google, certifications, gcp, ai, training]
+    include_keywords:
+      - certification
+      - exam
+      - learning
+      - Professional
+      - Machine Learning
+      - retire
+      - new cert
+      - training
+
+  - id: comptia-blog
+    vendor: CompTIA
+    category: certifications
+    url: https://www.comptia.org/blog
+    type: webpage
+    priority: low
+    tags: [comptia, certifications, ai-plus, vendor-neutral]
+    include_keywords:
+      - AI+
+      - certification
+      - exam
+      - retire
+      - update
+      - pricing
+      - launch
