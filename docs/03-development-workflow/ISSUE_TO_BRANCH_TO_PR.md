@@ -10,14 +10,18 @@ Related docs: [DAILY_WORKFLOW.md](./DAILY_WORKFLOW.md) | [CODE_REVIEW.md](./CODE
 
 1. Create or find a GitHub Issue describing the work
 2. Create a branch tied to that issue:
+
    ```bash
    git checkout -b feature/issue-42-user-login
    ```
+
 3. Write code, make small and frequent commits
 4. Push your branch:
+
    ```bash
    git push origin feature/issue-42-user-login
    ```
+
 5. Open a Pull Request (PR) on GitHub, reference the issue in the body (`Closes #42`)
 6. Get code review, address every piece of feedback
 7. Merge PR — the issue auto-closes when "Closes #42" is in the PR body
@@ -56,7 +60,8 @@ Use a prefix that signals the nature of the change, followed by the issue number
 | `hotfix/` | Urgent fix to a production release |
 
 Examples:
-```
+
+```text
 feature/issue-42-user-login
 fix/issue-91-null-pointer-logout
 docs/issue-55-update-readme
@@ -97,7 +102,7 @@ git commit -m "update README with setup instructions"
 
 When opening a PR, fill in the description. A minimal PR description:
 
-```
+```text
 ## What changed
 - Added email validation before login form submission
 - Returns a 422 error with a user-friendly message on invalid email

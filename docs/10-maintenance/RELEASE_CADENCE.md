@@ -8,7 +8,7 @@ How this template itself is versioned, released, and announced.
 
 This repo follows [Semantic Versioning](https://semver.org/):
 
-```
+```text
 MAJOR.MINOR.PATCH
   │     │     └── Bug fixes, typo corrections, broken link repairs
   │     └──────── New docs, new workflows, expanded coverage
@@ -16,6 +16,7 @@ MAJOR.MINOR.PATCH
 ```
 
 Examples:
+
 - `1.0.0` — initial stable release
 - `1.1.0` — new doc added (e.g., `BRANCHING_STRATEGY.md`)
 - `1.1.1` — typo fix or broken link repair
@@ -46,10 +47,12 @@ Examples:
 2. **Update `CHANGELOG.md`** — move `[Unreleased]` entries under the new version heading with today's date
 3. **Bump version** — update the version badge in `README.md` if one exists
 4. **Tag the release**
+
    ```bash
    git tag -a v1.2.0 -m "v1.2.0 — add LOCAL_LLMS, AI_CERTIFICATIONS, maintenance layer"
    git push origin v1.2.0
    ```
+
 5. **Create a GitHub Release** — the `release-drafter.yml` workflow pre-fills the draft from PR labels; review and publish
 6. **Announce in the issue** — if a milestone issue was tracking this release, close it with a comment linking the release
 
@@ -96,6 +99,7 @@ Entries follow [Keep a Changelog](https://keepachangelog.com/) conventions:
 ## Who Owns Releases
 
 The person who merges the batch of changes to `main` is responsible for:
+
 - Confirming `CHANGELOG.md` is updated
 - Tagging the release
 - Publishing the GitHub Release draft

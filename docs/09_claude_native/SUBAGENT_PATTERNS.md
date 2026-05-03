@@ -5,6 +5,7 @@
 In Claude Code, the `Agent` tool spawns a child agent with its own context window. The parent delegates a task, the child runs to completion, and returns a single result. The child has no memory of prior sessions or the parent's conversation.
 
 Use sub-agents to:
+
 - Parallelize independent work (run multiple agents simultaneously)
 - Protect the main context window from large search or read results
 - Get an independent second opinion (the child starts fresh, no anchoring bias)
@@ -16,7 +17,7 @@ Use sub-agents to:
 
 When two tasks don't depend on each other, spawn both in one message. They run concurrently.
 
-```
+```text
 User: implement feature X and update the docs for feature Y
 
 Main agent:
@@ -32,7 +33,7 @@ Main agent: review both diffs, commit
 
 Delegate research to a sub-agent to avoid polluting the main context with large search results.
 
-```
+```text
 Main: "I need to know the current Claude API pricing before I write the cost estimate."
   → Agent(Research): search docs, return summary under 200 words
 Main: uses summary to write estimate — never saw the raw search output
@@ -44,7 +45,7 @@ The main agent's context stays clean. The research agent's large intermediate re
 
 Use `isolation: "worktree"` when an agent will make file changes you want to review before merging. The agent works on a temporary git worktree (separate branch). If it makes no changes, the worktree is cleaned up automatically.
 
-```
+```text
 Agent(
   description: "Refactor auth module",
   isolation: "worktree",
@@ -60,7 +61,7 @@ This prevents a runaway agent from dirtying your working tree.
 
 Spawn a reviewer agent after a build agent finishes. The reviewer starts with no knowledge of how the implementation was decided — clean perspective.
 
-```
+```text
 Build agent → produces diff
 Review agent(
   prompt: "Review this diff for correctness, safety, and maintainability.
@@ -74,7 +75,7 @@ Main: decide whether to accept, request changes, or escalate
 
 Map the orchestration cycle to sub-agents explicitly:
 
-```
+```text
 Main (orchestrator)
   → Planner agent    — scopes task, lists files, identifies risks
   → Builder agent    — implements scoped change
@@ -91,6 +92,7 @@ Each agent gets only the context it needs. The main agent synthesizes results an
 Sub-agents don't see the conversation. Brief them like a colleague who just walked in.
 
 **Include:**
+
 - What you're trying to accomplish and why
 - What you've already tried or ruled out
 - Specific file paths, line numbers, or symbols relevant to the task
@@ -98,6 +100,7 @@ Sub-agents don't see the conversation. Brief them like a colleague who just walk
 - Whether they should write code or just research
 
 **Avoid:**
+
 - "Based on your findings, fix it" — synthesize first, delegate a concrete task
 - Vague directives ("improve the code") — give a specific, bounded scope
 - Asking the agent to figure out context you already know — give it the context
@@ -108,7 +111,7 @@ Sub-agents don't see the conversation. Brief them like a colleague who just walk
 
 **Background:** Parent continues working; notified when done. Use for genuinely independent tasks that take a while (large doc generation, slow test runs).
 
-```
+```text
 Agent(description: "Generate API docs", run_in_background: true, prompt: "...")
 # parent continues with other work
 # gets notified when docs agent finishes
@@ -120,7 +123,7 @@ Do not poll or sleep waiting for a background agent. The notification is automat
 
 Instruct sub-agents to stop and report rather than expand scope:
 
-```
+```text
 If you cannot complete the task without:
 - modifying files outside the specified scope
 - installing new dependencies
@@ -134,6 +137,7 @@ Do not proceed.
 ## Context Budget
 
 Sub-agents have their own full context window. However:
+
 - Each spawned agent costs input tokens for its full prompt
 - Large prompts with many injected files add up fast
 - Use prompt caching if the same stable docs are injected into many agents (see `PROMPT_CACHING.md`)

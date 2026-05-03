@@ -44,7 +44,7 @@ Skip the basics:
 
 Copy templates into your repository:
 
-```
+```text
 templates/project/    ← core project docs (DESIGN, TESTING, DEPLOYMENT, SECURITY)
 templates/workflows/  ← GitHub Actions starters
 templates/prompts/    ← AI prompt templates
@@ -99,7 +99,7 @@ This repository uses GitHub Actions to enforce standards automatically on every 
 
 → Full directory listing: **[REPO_MAP.md](REPO_MAP.md)**
 
-```
+```text
 docs/         Documentation: getting started, workflows, AI tools, compliance
 templates/    Copy-paste starting points for projects, workflows, and prompts
 examples/     Working examples showing templates in real project structures

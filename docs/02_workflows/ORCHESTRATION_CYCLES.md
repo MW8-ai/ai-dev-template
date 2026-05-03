@@ -15,21 +15,27 @@ Human priority
 ## Role Split
 
 Planner:
+
 - defines scope, files, risk, acceptance criteria
 
 Builder:
+
 - implements smallest safe change
 
 Tester:
+
 - runs checks and reproduces issues
 
 Reviewer:
+
 - checks risk, scope creep, maintainability
 
 Documenter:
+
 - updates docs and changelog
 
 Health Reviewer:
+
 - periodically checks drift, repetition, stale docs
 
 ## Stop Conditions

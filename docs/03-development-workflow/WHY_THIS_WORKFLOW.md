@@ -24,6 +24,7 @@ This workflow solves each problem with a specific mechanism.
 Without branches, every developer writes directly to the same codebase simultaneously. One person's half-finished feature breaks everyone else's environment.
 
 With branches:
+
 - Each change lives in its own isolated space
 - `main` stays stable and deployable at all times
 - Multiple features can be developed in parallel without interference
@@ -56,7 +57,7 @@ The single most common source of production incidents is code that nobody review
 
 When a bug is discovered in production, the first question is always: "What changed?" A commit history full of "fix", "update", and "wip" is useless for this. A commit history that reads:
 
-```
+```text
 feat(auth): add rate limiting to login endpoint
 fix(api): return 400 instead of 500 for malformed JSON
 chore(deps): upgrade express from 4.18.2 to 4.19.2
@@ -89,6 +90,7 @@ When a CI check fails, it is not the workflow being obstructive — it is the sa
 Decisions, constraints, architecture choices, and deployment steps that live only in someone's head leave the organization when that person leaves — or go on vacation at the worst possible time.
 
 Documentation in the repo:
+
 - Persists across team changes
 - Is versioned alongside the code it describes
 - Is searchable, reviewable, and updatable like any other file
@@ -114,7 +116,7 @@ See [docs/06-standards/OPINIONATED_DEFAULTS.md](../06-standards/OPINIONATED_DEFA
 
 ## The Short Version
 
-```
+```text
 Branch        → work without breaking things
 Pull Request  → review before it matters
 Commit message → audit trail when things break

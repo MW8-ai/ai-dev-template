@@ -8,7 +8,7 @@ It serves engineering teams of 5–500 members and is the backend for the TeamTr
 
 ## Architecture Diagram
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                         Clients                                  │
 │           Web App (React)    Mobile App (React Native)           │
@@ -88,6 +88,7 @@ It serves engineering teams of 5–500 members and is the backend for the TeamTr
 - **Attachments** — `id`, `task_id`, `user_id`, `filename`, `s3_key`, `file_size`, `mime_type`, `created_at`
 
 **Key relationships:**
+
 - A User belongs to many Teams (via Team Members); a Team has many Users
 - A Team has many Tasks; a Task belongs to one Team
 - A Task has one optional assignee (User); a User can have many assigned Tasks

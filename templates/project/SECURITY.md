@@ -84,6 +84,7 @@ This system handles the following data:
      and auditors a quick view of the security posture. Update whenever a control is added or removed. -->
 
 ### Authentication and Authorization
+
 - [ ] Passwords are hashed with bcrypt / Argon2 (not MD5 or SHA-1)
 - [ ] Multi-factor authentication (MFA) is available
 - [ ] Sessions expire after [N] minutes of inactivity
@@ -92,30 +93,35 @@ This system handles the following data:
 - [ ] Privilege escalation is logged and alerted
 
 ### Input Validation and Output Encoding
+
 - [ ] All user inputs are validated against a strict schema
 - [ ] SQL queries use parameterized queries / ORM (no string concatenation)
 - [ ] Output is HTML-encoded to prevent XSS
 - [ ] File uploads are restricted by type, size, and scanned for malware
 
 ### Transport Security
+
 - [ ] TLS 1.2+ is required on all connections
 - [ ] HTTP redirects to HTTPS
 - [ ] HSTS header is set with a long max-age
 - [ ] Certificates are monitored for expiry
 
 ### Data Protection
+
 - [ ] Data at rest is encrypted (AES-256)
 - [ ] Sensitive fields (e.g., SSNs, payment data) are encrypted at the column level
 - [ ] Backups are encrypted
 - [ ] PII is not written to logs
 
 ### Infrastructure
+
 - [ ] Production secrets are stored in a secrets manager (not in code or `.env` files)
 - [ ] Principle of least privilege applied to all service accounts
 - [ ] Security groups / firewall rules restrict traffic to required ports only
 - [ ] Container images are scanned for CVEs before deployment
 
 ### Monitoring and Response
+
 - [ ] Failed authentication attempts are logged and rate-limited
 - [ ] Anomalous activity triggers alerts (e.g., mass data export, unusual login location)
 - [ ] All admin actions are audit-logged

@@ -5,6 +5,7 @@
 We optimize for safe speed.
 
 That means:
+
 - Move quickly.
 - Keep changes reviewable.
 - Automate checks.

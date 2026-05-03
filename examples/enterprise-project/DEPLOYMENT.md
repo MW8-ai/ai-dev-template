@@ -119,6 +119,7 @@ curl https://staging.teamtracker.example.com/health
 ### Production
 
 > **Pre-deploy checklist:**
+>
 > - [ ] Staging deploy has been running for at least 24 hours without errors
 > - [ ] All PR-linked tests pass on `main`
 > - [ ] Datadog staging dashboard shows no anomalies
@@ -276,6 +277,7 @@ aws ecs update-service \
 **Incident channel:** `#incidents` in Slack — post all production issues here immediately.
 
 **Runbooks:**
+
 - [Database connection pool exhaustion](https://notion.so/teamtracker/runbooks/db-pool)
 - [High error rate — tasks endpoint](https://notion.so/teamtracker/runbooks/tasks-error-rate)
 - [ECS service unstable](https://notion.so/teamtracker/runbooks/ecs-unstable)

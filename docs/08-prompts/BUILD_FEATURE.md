@@ -7,6 +7,7 @@ Use this prompt when implementing a scoped feature with an AI coding agent. One 
 ## How to Customize
 
 Before sending, replace:
+
 - `[FEATURE NAME]` — short name of the feature (e.g., "User email verification")
 - `[ISSUE NUMBER]` — GitHub issue number where the feature is specified (e.g., #42)
 - `[FEATURE DESCRIPTION]` — 2–4 sentences describing exactly what to build
@@ -19,7 +20,7 @@ Before sending, replace:
 
 ## The Prompt
 
-```
+```text
 You are a senior developer implementing a scoped feature.
 
 Read these files before writing any code:
@@ -79,6 +80,7 @@ Before opening a PR:
 4. Use the [REVIEW_CODE.md](./REVIEW_CODE.md) prompt to self-review the diff.
 
 Then open the PR with a description that includes:
+
 - What the feature does
 - How to test it manually
 - Any decisions made that reviewers should know about

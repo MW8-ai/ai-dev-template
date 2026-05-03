@@ -47,6 +47,7 @@ From your perspective: it looks and feels exactly like VS Code on your laptop, b
 **GitHub Team/Enterprise:** Organizations pay per usage. Talk to your admin about whether Codespaces is enabled and what your budget is.
 
 **Stop vs. delete:**
+
 - **Stopping** a Codespace (closing the browser tab or clicking "Stop codespace") pauses the VM. Storage is still used, but compute charges stop.
 - **Deleting** a Codespace removes it entirely — all unsaved work is lost. Committed and pushed work is safe in GitHub.
 - Codespaces automatically stop after 30 minutes of inactivity by default (configurable).
@@ -97,6 +98,7 @@ When someone creates a Codespace for your repo, GitHub reads this file and build
 ```
 
 What each section does:
+
 - `image`: the base Docker image. `javascript-node:20` gives you Node.js 20 on Debian. Browse images at [mcr.microsoft.com/devcontainers](https://mcr.microsoft.com/devcontainers)
 - `features`: optional add-ons to layer on top of the image
 - `customizations.vscode.extensions`: these extensions are installed automatically in every Codespace
@@ -110,11 +112,14 @@ Commit `.devcontainer/devcontainer.json` to your repository and everyone who ope
 When a web server runs inside your Codespace (on port 3000, for example), it is running on a VM — not your local machine. Port forwarding creates a secure HTTPS URL that tunnels traffic from your browser to that port.
 
 **How it works:**
+
 1. Start your dev server inside the Codespace terminal:
+
    ```bash
    npm run dev
    # Server running on http://localhost:3000
    ```
+
 2. VS Code detects that port 3000 is in use and shows a notification: "Your app is running on port 3000."
 3. Click "Open in Browser" — a URL like `https://your-codespace-name-3000.preview.app.github.dev` opens your running app.
 4. The URL is private by default (only you can access it). You can make it public temporarily via the Ports panel (right-click the port → "Port Visibility" → "Public").
@@ -138,6 +143,7 @@ By default, a Codespace is built fresh each time from the `devcontainer.json` co
 Pre-builds cache the built environment so new Codespaces start in seconds.
 
 **To set up pre-builds:**
+
 1. Go to your repository → **Settings** → **Codespaces**
 2. Under "Codespace pre-builds," click **Set up prebuild**
 3. Choose the branch and region

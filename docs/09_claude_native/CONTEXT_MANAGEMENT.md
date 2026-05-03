@@ -3,6 +3,7 @@
 ## The Problem
 
 Claude's context window is large but finite. In a long coding session, context fills with file contents, tool outputs, conversation history, and intermediate reasoning. When it gets full:
+
 - The model starts losing earlier context
 - Automatic compaction kicks in (Claude Code summarizes old turns)
 - Quality degrades on tasks that need both early and late context
@@ -28,6 +29,7 @@ The largest consumers are typically large file reads and verbose Bash output.
 Open every session by reading only the files you'll need throughout. Don't read speculatively. Once something is in context, it stays until compaction.
 
 Minimum pin set for this repo:
+
 - `AGENTS.md`
 - `TECH_STACK.md`
 - The specific file(s) being modified
@@ -38,7 +40,7 @@ Do not read the entire `docs/` tree unless you need all of it.
 
 When a task requires scanning many files to find something, delegate it to a sub-agent. The agent reads everything, extracts what you need, and returns a short summary. The main context window only receives the summary — not all the intermediate file contents.
 
-```
+```text
 Bad:  Main reads 40 files looking for all usages of a function
 Good: Sub-agent reads 40 files, returns "found in auth.ts:42, api.ts:88"
 Main context: 2 lines instead of 40 files
@@ -48,7 +50,7 @@ Main context: 2 lines instead of 40 files
 
 When you notice context growing large, proactively ask Claude to summarize the session state before it hits the compaction threshold:
 
-```
+```text
 "Before we continue, summarize: what files have been changed, what's working,
 what's still broken, and what the next step is. Keep it under 200 words."
 ```

@@ -140,6 +140,7 @@ Press `Ctrl+I` (Windows/Linux) or `Cmd+I` (Mac) to open an inline chat at your c
 Use Copilot as a typing accelerator, not as a source of truth:
 
 1. **Write a comment describing what you want**, then let Copilot fill it in:
+
    ```python
    # Read a CSV file and return a list of dicts, one per row
    def read_csv(filepath: str) -> list[dict]:

@@ -36,12 +36,14 @@ You do not need all five parts for every prompt. A simple syntax question does n
 Narrow the problem to a specific, bounded change. Give the relevant context directly in the prompt rather than assuming the AI knows your system.
 
 **Vague (produces poor results):**
-```
+
+```text
 Fix the login
 ```
 
 **Scoped (produces actionable results):**
-```
+
+```text
 The login endpoint at /api/auth/login/ returns a 500 error when the email
 address contains uppercase letters. The relevant code is in auth/views.py,
 specifically the authenticate_user() function at line 34.
@@ -54,7 +56,7 @@ authenticate(). Do not change any other behavior.
 
 Ask the AI to understand the code first, then identify problems. This produces better results than asking it to fix blindly because explaining forces it to reason through the logic.
 
-```
+```text
 Explain what this function does step by step, then identify any bugs or
 edge cases it does not handle:
 
@@ -65,7 +67,7 @@ edge cases it does not handle:
 
 Generate tests for an existing function. Specify which cases you want covered to avoid getting only the happy path.
 
-```
+```text
 Write pytest tests for the following function. Cover:
 - Happy path (valid input, expected output)
 - Empty input (empty string, empty list)
@@ -80,7 +82,7 @@ Write pytest tests for the following function. Cover:
 
 Use the AI as a first-pass reviewer for specific concerns. A structured checklist produces structured output.
 
-```
+```text
 Review this code for the following:
 1. Security vulnerabilities (injection, authentication bypass, data exposure)
 2. Error handling gaps (uncaught exceptions, missing null checks)
@@ -96,7 +98,7 @@ number for each finding.
 
 Ask for a refactor but constrain what can change. Without constraints, the AI may rewrite everything.
 
-```
+```text
 Refactor the following function to improve readability. Constraints:
 - Do not change the function signature
 - Do not change the behavior — only the internal implementation
@@ -110,7 +112,7 @@ Refactor the following function to improve readability. Constraints:
 
 Convert code between languages while preserving behavior. Specify both languages and flag any idioms to handle.
 
-```
+```text
 Convert this Python 3 function to TypeScript. Use TypeScript's strict type
 annotations throughout. Preserve all error handling behavior. If any Python
 idioms do not translate directly to TypeScript, comment on the difference.
@@ -132,7 +134,7 @@ idioms do not translate directly to TypeScript, comment on the difference.
 
 ### Example with All Elements
 
-```
+```text
 Language: Python 3.11
 Framework: FastAPI 0.110
 

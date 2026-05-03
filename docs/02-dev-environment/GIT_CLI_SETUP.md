@@ -478,6 +478,7 @@ Or edit `~/.gitconfig` directly:
 ```
 
 Usage:
+
 ```bash
 git st       # git status
 git lg       # git log --oneline --graph --all --decorate

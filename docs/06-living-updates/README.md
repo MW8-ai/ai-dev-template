@@ -19,11 +19,13 @@ Docs evolve.
 Tools evolve faster than documentation.
 
 Without this system:
+
 - Teams use outdated workflows because nobody noticed the platform changed
 - AI guidance becomes stale as model capabilities and tool behaviors shift
 - Best practices fall behind reality — and nobody knows it
 
 With this system:
+
 - A scheduled Action monitors curated platform feeds weekly
 - New items land in `incoming/` as draft notes
 - A human reviews: is this meaningful? what changes?
@@ -36,7 +38,7 @@ With this system:
 
 Most repos track "what changed." This system tracks what changed → why it matters → what to do differently.
 
-```
+```text
 incoming/     Raw auto-detected notes. Unreviewed. May or may not be relevant.
 summaries/    Short human-written plain-language explanations.
 impacts/      Approved guidance changes. These drive doc and workflow updates.
@@ -74,7 +76,7 @@ Source configuration lives in `sources/update-sources.yml`. Approved update note
 
 ## Structure
 
-```
+```text
 docs/06-living-updates/
 ├── README.md                          ← this file
 ├── SETUP.md                           ← how to enable the automation

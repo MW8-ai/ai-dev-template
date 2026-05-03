@@ -10,6 +10,7 @@ Use this as a reference for starting your own API project.
 ## What This API Does
 
 The Todo API lets users create, list, and delete to-do items. It demonstrates:
+
 - RESTful endpoint design
 - Environment variable configuration
 - Input validation and error handling
@@ -31,12 +32,14 @@ The Todo API lets users create, list, and delete to-do items. It demonstrates:
 ### Example requests
 
 **List todos**
+
 ```http
 GET /todos
 Authorization: Bearer <your-jwt-token>
 ```
 
 **Create a todo**
+
 ```http
 POST /todos
 Authorization: Bearer <your-jwt-token>
@@ -49,6 +52,7 @@ Content-Type: application/json
 ```
 
 **Response**
+
 ```json
 {
   "id": "a1b2c3d4",
@@ -60,6 +64,7 @@ Content-Type: application/json
 ```
 
 **Delete a todo**
+
 ```http
 DELETE /todos/a1b2c3d4
 Authorization: Bearer <your-jwt-token>
@@ -110,6 +115,7 @@ curl http://localhost:3000/health
 Copy `.env.example` to `.env` and fill in the values. See `.env.example` for descriptions.
 
 Required variables before running:
+
 - `DATABASE_URL` — your local PostgreSQL connection string
 - `JWT_SECRET` — any long random string for local development
 
@@ -134,7 +140,7 @@ Tests use an in-memory SQLite database — no PostgreSQL required for testing.
 
 ## Project Structure
 
-```
+```text
 todo-api/
 ├── src/
 │   ├── app.js            # Express app setup

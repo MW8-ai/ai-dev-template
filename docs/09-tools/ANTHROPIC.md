@@ -23,6 +23,7 @@ See the model routing matrix in `docs/02_workflows/MODEL_ROUTING.md` for the ful
 ## Claude Code
 
 Claude Code is Anthropic's AI coding agent. Unlike chat interfaces, Claude Code can:
+
 - Read and write files in your repository
 - Run shell commands (git, tests, linters, build tools)
 - Search and navigate the codebase
@@ -38,6 +39,7 @@ npm install -g @anthropic-ai/claude-code
 ```
 
 Requires Node.js 18+. Verify:
+
 ```bash
 claude --version
 ```
@@ -47,9 +49,11 @@ claude --version
 1. Create an account at console.anthropic.com
 2. Go to API Keys → Create Key
 3. Set the environment variable:
+
    ```bash
    export ANTHROPIC_API_KEY=sk-ant-...
    ```
+
    Add this to `.bashrc` or `.zshrc`. Never commit the actual key.
 
 ### Starting a Session
@@ -80,6 +84,7 @@ claude "read DESIGN.md and tell me what the authentication system does"
 `CLAUDE.md` is the configuration file that guides Claude Code's behavior in a repository. When Claude Code starts a session, it reads `CLAUDE.md` first.
 
 Use `CLAUDE.md` to define:
+
 - Project-specific rules and conventions
 - Which files to always read first
 - What is and is not allowed (no new frameworks without approval, etc.)
@@ -104,7 +109,8 @@ Claude Code supports custom slash commands defined as Markdown files in `.claude
 | `/snapshot` | `.claude/commands/snapshot.md` | Updates the docs/07_snapshots/ documentation |
 
 Use slash commands from the Claude Code terminal prompt:
-```
+
+```text
 claude> /review
 claude> /security
 ```
@@ -116,6 +122,7 @@ claude> /security
 MCP is an open protocol that lets you extend Claude Code with custom tools. An MCP server is a local process that Claude Code can call — like a plugin system for the agent.
 
 **What MCP servers can do:**
+
 - Connect Claude Code to your databases (query your PostgreSQL directly)
 - Integrate with your internal APIs
 - Add custom search over your documentation
@@ -123,6 +130,7 @@ MCP is an open protocol that lets you extend Claude Code with custom tools. An M
 - Add specialized capabilities (run tests, query monitoring systems)
 
 **Configuring MCP servers:** add them to `.claude/settings.json`:
+
 ```json
 {
   "mcpServers": {
@@ -161,7 +169,7 @@ See `docs/09_claude_native/EXTENDED_THINKING.md`.
 
 Claude Code can spawn sub-agents (via the Agent tool) to parallelize independent work:
 
-```
+```text
 Main agent → reads the problem, breaks it into parts
   Sub-agent A → researches file A
   Sub-agent B → researches file B
@@ -176,6 +184,7 @@ See `docs/09_claude_native/SUBAGENT_PATTERNS.md`.
 ### Batch API
 
 The Batch API runs large numbers of requests asynchronously at a 50% cost discount. Use it for:
+
 - Processing many files offline (generating summaries, extracting patterns)
 - Running the same analysis across a large dataset
 - Overnight jobs that do not need real-time results
@@ -189,6 +198,7 @@ See `docs/09_claude_native/BATCH_API.md`.
 Claude Code can make real changes to real files. The settings in `.claude/settings.json` control what it is allowed to do.
 
 **Current deny rules in this repo:**
+
 ```json
 {
   "permissions": {

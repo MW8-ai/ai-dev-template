@@ -9,7 +9,7 @@ For high-level technology choices and design decisions, see [DESIGN.md](../DESIG
 
 ## System Diagram
 
-```
+```text
 ┌────────────────────────────────────────────────────────────────────────────┐
 │                              Internet                                      │
 └───────────────────────────────┬────────────────────────────────────────────┘
@@ -59,6 +59,7 @@ For high-level technology choices and design decisions, see [DESIGN.md](../DESIG
 ### API Layer (`src/api/`)
 
 Express route handlers. Responsibilities:
+
 - Parse and validate HTTP request inputs (query params, body, path params)
 - Call one service function per request (no business logic here)
 - Format the HTTP response (status code, JSON body)
@@ -69,6 +70,7 @@ Route files map 1:1 to resource types: `tasks.js`, `teams.js`, `users.js`, `auth
 ### Service Layer (`src/services/`)
 
 Business logic and domain rules. Responsibilities:
+
 - Enforce invariants (e.g., assignee must be a team member before creating a task)
 - Orchestrate multiple database queries within a logical operation
 - Throw named errors (with `.code` property) for known failure modes
@@ -108,7 +110,7 @@ RDS instance is configured for `max_connections = 200`.
 
 This traces a single `POST /tasks` request from the client to the database and back.
 
-```
+```text
 Client
   │  POST /tasks
   │  Authorization: Bearer eyJ...
@@ -175,7 +177,7 @@ Client receives:
 
 ### Network Layout
 
-```
+```text
 VPC: 10.0.0.0/16
 │
 ├── Public Subnets (10.0.1.0/24, 10.0.2.0/24) — Multi-AZ
@@ -193,7 +195,7 @@ Security Groups:
 
 ### Deployment Pipeline
 
-```
+```text
 Developer pushes to main
          │
          ▼

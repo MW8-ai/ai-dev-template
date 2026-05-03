@@ -29,7 +29,7 @@ Use these prefixes. Enforce them with the `01-pr-standards.yml` workflow.
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-```
+```text
 type(scope): short description
 
 Optional longer body. Explain WHY not WHAT.
@@ -40,6 +40,7 @@ Closes #42
 **Types:** `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`, `perf`, `revert`
 
 **Rules:**
+
 - Imperative mood: "Add feature" not "Added feature" or "Adding feature"
 - Under 72 characters in the subject line
 - Blank line between subject and body
@@ -74,12 +75,13 @@ Closes #42
 
 Use squash merge for feature branches. This keeps `main` history linear and readable.
 
-```
+```text
 main:    A---B---S        (S = squashed feature)
 feature:     C---D---E
 ```
 
 **Exceptions:**
+
 - Release branches → merge commit (preserve the release tag context)
 - Hotfixes → merge commit (need full traceability for incident review)
 - Long-running integration branches → merge commit (history matters)

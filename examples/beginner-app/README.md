@@ -17,6 +17,7 @@ No installation required.
 3. That's it — your personal page is running locally
 
 If you want to share it with others, you can:
+
 - **GitHub Pages (free):** Push this folder to a GitHub repository, enable Pages in Settings
 - **Netlify (free):** Drag the folder to [netlify.com/drop](https://netlify.com/drop)
 

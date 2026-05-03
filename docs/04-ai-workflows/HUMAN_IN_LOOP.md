@@ -66,6 +66,7 @@ These patterns in AI-generated code warrant extra scrutiny:
 **Network calls or file operations not in the spec.** If you asked the AI to validate an email address and it also makes an HTTP request to a third-party verification service, that is unexpected behavior. It may be benign, or it may be a mistake — either way, it needs to be understood before it ships.
 
 **Hardcoded values.** URLs, email addresses, phone numbers, IP addresses, or anything that looks like it was lifted from a training example:
+
 ```python
 # Red flag — where did "admin@example.com" come from?
 DEFAULT_ADMIN = "admin@example.com"
@@ -76,6 +77,7 @@ DEFAULT_ADMIN = "admin@example.com"
 **Deprecated API usage.** AI models have a training cutoff and may suggest APIs, methods, or configuration options that have since been removed or replaced. Always verify against current documentation for libraries you do not know well.
 
 **Tests that do not test.** A common AI failure: generating tests that pass trivially because they do not actually assert the right thing:
+
 ```python
 # This test always passes — it does not verify the function's output
 def test_process_order():

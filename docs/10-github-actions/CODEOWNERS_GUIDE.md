@@ -9,6 +9,7 @@
 Some files carry more risk than others.
 
 Examples:
+
 - CI/CD workflows can change deployment behavior.
 - Security files can weaken protection.
 - Infrastructure files can alter real environments.

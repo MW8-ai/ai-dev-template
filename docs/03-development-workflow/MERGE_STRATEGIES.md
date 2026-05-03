@@ -18,7 +18,7 @@ Related docs: [ISSUE_TO_BRANCH_TO_PR.md](./ISSUE_TO_BRANCH_TO_PR.md) | [RELEASE_
 
 ## Merge Commit (`git merge`)
 
-```
+```text
 main:    A---B-----------M
               \         /
 feature:       C---D---E
@@ -27,15 +27,18 @@ feature:       C---D---E
 A merge commit `M` is added that ties the two branch histories together. Every commit from the feature branch (`C`, `D`, `E`) appears in `git log`, along with the merge commit itself.
 
 **What you get:**
+
 - The full record of when every commit was made and on which branch
 - A clear visual indication that these commits came from a branch
 - The ability to trace exactly what was in each release
 
 **The trade-off:**
+
 - `git log` on main becomes non-linear and harder to read at a glance
 - Long-lived projects accumulate many merge commits
 
 **Use when:**
+
 - Full traceability is required (enterprise, regulated industries, audit logs)
 - You want to preserve the exact branch structure for future reference
 - Multiple developers collaborated on the same feature branch
@@ -52,7 +55,7 @@ git merge --no-ff feature/issue-42-user-login
 
 ## Squash and Merge
 
-```
+```text
 main:    A---B---S
                  ^
 feature:     C---D---E  (all squashed into S)
@@ -61,15 +64,18 @@ feature:     C---D---E  (all squashed into S)
 All commits from the feature branch (`C`, `D`, `E`) are collapsed into a single new commit `S` on main. The individual commits are not preserved in `main`'s history.
 
 **What you get:**
+
 - A perfectly clean linear history on main
 - One commit per feature or fix, making `git log` readable
 - Easy to revert an entire feature with one `git revert`
 
 **The trade-off:**
+
 - The intermediate commits are gone from main — if a commit introduced a subtle bug, you cannot use `git bisect` to find it within the feature
 - The feature branch must be deleted after merge, since it now diverges from main in a way that cannot be cleanly merged again
 
 **Use when:**
+
 - Feature branches contain many "WIP", "fix typo", or "address review comment" commits that add noise
 - You want one commit per issue/ticket on main for readability
 - You do not expect to need the intermediate commit history
@@ -87,7 +93,7 @@ git commit -m "add user login feature (#42)"
 
 ## Rebase and Merge
 
-```
+```text
 main:    A---B---C'---D'---E'
                  ^    ^    ^
 feature:     C---D---E  (replayed on top of B, new SHAs)
@@ -96,16 +102,19 @@ feature:     C---D---E  (replayed on top of B, new SHAs)
 Each commit from the feature branch is replayed one by one on top of the latest `main`. The commits keep their messages and logical content, but receive new SHA hashes because their parent commits are different.
 
 **What you get:**
+
 - A perfectly linear history on main
 - Individual commits preserved with their original messages
 - `git bisect` still works across all commits
 
 **The trade-off:**
+
 - Commit SHAs are rewritten, which is why this should only be done by the person who opened the PR and only on branches not shared with others
 - Merge conflicts must be resolved once per commit being replayed, not just once overall
 - The original timestamps are preserved but the branch context is lost
 
 **Use when:**
+
 - Commits are clean, meaningful, and individually shippable
 - The team uses a strict linear history policy
 - You want the benefits of individual commits without merge commit noise
@@ -155,6 +164,7 @@ Options to configure:
 | "Require linear history" | Disables merge commits entirely (forces squash or rebase) |
 
 To enforce a single strategy, enable only that option. For example, to require squash-only:
+
 - Uncheck "Allow merge commits"
 - Check "Allow squash merging"
 - Uncheck "Allow rebase merging"

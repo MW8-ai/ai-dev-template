@@ -36,27 +36,32 @@ For most federal civilian software: Level 1 is the minimum, Level 2 for hardware
 Only use the algorithms on NIST's Approved Algorithms list. The key ones:
 
 ### Symmetric Encryption
+
 - **AES-128, AES-192, AES-256** — all approved. AES-256 is the default recommendation.
 - Use in GCM (Galois/Counter Mode) for authenticated encryption (provides both confidentiality and integrity).
 
 ### Hashing
+
 - **SHA-256** — minimum acceptable for most uses
 - **SHA-384, SHA-512** — preferred for higher security
 - **SHA-1** — deprecated; do not use for new systems. Some legacy systems still accept it for verification only.
 - **MD5** — not approved. Do not use for any security purpose.
 
 ### Key Exchange
+
 - **ECDH (Elliptic Curve Diffie-Hellman)** with P-256 or P-384 — preferred
 - **RSA** — key size 2048-bit minimum; 3072-bit or 4096-bit for long-lived keys
 - **DH (Diffie-Hellman)** — 2048-bit minimum; ECDH is preferred
 
 ### Digital Signatures
+
 - **ECDSA (Elliptic Curve Digital Signature Algorithm)** with P-256 or P-384
 - **RSA-PSS** — RSA signatures with PSS (Probabilistic Signature Scheme) padding; 2048-bit minimum
 - **Ed25519** — approved in FIPS 186-5 (2023); check your agency's approved algorithm list, as older agency policies may not yet include it
 - **RSA-PKCS1v15** — still common but RSA-PSS is preferred for new implementations
 
 ### Not Approved — Do Not Use
+
 | Algorithm | Reason |
 |---|---|
 | MD5 | Collision attacks, broken |
@@ -76,7 +81,8 @@ TLS is the protocol that secures data in transit. FIPS requires:
 - **Preferred: TLS 1.3.** TLS 1.3 removes legacy cipher suites and is more secure by design.
 
 ### Approved TLS 1.2 Cipher Suites (examples)
-```
+
+```text
 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
@@ -101,7 +107,7 @@ Do not implement cryptographic algorithms yourself. Use the operating system or 
 
 Your application code calls crypto libraries. Verify the chain:
 
-```
+```text
 Your code → language runtime → crypto library → FIPS-validated module
 ```
 
@@ -135,19 +141,23 @@ AWS offers FIPS 140-2 validated endpoints for most services. These endpoints enf
 Key management is where most FIPS implementations fail in practice.
 
 ### Rotation Schedule
+
 - Encrypt data at rest: rotate encryption keys annually at minimum
 - TLS certificates: rotate per the certificate lifecycle; automate with Let's Encrypt or AWS ACM (Certificate Manager)
 - API signing keys: rotate per your security policy (quarterly is common)
 
 ### Key Storage
+
 - **Low impact systems:** Secrets manager (AWS Secrets Manager, HashiCorp Vault)
 - **Moderate impact systems:** KMS (Key Management Service) with FIPS-validated backend — AWS KMS in GovCloud, Google Cloud KMS with FIPS mode, Azure Key Vault
 - **High impact systems:** HSM (Hardware Security Module) at FIPS 140-2 Level 3 or higher — AWS CloudHSM, Thales Luna, Utimaco
 
 ### Key Escrow
+
 Some federal programs require key escrow: a copy of the encryption key held by a trusted third party, allowing authorized recovery if the primary key holder is unavailable. Requirements vary by agency and program. Check your program's specific requirements.
 
 ### Never Do This
+
 - Store a key next to the data it encrypts (if an attacker gets the data, they get the key too)
 - Store keys in environment variables without a secrets manager in production
 - Hardcode keys in source code

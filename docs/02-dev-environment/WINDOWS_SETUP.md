@@ -11,6 +11,7 @@ Setting up a developer environment on Windows takes about 30–60 minutes the fi
 3. Download Node.js LTS (Long Term Support) from [nodejs.org](https://nodejs.org) — click the **LTS** button (not "Current"). Install with defaults.
 
 4. Open **Git Bash** (search "Git Bash" in the Start menu) and verify:
+
    ```bash
    git --version
    # git version 2.44.0.windows.1
@@ -19,6 +20,7 @@ Setting up a developer environment on Windows takes about 30–60 minutes the fi
    ```
 
 5. Configure Git with your identity:
+
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email "you@example.com"
@@ -39,6 +41,7 @@ Git was built for Linux. Git for Windows is a port that adds two important thing
 **Git GUI:** A basic graphical interface for Git. You'll probably prefer VS Code's built-in Git panel or the terminal, but it's there.
 
 **Installation choices that matter:**
+
 - **Default editor:** Change from Vim to "Use Visual Studio Code as Git's default editor" if you aren't comfortable with Vim
 - **Line endings:** Choose "Checkout Windows-style, commit Unix-style line endings" (the default) — this is important; see Line Endings below
 - **Terminal emulator:** Choose "Use MinTTY" — it's a better terminal than the Windows default console
@@ -50,6 +53,7 @@ After installation, right-clicking in any folder shows **"Git Bash Here"** — t
 VS Code is a free, open-source code editor made by Microsoft. Despite being a Microsoft product, it runs identically on Windows, Mac, and Linux, which means tutorials and team setups are portable.
 
 Why VS Code over alternatives:
+
 - Built-in Git integration (stage, commit, push without typing commands)
 - Extension marketplace with hundreds of thousands of extensions
 - Integrated terminal — you can run Git Bash commands without leaving the editor
@@ -58,6 +62,7 @@ Why VS Code over alternatives:
 See `docs/02-dev-environment/VS_CODE_SETUP.md` for extensions and configuration.
 
 **Set Git Bash as VS Code's default terminal:**
+
 1. Open VS Code
 2. Press `Ctrl+Shift+P` to open the Command Palette
 3. Type "Terminal: Select Default Profile"
@@ -72,6 +77,7 @@ Node.js is a JavaScript runtime — it lets you run JavaScript outside of a brow
 Install the **LTS** version, not the "Current" version. LTS (Long Term Support) versions are stable and receive security patches for 3+ years. "Current" is the newest features but may have rough edges.
 
 After installation, both `node` and `npm` are available in Git Bash:
+
 ```bash
 node --version   # v20.11.0
 npm --version    # 10.2.4
@@ -91,6 +97,7 @@ With Windows Terminal, you can have multiple tabs, each running a different shel
 WSL2 (Windows Subsystem for Linux version 2) runs a real Linux kernel inside Windows. With WSL2 you can install Ubuntu (or another Linux distribution) and work in a full Linux environment without a virtual machine or dual-boot.
 
 **When to use WSL2:**
+
 - Your project requires Linux-specific tools that don't work on Windows
 - You need to closely match a Linux production server environment
 - You're working with Docker containers (Docker Desktop integrates with WSL2)
@@ -98,11 +105,13 @@ WSL2 (Windows Subsystem for Linux version 2) runs a real Linux kernel inside Win
 **How to enable WSL2:**
 
 Open PowerShell as Administrator and run:
+
 ```powershell
 wsl --install
 ```
 
 This installs WSL2 and Ubuntu by default. Restart your computer when prompted. After restart, Ubuntu sets up and asks for a username and password. Then:
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install git -y
@@ -124,6 +133,7 @@ cat ~/.gitconfig
 ```
 
 You can also edit it directly:
+
 ```bash
 notepad ~/.gitconfig
 # or, if VS Code is set as Git's editor:
@@ -143,6 +153,7 @@ For projects with a `.gitattributes` file in the repo root, that file overrides 
 **File paths with spaces**
 
 Git Bash handles spaces fine if you quote paths:
+
 ```bash
 cd "My Projects/my-repo"
 git add "src/my component.js"

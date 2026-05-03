@@ -99,27 +99,32 @@ The model routing matrix is documented in `docs/02_workflows/MODEL_ROUTING.md`. 
 ## Setup
 
 **Install:**
+
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
 **Set your API key:**
+
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."
 ```
 
 Add to your shell profile for persistence:
+
 ```bash
 echo 'export ANTHROPIC_API_KEY="sk-ant-..."' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 **Verify:**
+
 ```bash
 claude --version
 ```
 
 **Start a session in your project directory:**
+
 ```bash
 cd /path/to/your-project
 claude
@@ -132,6 +137,7 @@ claude
 `CLAUDE.md` is a Markdown file at the root of your repository that tells Claude Code how to behave in your specific project. It is read at the start of every session.
 
 What to include in `CLAUDE.md`:
+
 - The tech stack (language, framework, runtime versions)
 - Coding conventions (naming, file structure, test patterns)
 - What commands to run to build, test, and lint
@@ -140,6 +146,7 @@ What to include in `CLAUDE.md`:
 - Any project-specific rules ("never use `console.log` in production code")
 
 Example snippet:
+
 ```markdown
 ## Tech Stack
 - Python 3.11, Django 4.2, PostgreSQL 15
@@ -164,7 +171,7 @@ See this project's [CLAUDE.md](../../CLAUDE.md) for a complete example.
 
 Custom slash commands live in `.claude/commands/` as `.md` files. Each file's content becomes the prompt when you type the command name.
 
-```
+```text
 /review     — runs the full code review checklist on the current diff
 /security   — runs a security-focused review
 /audit      — runs a full repo audit
@@ -173,7 +180,8 @@ Custom slash commands live in `.claude/commands/` as `.md` files. Each file's co
 ```
 
 Run a command:
-```
+
+```text
 claude> /review
 ```
 
@@ -250,6 +258,7 @@ The `.claude/settings.json` file controls what Claude Code is and is not allowed
 ```
 
 Critical deny rules for any project:
+
 - `git push --force` — prevents rewriting shared history
 - `rm -rf` — prevents bulk file deletion
 - `git reset --hard` — prevents discarding uncommitted work
@@ -262,7 +271,7 @@ Claude Code will ask for permission before running any command not in the allow 
 
 For complex tasks, Claude Code can use sub-agents to work in parallel:
 
-```
+```text
 Agent(Research) ──→ reads files, gathers findings
 Agent(Build A)  ──→ implements the backend change     } parallel
 Agent(Build B)  ──→ implements the frontend change    }

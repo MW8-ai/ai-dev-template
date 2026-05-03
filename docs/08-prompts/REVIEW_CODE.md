@@ -7,11 +7,13 @@ Use this prompt to have an AI coding agent review a diff or a set of files. Usef
 ## How to Customize
 
 Before sending, specify:
+
 - `[DIFF OR FILES]` — either paste the git diff directly into the prompt, or list the files to review
 - `[CONTEXT]` — what the code is supposed to do (link to the issue or feature description)
 - `[SPECIFIC CONCERNS]` — anything you already suspect might be a problem, or areas you want extra attention on
 
 To get the diff:
+
 ```bash
 # Since last commit:
 git diff HEAD
@@ -27,7 +29,7 @@ git diff HEAD -- src/auth/users.py
 
 ## The Prompt
 
-```
+```text
 You are a thorough code reviewer. Your job is to find real problems, not to
 suggest stylistic changes or rewrite things that already work.
 

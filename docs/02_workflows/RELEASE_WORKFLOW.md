@@ -1,6 +1,7 @@
 # Release Workflow
 
 ## Release steps
+
 1. Confirm scope.
 2. Confirm checks pass.
 3. Update changelog.

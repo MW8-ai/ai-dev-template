@@ -9,6 +9,7 @@ Related docs: [ISSUE_TO_BRANCH_TO_PR.md](./ISSUE_TO_BRANCH_TO_PR.md) | [CODE_REV
 ## Quick Path
 
 **Morning:**
+
 ```bash
 git checkout main
 git pull origin main
@@ -18,6 +19,7 @@ git merge main
 ```
 
 **During the day:**
+
 ```bash
 git status                      # before every commit
 git add -p                      # stage interactively
@@ -26,6 +28,7 @@ git push origin your-branch     # push at least at end of each session
 ```
 
 **End of day:**
+
 ```bash
 git push origin your-branch     # push any remaining work
 # check GitHub for review comments on open PRs
@@ -60,18 +63,23 @@ Never work directly on `main`. Your feature branch is your workspace.
 You have two options: merge or rebase.
 
 **Option A — Merge (safe, preserves history):**
+
 ```bash
 git merge main
 ```
+
 This creates a merge commit that ties the two histories together. The branch history remains intact. Prefer this when working in a team and you want to preserve exactly when the sync happened.
 
 **Option B — Rebase (clean, rewrites history):**
+
 ```bash
 git rebase main
 ```
+
 This replays your commits on top of the latest `main`, as if you had started your branch from today. The result is a linear history with no merge commits. Prefer this for personal branches when you want a clean history before opening a PR.
 
 **When to use which:**
+
 - Working with others on the same branch: use `merge`
 - Solo on your own feature branch: either works; `rebase` gives cleaner history
 - Branch has already been pushed and others may have pulled it: use `merge` to avoid rewriting shared history
@@ -80,7 +88,7 @@ This replays your commits on top of the latest `main`, as if you had started you
 
 If both you and another developer changed the same lines, git will flag a conflict:
 
-```
+```text
 <<<<<<< HEAD
 const timeout = 30;
 =======
@@ -194,13 +202,15 @@ git log --oneline
 ```
 
 Output:
-```
+
+```text
 a3f9c12 add email validation to login form
 b8e2d01 fix null pointer in session handler
 c1a4f88 initial login form scaffold
 ```
 
 Add `--graph` for a visual branch diagram:
+
 ```bash
 git log --oneline --graph --all
 ```

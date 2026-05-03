@@ -10,7 +10,7 @@ production-grade example project demonstrating enterprise Node.js/TypeScript API
 
 TeamTracker follows a 3-tier architecture:
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │            API Layer                    │
 │  Express routes, auth middleware,       │
@@ -31,6 +31,7 @@ TeamTracker follows a 3-tier architecture:
 ```
 
 **External services:**
+
 - SendGrid — transactional email (invitations, notifications)
 - AWS S3 — file attachments on tasks
 

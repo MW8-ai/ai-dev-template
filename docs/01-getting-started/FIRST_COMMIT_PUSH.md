@@ -58,6 +58,7 @@ git config --list
 ### Step 2: Get a Repository
 
 **Option A — Clone an existing repo from GitHub:**
+
 ```bash
 git clone git@github.com:your-org/your-repo.git
 cd your-repo
@@ -66,6 +67,7 @@ cd your-repo
 Cloning downloads the complete repository — all commits, all branches — and automatically configures `origin` to point back to GitHub. See `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` if you get a "Permission denied" error here.
 
 **Option B — Initialize a new project locally:**
+
 ```bash
 git init my-project
 cd my-project
@@ -128,6 +130,7 @@ git commit -m "Add README with project title"
 ```
 
 The output tells you:
+
 - Which branch you committed to (`main`)
 - The short SHA-1 hash of this commit (`a3f9b12`)
 - Your commit message
@@ -153,14 +156,14 @@ After pushing, go to your GitHub repository URL — your commit appears at the t
 
 Commit messages are permanent. They are the narrative of your project's history. Future you (and your teammates) will read them to understand what changed and why.
 
-### The rules:
+### The rules
 
 1. **Use the imperative mood.** Write "Add feature" not "Added feature" or "Adding feature." Read it as completing the sentence: "If applied, this commit will: `[your message]`."
 2. **Keep the first line under 72 characters.** It shows in `git log --oneline` and in GitHub's commit list.
 3. **Describe what changed and why — not how.** The code itself shows how. The message should explain the intent.
 4. **Capitalize the first word. No period at the end.**
 
-### Bad vs. good examples:
+### Bad vs. good examples
 
 | Bad | Good |
 |---|---|
@@ -173,7 +176,7 @@ Commit messages are permanent. They are the narrative of your project's history.
 
 For commits with a subject and a body (for more context):
 
-```
+```text
 Fix token expiry not refreshing on API calls
 
 The refresh logic checked expiry only on page load, not before

@@ -36,7 +36,7 @@ docs/06-living-updates/sources/seen-updates.json   ← dedup state (auto-maintai
 
 After enabling the repository setting above:
 
-```
+```text
 Actions → Living Updates Watch → Run workflow
 ```
 
@@ -65,6 +65,7 @@ These labels must exist in the repository. Create them manually or let the label
 ## Adjusting Sources
 
 Edit `docs/06-living-updates/sources/update-sources.yml` to:
+
 - Add a new vendor source (RSS or web page)
 - Change `include_keywords` to tighten or broaden filtering
 - Change `priority` to indicate importance level

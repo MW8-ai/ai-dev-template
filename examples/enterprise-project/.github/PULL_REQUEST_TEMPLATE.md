@@ -30,7 +30,7 @@ This PR ...
 
 **Manual test steps (if applicable):**
 
-```
+```text
 # Example:
 # 1. POST /tasks with missing title
 # 2. Expected: 400 {"error":{"code":"VALIDATION_ERROR","message":"title is required"}}
@@ -81,11 +81,13 @@ This PR ...
      Delete this section if not applicable. -->
 
 **Before:**
-```
+
+```text
 ```
 
 **After:**
-```
+
+```text
 ```
 
 ---

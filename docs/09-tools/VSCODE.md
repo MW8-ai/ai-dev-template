@@ -24,42 +24,52 @@ code --install-extension [extension-id]
 ```
 
 ### GitLens (`eamodio.gitlens`)
+
 Enhances VS Code's built-in git support. Shows inline blame annotations (who changed this line and when), file history, commit comparison, and detailed repository exploration. Essential for understanding why code is the way it is.
 
 Key features:
+
 - Inline blame: hover over any line to see the commit that last changed it
 - File history: see every change to a file over time
 - Branch comparison: see what changed between two branches
 
 ### GitHub Copilot (`github.copilot`) and GitHub Copilot Chat (`github.copilot-chat`)
+
 AI code completion and chat powered by OpenAI Codex. Copilot suggests code as you type. Copilot Chat answers questions about your code, explains functions, suggests fixes, and generates tests.
 
 Requires a GitHub Copilot subscription (free for students and open source maintainers, $10/month otherwise).
 
 ### Prettier (`esbenp.prettier-vscode`)
+
 Auto-formatter for JavaScript, TypeScript, JSON, YAML, Markdown, CSS, and more. Run on save (see Settings.json below) to keep formatting consistent across the team without arguments about style.
 
 Configure with a `.prettierrc` file in the repo root to share settings across the team.
 
 ### ESLint (`dbaeumer.vscode-eslint`)
+
 JavaScript and TypeScript linter. Catches errors and style issues as you type. Configure with `.eslintrc.json` or `eslint.config.js` in the repo root.
 
 ### Pylint or Ruff for Python
+
 - **Pylint** (`ms-python.pylint`): classic Python linter
 - **Ruff** (`charliermarsh.ruff`): faster, modern Python linter that also formats code. Recommended for new projects.
 
 ### markdownlint (`davidanson.vscode-markdownlint`)
+
 Enforces Markdown formatting rules. Catches inconsistent heading levels, missing blank lines, and other issues that break Markdown rendering on GitHub.
 
 ### GitHub Actions (`github.vscode-github-actions`)
+
 View the status of GitHub Actions workflows in the editor. See which checks passed or failed on the current commit without leaving VS Code.
 
 ### Remote – SSH (`ms-vscode-remote.remote-ssh`)
+
 Connect VS Code to a remote server over SSH. Your local editor talks to a remote filesystem and terminal. Useful for developing on a remote Linux server without a slow file sync.
 
 Usage: Cmd+Shift+P → "Remote-SSH: Connect to Host" → enter `user@hostname`.
 
 ### Dev Containers (`ms-vscode-remote.remote-containers`)
+
 Run your full development environment inside a Docker container. Defined by a `.devcontainer/devcontainer.json` file in the repo. The same config powers GitHub Codespaces.
 
 Benefit: every developer on the team has an identical environment. "Works on my machine" problems disappear.
@@ -113,6 +123,7 @@ VS Code settings live in `settings.json`. Open it with Cmd+Shift+P → "Preferen
 ```
 
 **Per-language settings:**
+
 ```json
 {
   "[python]": {
@@ -132,6 +143,7 @@ VS Code settings live in `settings.json`. Open it with Cmd+Shift+P → "Preferen
 ## Workspaces
 
 A VS Code workspace saves:
+
 - Which folders are open
 - Window layout
 - Extension recommendations for the project
@@ -161,6 +173,7 @@ When a new developer opens the repo, VS Code shows a prompt: "This workspace has
 VS Code has a full git UI in the Source Control panel (Cmd+Shift+G or the branch icon in the sidebar).
 
 What you can do without opening a terminal:
+
 - See which files are changed
 - Stage individual files or individual lines (click the line number gutter in the diff view)
 - Write a commit message and commit

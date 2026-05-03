@@ -3,6 +3,7 @@ Read docs/05_prompts/review/REVIEW_PROMPTS.md and apply every checklist item to 
 Get the diff with: `git diff HEAD`
 
 Report findings grouped by:
+
 1. Correctness — logic errors, edge cases, wrong assumptions
 2. Safety — secrets, injection risks, unsafe operations, permission escalation
 3. Maintainability — naming, complexity, hidden state, premature abstraction

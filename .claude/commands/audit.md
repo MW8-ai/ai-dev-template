@@ -1,6 +1,7 @@
 Read docs/05_prompts/REPO_AUDIT_PROMPT.md and run a full repo audit.
 
 Also read:
+
 - README.md
 - AGENTS.md
 - TECH_STACK.md
@@ -8,6 +9,7 @@ Also read:
 - TESTING.md
 
 Check:
+
 1. Doc completeness — are all required docs present per AGENTS.md read order?
 2. Doc freshness — do docs reflect the current state of the repo?
 3. Broken references — internal links or file references that point to missing files

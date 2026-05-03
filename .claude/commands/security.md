@@ -5,6 +5,7 @@ Get the diff with: `git diff HEAD`
 Also read: docs/01_governance/SAFETY_AND_PERMISSIONS.md
 
 Check for:
+
 - Secrets or credentials in code or comments
 - SQL injection, command injection, XSS, path traversal
 - Insecure deserialization or eval usage

@@ -9,6 +9,7 @@ Run this before shipping any feature that touches authentication, authorization,
 ## How to Customize
 
 Before sending, specify:
+
 - `[DIFF OR FILES]` — the code to review. For a full component, list the files. For a PR, paste the diff.
 - `[CONTEXT]` — what the component does, what data it handles, what trust boundaries it crosses
 - `[DATA CLASSIFICATIONS]` — what data classifications are in scope (Public, Internal, Sensitive, PII, CUI — see [DATA_CLASSIFICATION.md](../07-compliance/DATA_CLASSIFICATION.md))
@@ -18,7 +19,7 @@ Before sending, specify:
 
 ## The Prompt
 
-```
+```text
 You are a security engineer reviewing code for vulnerabilities. You are looking
 for real, exploitable issues — not theoretical risks. You know the OWASP Top 10
 and common vulnerability patterns.
@@ -133,6 +134,7 @@ Document completed security reviews. If your team requires sign-off, have a huma
 For regulated systems (FedRAMP, HIPAA, SOC 2): keep the review output as an artifact. Auditors may ask for evidence of security reviews.
 
 See also:
+
 - [REVIEW_CODE.md](./REVIEW_CODE.md) — general code quality review
 - [docs/07-compliance/ACCESS_CONTROL.md](../07-compliance/ACCESS_CONTROL.md) — access control standards
 - [docs/07-compliance/ENCRYPTION_AND_SECRETS.md](../07-compliance/ENCRYPTION_AND_SECRETS.md) — encryption standards

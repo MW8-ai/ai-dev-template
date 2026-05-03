@@ -103,7 +103,7 @@ or open an issue with your error output.
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-```
+```text
 <type>(<scope>): <short summary in present tense>
 
 <optional body — explain WHY, not what>
@@ -113,7 +113,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 **Examples:**
 
-```
+```text
 feat(tasks): add CSV export for task lists
 
 Closes #142
@@ -150,6 +150,7 @@ Before submitting a PR, ensure all tests pass locally:
 See [TESTING.md](TESTING.md) for full testing documentation.
 
 **Requirements:**
+
 - All existing tests must pass
 - New behavior must have test coverage
 - Bug fixes should include a regression test
@@ -159,6 +160,7 @@ See [TESTING.md](TESTING.md) for full testing documentation.
 ## Submitting a Pull Request
 
 1. **Push your branch** to your fork:
+
    ```bash
    git push origin [your-branch-name]
    ```
@@ -194,6 +196,7 @@ See [TESTING.md](TESTING.md) for full testing documentation.
 ### Review standards
 
 Reviewers will look at:
+
 - Does the code do what the PR claims?
 - Are edge cases handled?
 - Are there tests for the new behavior?

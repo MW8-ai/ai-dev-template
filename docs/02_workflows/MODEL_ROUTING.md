@@ -39,6 +39,7 @@ Use for the majority of coding tasks:
 - Generating or updating standard docs
 
 Enable extended thinking on Sonnet when:
+
 - Requirements are ambiguous
 - Multiple valid approaches exist and you want the model to reason before committing
 
@@ -57,6 +58,7 @@ Reserve for tasks where the cost of a wrong decision is high:
 - Tasks creating new patterns (not copying existing ones)
 
 Use extended thinking on Opus for:
+
 - Architecture trade-offs with multiple stakeholders
 - Security analysis where missing a vector has real consequences
 - Compliance mapping where the answer affects audit posture

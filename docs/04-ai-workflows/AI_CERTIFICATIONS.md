@@ -234,6 +234,7 @@ These are official learning resources from the AI vendors themselves. No certifi
 Certifications retire, rename, and change pricing frequently. Microsoft in particular has retired entire exam tracks and introduced Applied Skills as a new shorter-form credential format.
 
 This doc is tracked by the Living Updates system:
+
 - `microsoft-learn-cert-blog` source — retirement and update announcements
 - `aws-training-blog` source — new cert launches and changes
 - `google-cloud-blog` source — GCP cert updates

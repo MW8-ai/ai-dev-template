@@ -7,6 +7,7 @@ Use this prompt when starting a new project from scratch with an AI coding agent
 ## How to Customize
 
 Before sending, replace:
+
 - `[PROJECT NAME]` — the name of the project (e.g., "Invoice Tracker API")
 - `[SHORT DESCRIPTION]` — one sentence describing what it does (e.g., "A REST API for tracking invoice status and payment history")
 - `[PRIMARY LANGUAGE]` — the main language (e.g., Python 3.12, TypeScript, Go 1.22)
@@ -20,7 +21,7 @@ If you have an existing file layout or design in mind, describe it briefly after
 
 ## The Prompt
 
-```
+```text
 You are a senior software architect helping start a new project.
 
 Read these files before doing anything:
@@ -79,6 +80,7 @@ Once the agent finishes, review:
 3. **TESTING.md** — is the test strategy realistic for this project?
 
 Then make your first real commit:
+
 ```bash
 git add .
 git commit -m "Initial project scaffold"

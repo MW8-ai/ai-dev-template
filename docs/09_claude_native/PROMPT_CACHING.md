@@ -114,6 +114,7 @@ print(response.usage)
 ```
 
 If `cache_read_input_tokens` is 0 on calls you expect to hit the cache, check:
+
 - Are you sending the exact same prefix? Any change invalidates the cache.
 - Did more than 5 minutes pass between calls?
 - Is your cached block under the minimum token threshold?

@@ -43,7 +43,8 @@ ollama serve
 ```
 
 OpenAI-compatible endpoint for tool integration:
-```
+
+```text
 http://localhost:11434/v1
 ```
 
@@ -107,6 +108,7 @@ Apple Silicon's key advantage: GPU and CPU share the same memory pool. There is 
 | M4 Ultra (192GB) | 192GB | 400B+ with quantization | Frontier local capability |
 
 **Tokens/second reference (M4 Pro, 48GB, Q4_K_M quantization):**
+
 - Llama 3.3 70B: ~25–35 tok/s
 - Qwen 2.5 32B: ~50–70 tok/s
 - Phi-4 14B: ~80–100 tok/s

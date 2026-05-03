@@ -113,7 +113,7 @@ A merge conflict happens when two branches both modified the same lines in the s
 
 **How a conflict looks in a file:**
 
-```
+```text
 <<<<<<< HEAD
 const timeout = 5000;  // your version on feature/my-feature
 =======

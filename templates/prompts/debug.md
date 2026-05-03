@@ -14,7 +14,7 @@
 
 ---
 
-```
+```text
 I need help debugging an error. Please identify the root cause, propose the minimal fix,
 and explain why the fix works.
 
@@ -40,8 +40,10 @@ TypeError: Cannot read properties of undefined (reading 'id')
 the first 30 lines and the section that points to your code.]
 
 ```
+
 [stack trace here]
-```
+
+```text
 
 ## Expected Behavior
 
@@ -78,16 +80,18 @@ async function getTeamTasks(teamId) {
   const team = await db('teams').where({ id: teamId }).first();
   return await db('tasks').where({ team_id: team.id }); // ERROR OCCURS HERE
 }
-```
+```text
 
 ## Additional Context
 
 [Include anything else that might be relevant:
+
 - Recent changes to the codebase (what changed before this started happening?)
 - Whether this worked before and when it stopped
 - Environment differences (works in dev, fails in prod?)
 - Related issues or PRs
 - Any relevant configuration (database version, environment variables, feature flags)]
+
 ```
 
 ---
@@ -115,7 +119,8 @@ When responding to this debug prompt:
 
 ## Example (filled in)
 
-```
+```text
+
 I need help debugging an error. Please identify the root cause, propose the minimal fix,
 and explain why the fix works.
 
@@ -164,4 +169,5 @@ async function getTeamTasks(teamId) {
 
 This started happening after we added a soft-delete feature for teams last week.
 The soft delete sets deleted_at but does not remove the row.
+
 ```
