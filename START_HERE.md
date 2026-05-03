@@ -1,5 +1,13 @@
 # Start Here
 
+## Prefer pictures first?
+
+See all workflows as diagrams before diving into the steps:
+
+→ **[docs/00-start-here/VISUAL_GUIDE.md](docs/00-start-here/VISUAL_GUIDE.md)**
+
+---
+
 ## What You Will Learn
 
 By the end of this guide you will be able to:
