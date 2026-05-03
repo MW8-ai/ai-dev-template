@@ -160,3 +160,9 @@ To enforce a single strategy, enable only that option. For example, to require s
 - Uncheck "Allow rebase merging"
 
 This prevents developers from accidentally using the wrong strategy even if they know all three options.
+
+---
+
+## Next Step
+
+→ [Learn how to tag and release a version](docs/03-development-workflow/RELEASE_PROCESS.md)

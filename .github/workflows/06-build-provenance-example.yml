@@ -1,0 +1,34 @@
+name: 06 Build Provenance Example
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+jobs:
+  package-docs:
+    name: Package docs and generate provenance attestation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create documentation archive
+        run: |
+          tar -czf ai-dev-template-docs.tar.gz README.md START_HERE.md REPO_MAP.md docs templates examples || true
+          sha256sum ai-dev-template-docs.tar.gz > ai-dev-template-docs.sha256
+
+      - name: Upload documentation archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-dev-template-docs
+          path: |
+            ai-dev-template-docs.tar.gz
+            ai-dev-template-docs.sha256
+
+      - name: Generate artifact attestation
+        uses: actions/attest@v2
+        with:
+          subject-path: ai-dev-template-docs.tar.gz

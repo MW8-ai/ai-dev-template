@@ -165,3 +165,9 @@ Modern editors like VS Code show conflicts with Accept Current / Accept Incoming
 - `docs/01-getting-started/PULL_REQUESTS.md` — writing good PRs and navigating review
 - `docs/01-getting-started/COMMON_MISTAKES.md` — common pitfalls with branches and conflicts
 - `docs/02-dev-environment/GIT_CLI_SETUP.md` — full command reference
+
+---
+
+## Next Step
+
+→ [Open your first Pull Request](docs/01-getting-started/PULL_REQUESTS.md)

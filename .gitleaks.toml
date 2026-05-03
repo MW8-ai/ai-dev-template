@@ -1,0 +1,14 @@
+title = "AI Dev Template Gitleaks Configuration"
+
+[allowlist]
+description = "Repository examples and docs may contain non-secret placeholder values."
+paths = [
+  '''.env.example''',
+  '''examples/.*/.env.example''',
+  '''docs/.*'''
+]
+regexes = [
+  '''example[_-]?key''',
+  '''changeme''',
+  '''your[_-]?token[_-]?here'''
+]

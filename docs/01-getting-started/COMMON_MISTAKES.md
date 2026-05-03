@@ -349,3 +349,9 @@ After this, the file stays on your disk but Git ignores it. Your teammates shoul
 - `docs/01-getting-started/GIT_TERMS_EXPLAINED.md` — understand the concepts behind these fixes
 - `docs/02-dev-environment/GIT_CLI_SETUP.md` — full command reference
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — fix authentication errors
+
+---
+
+## Next Step
+
+Set up your development environment → [Windows](docs/02-dev-environment/WINDOWS_SETUP.md) or [Mac](docs/02-dev-environment/MAC_SETUP.md)

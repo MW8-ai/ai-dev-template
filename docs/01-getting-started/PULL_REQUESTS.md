@@ -187,3 +187,9 @@ Deleted branches are not gone — Git keeps all their commits. You can restore a
 
 - `docs/01-getting-started/BRANCH_PULL_MERGE.md` — branches and conflict resolution
 - `docs/01-getting-started/COMMON_MISTAKES.md` — mistakes people make with PRs and how to recover
+
+---
+
+## Next Step
+
+→ [See the most common mistakes and how to fix them](docs/01-getting-started/COMMON_MISTAKES.md)

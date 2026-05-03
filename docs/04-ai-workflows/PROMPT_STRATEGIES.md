@@ -186,3 +186,9 @@ If the first response is not what you needed, refine the prompt rather than aski
 - **Wrong language version**: "Rewrite using Python 3.11 features — you can use `match` statements and `tomllib`."
 
 One iteration with a refined prompt is more efficient than multiple rounds of "that's not quite right."
+
+---
+
+## Next Step
+
+→ [Understand when and how to keep humans in the review loop](docs/04-ai-workflows/HUMAN_IN_LOOP.md)

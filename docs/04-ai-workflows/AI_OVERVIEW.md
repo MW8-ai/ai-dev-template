@@ -72,3 +72,9 @@ These rules apply regardless of which tool you use:
 - [OPENAI_CODEX.md](./OPENAI_CODEX.md) — Codex CLI setup and terminal workflow
 - [PROMPT_STRATEGIES.md](./PROMPT_STRATEGIES.md) — How to write effective prompts for any AI tool
 - [HUMAN_IN_LOOP.md](./HUMAN_IN_LOOP.md) — When and how to keep humans in the review loop
+
+---
+
+## Next Step
+
+→ Choose your AI tool: [OpenAI Codex](docs/04-ai-workflows/OPENAI_CODEX.md), [Claude Code](docs/04-ai-workflows/CLAUDE_CODE.md), or [GitHub Copilot](docs/04-ai-workflows/GITHUB_COPILOT.md)

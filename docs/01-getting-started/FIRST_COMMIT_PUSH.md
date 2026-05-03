@@ -266,3 +266,9 @@ You ran a `git` command outside of a Git repository folder. Either `cd` into you
 - `docs/01-getting-started/BRANCH_PULL_MERGE.md` — work with branches and pull requests
 - `docs/01-getting-started/COMMON_MISTAKES.md` — what goes wrong and how to fix it
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — secure authentication with GitHub
+
+---
+
+## Next Step
+
+→ [Learn how branches work and how to merge](docs/01-getting-started/BRANCH_PULL_MERGE.md)

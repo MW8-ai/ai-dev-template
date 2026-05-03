@@ -1,0 +1,10 @@
+name: CI Template Placeholder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Replace this placeholder with your project-specific CI workflow."
