@@ -47,3 +47,9 @@ Optional. Consider:
 - Real users with accounts
 - Any payment processing
 - Uptime matters to someone other than you
+
+---
+
+## Next Step
+
+→ [Ready for team projects? See enterprise requirements](docs/05-project-types/ENTERPRISE.md)

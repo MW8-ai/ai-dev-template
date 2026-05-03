@@ -39,3 +39,9 @@ Code review is not quality control — it's knowledge sharing, risk reduction, a
 - Hobby projects: 1 approval (or self-merge if solo)
 - Enterprise: 1 approval minimum, 2 for security/infra changes
 - Government: 2 approvals minimum, signed commits required
+
+---
+
+## Next Step
+
+→ [Testing standards and coverage requirements](docs/06-standards/TESTING.md)
