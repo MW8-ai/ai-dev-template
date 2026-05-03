@@ -1,0 +1,39 @@
+name: PR Enforcement
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  pull-requests: read
+  contents: read
+
+jobs:
+  enforce:
+    name: Enforce PR Standards
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "Checking PR title: $PR_TITLE"
+
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|refactor|test|chore|ci|security)(\(.+\))?:\ .+ ]]; then
+            echo "PR title must follow conventional format:"
+            echo "type(scope optional): short description"
+            echo "Examples:"
+            echo "feat: add login timeout handling"
+            echo "fix(api): prevent null response crash"
+            exit 1
+          fi
+
+      - name: Check PR body exists
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ -z "$PR_BODY" ]; then
+            echo "PR body is required. Use the PR template."
+            exit 1
+          fi

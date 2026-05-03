@@ -26,6 +26,14 @@ These files live at the top level of the repository. Most of them are required b
 | .env.example | Template listing all required environment variables (no real secrets) |
 | .gitignore | Files and folders that Git should not track (logs, secrets, build artifacts) |
 
+### docs/project/
+
+Project-level planning docs that don't belong in a specific feature folder.
+
+| File | Purpose |
+|---|---|
+| docs/project/ROADMAP.md | Planned features and future directions for this template |
+
 ---
 
 ## .github/
@@ -77,6 +85,7 @@ For anyone new to Git and GitHub. Explains concepts from the ground up with real
 | BRANCH_PULL_MERGE.md | How branches work, how to pull changes, and how to merge |
 | PULL_REQUESTS.md | What a Pull Request (PR) is and how the review and merge process works |
 | COMMON_MISTAKES.md | The most common Git mistakes and exactly how to fix them |
+| MISCONCEPTIONS.md | The most common Git/GitHub misconceptions corrected — start here if confused |
 
 ### docs/02-dev-environment/
 
@@ -137,6 +146,9 @@ Standards that apply across all project types. These define the quality bar.
 | TESTING.md | Testing requirements — unit, integration, and coverage thresholds |
 | DOCUMENTATION.md | Documentation formatting and freshness standards |
 | SECURITY.md | Security baseline — what every project must do regardless of type |
+| COMMIT_CONVENTION.md | Conventional Commits format — how to write commits that drive automated changelogs |
+| OPINIONATED_DEFAULTS.md | The opinionated defaults enforced in this template (branching, merging, SemVer) |
+| TEAM_RULES.md | Team norms: review SLAs, on-call, communication, and escalation paths |
 
 ### docs/07-compliance/
 
@@ -227,7 +239,36 @@ Detailed standards documents that define specific rules. These go deeper than th
 | standards/documentation-standards.md | Header format, file naming, cross-reference rules, how to keep docs current |
 | standards/release-standards.md | Versioning scheme, release checklist, who can approve a release |
 
+### docs/05-confusion-troubleshooting/
+
+Answers the questions that send developers to Stack Overflow. Covers common pitfalls, real-world blunders, and the concepts that trip everyone up.
+
+| File | Topic |
+|---|---|
+| README.md | Index and reading guide for this section |
+| PULL_REQUEST_SAFETY_AND_REJECTION.md | Why PRs get rejected and how to handle it professionally |
+| AUTO_PR_AND_AI_AGENT_GUARDRAILS.md | Guardrails for AI agents that open PRs automatically |
+| COMMON_PITFALLS_AND_TROUBLESHOOTING.md | The most common Git/GitHub pitfalls and how to recover |
+| REAL_WORLD_BLUNDERS_AND_PREVENTION.md | Actual incidents teams have had and the prevention patterns that follow |
+| FETCH_PULL_PUSH_AND_REMOTE_BRANCHES.md | Deep dive on fetch, pull, push, and remote branch tracking |
+| MERGE_METHODS_EXPLAINED.md | Merge, squash, and rebase compared with clear guidance on when to use each |
+
+---
+
 ## docs/10-github-actions
 
 Explains the automation and enforcement layer: repository health checks, Pull Request standards, documentation checks, security scanning, CodeQL, branch protection, and rulesets.
+
+| File | Topic |
+|---|---|
+| GITHUB_ACTIONS_ENFORCEMENT_PACK.md | Overview of the numbered enforcement workflow pack (00–06) |
+| BRANCH_PROTECTION_AND_RULESETS.md | Branch protection rules and GitHub rulesets — what to require and why |
+| BRANCH_PROTECTION_EXPANDED.md | In-depth branch protection: bypass actors, rule types, and enterprise settings |
+| CHECKS_EXPLAINED_FOR_BEGINNERS.md | What CI checks are, why they're red, and how to fix them |
+| CODEOWNERS_GUIDE.md | CODEOWNERS syntax, team ownership patterns, and review routing |
+| AUTO_CHANGELOG.md | Automated changelog generation via release-drafter |
+| LABELS_AND_AUTOMATION.md | GitHub labels: manual setup, labeler automation, and label-driven workflows |
+| WORKFLOW_BEST_PRACTICES.md | Patterns for reliable, fast, maintainable GitHub Actions workflows |
+| BRANCHING_STRATEGY.md | Trunk-based vs GitFlow vs GitHub Flow — how to choose and what to enforce |
+
 
