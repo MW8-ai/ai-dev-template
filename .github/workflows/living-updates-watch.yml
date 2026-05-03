@@ -5,14 +5,20 @@ on:
     - cron: "20 9 * * 1"
   workflow_dispatch:
 
+# Required repo setting: Settings → Actions → General →
+# "Allow GitHub Actions to create and approve pull requests" must be enabled.
 permissions:
   contents: write
   pull-requests: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   watch:
     name: Watch platform updates and open review PR
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,10 +29,16 @@ jobs:
           python-version: "3.x"
 
       - name: Run living updates watcher
-        run: python scripts/living_updates_watch.py --max-new 10
+        id: watcher
+        run: |
+          output=$(python scripts/living_updates_watch.py --max-new 10)
+          echo "$output"
+          count=$(echo "$output" | python3 -c "import sys,json; print(json.load(sys.stdin)['count'])")
+          echo "new_count=$count" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request if updates were detected
-        uses: peter-evans/create-pull-request@v8
+        if: steps.watcher.outputs.new_count != '0'
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "docs: add detected living update notes"
           title: "docs: review detected platform updates"
