@@ -160,3 +160,9 @@ codex "I have a PostgreSQL table named 'orders' with columns: id (int), user_id 
 ```bash
 codex "explain each line of this Dockerfile — respond as a numbered list with one sentence per line"
 ```
+
+---
+
+## Next Step
+
+→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)

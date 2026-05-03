@@ -520,3 +520,9 @@ git undo     # undo last commit, keep changes
 - `docs/01-getting-started/BRANCH_PULL_MERGE.md` — branching and merging in depth
 - `docs/01-getting-started/COMMON_MISTAKES.md` — what goes wrong and how to use these commands to fix it
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — authenticate with GitHub
+
+---
+
+## Next Step
+
+→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)

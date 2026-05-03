@@ -182,3 +182,9 @@ Create this file at `.vscode/extensions.json` in your project root and commit it
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — authenticate with GitHub
 - `docs/02-dev-environment/GIT_CLI_SETUP.md` — the full Git command reference
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — make your first commit
+
+---
+
+## Next Step
+
+→ [Set up SSH key authentication for GitHub](docs/02-dev-environment/SSH_KEYS_AND_AUTH.md)

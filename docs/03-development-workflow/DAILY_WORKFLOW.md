@@ -219,3 +219,9 @@ git diff main...HEAD
 ```
 
 Always run `git diff --staged` before `git commit` to confirm exactly what is about to be committed.
+
+---
+
+## Next Step
+
+→ [Learn how to give and receive effective code reviews](docs/03-development-workflow/CODE_REVIEW.md)

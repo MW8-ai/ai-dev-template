@@ -1,0 +1,35 @@
+name: 00 Repo Health
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repo-health-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-repo-structure:
+    name: Validate required structure and guide files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run repository policy validator
+        run: python3 scripts/enforce_repo_policy.py --mode repo-health
+
+  validate-no-empty-docs:
+    name: Detect empty or placeholder documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check docs for empty placeholders
+        run: python3 scripts/enforce_repo_policy.py --mode docs-content

@@ -188,3 +188,9 @@ When a critical bug is found in production and `main` already has unreleased cha
    git merge hotfix/issue-201-payment-crash
    ```
 6. Delete the hotfix branch and publish the GitHub Release.
+
+---
+
+## Next Step
+
+→ [Add an AI tool to your workflow](docs/04-ai-workflows/AI_OVERVIEW.md)

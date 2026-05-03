@@ -234,3 +234,9 @@ Main agent      ──→ reviews both diffs, commits
 ```
 
 See `docs/09_claude_native/SUBAGENT_PATTERNS.md` for full patterns including context management, prompt caching, and agent coordination.
+
+---
+
+## Next Step
+
+→ [Learn how to write effective AI prompts](docs/04-ai-workflows/PROMPT_STRATEGIES.md)

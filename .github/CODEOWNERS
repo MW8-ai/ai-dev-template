@@ -1,0 +1,9 @@
+# CODEOWNERS assigns default reviewers for sensitive areas.
+# Replace @your-team with the correct GitHub team or usernames.
+
+* @your-team
+.github/workflows/ @your-team
+.github/ISSUE_TEMPLATE/ @your-team
+scripts/ @your-team
+docs/07-compliance/ @your-team
+SECURITY.md @your-team

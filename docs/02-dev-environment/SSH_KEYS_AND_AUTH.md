@@ -257,3 +257,9 @@ chmod 700 ~/.ssh/
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — start pushing with your new SSH key
 - `docs/02-dev-environment/GIT_CLI_SETUP.md` — the full Git command reference
 - `docs/01-getting-started/COMMON_MISTAKES.md` — common mistakes including auth errors
+
+---
+
+## Next Step
+
+→ [Learn the daily development workflow](docs/03-development-workflow/DAILY_WORKFLOW.md)

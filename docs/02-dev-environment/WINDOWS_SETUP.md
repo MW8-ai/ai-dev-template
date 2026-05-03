@@ -167,3 +167,9 @@ git commit -m "Fix README filename capitalization"
 - `docs/02-dev-environment/SSH_KEYS_AND_AUTH.md` — set up SSH keys for GitHub authentication
 - `docs/02-dev-environment/VS_CODE_SETUP.md` — recommended extensions and settings
 - `docs/01-getting-started/FIRST_COMMIT_PUSH.md` — make your first commit
+
+---
+
+## Next Step
+
+→ [Configure VS Code for development](docs/02-dev-environment/VS_CODE_SETUP.md)

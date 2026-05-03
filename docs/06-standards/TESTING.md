@@ -49,3 +49,9 @@ Name tests so failures are self-documenting:
 - Use factories or fixtures — don't hardcode realistic-looking data
 - Never use real user data in tests
 - Reset state between tests — tests must be independent and runnable in any order
+
+---
+
+## Next Step
+
+→ [Documentation standards](docs/06-standards/DOCUMENTATION.md)
