@@ -59,3 +59,9 @@ All AI tools are usable. Additional requirements:
 - Branch protection rules enforced
 - Audit log for production deployments
 - Incident response plan (who to call when something breaks)
+
+---
+
+## Next Step
+
+→ [Government and regulated environments](docs/05-project-types/GOVERNMENT.md)

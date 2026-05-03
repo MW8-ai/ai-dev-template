@@ -39,3 +39,9 @@ These rules apply to all projects regardless of type. More advanced requirements
 - Know how to rotate compromised credentials
 - Know who to notify (internal: team lead; external: follow your platform's breach notification process)
 - Have logs that let you answer: what happened, when, to what data, by whom
+
+---
+
+## Next Step
+
+→ [See the team's opinionated defaults for branch naming, merge strategy, and PR rules](docs/06-standards/OPINIONATED_DEFAULTS.md)

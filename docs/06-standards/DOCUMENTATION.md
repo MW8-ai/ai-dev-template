@@ -45,3 +45,9 @@
 - Update docs in the same PR that changes the behavior
 - Stale docs are worse than no docs — they mislead
 - Use CI checks (docs-check.yml, required-files.yml) to catch gaps
+
+---
+
+## Next Step
+
+→ [Security baseline standards](docs/06-standards/SECURITY.md)

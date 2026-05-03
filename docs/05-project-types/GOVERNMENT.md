@@ -59,3 +59,9 @@ Government projects have special considerations:
 - Documented incident response plan required
 - Breach notification timeline defined (often 72 hours)
 - Contact: CISA (Cybersecurity and Infrastructure Security Agency) for federal incidents
+
+---
+
+## Next Step
+
+→ [Read the compliance documentation](docs/07-compliance/NIST_OVERVIEW.md)

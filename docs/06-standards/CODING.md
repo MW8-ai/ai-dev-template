@@ -45,3 +45,9 @@ Write code that a new team member can read and understand without asking you. Pr
 - Write tests as you write code — not after.
 - Test behavior, not implementation.
 - See docs/06-standards/TESTING.md for coverage requirements.
+
+---
+
+## Next Step
+
+→ [Code review standards](docs/06-standards/REVIEW.md)
