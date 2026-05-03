@@ -5,14 +5,14 @@ on:
     - cron: "20 9 * * 1"
   workflow_dispatch:
 
-# Required repo setting: Settings → Actions → General →
-# "Allow GitHub Actions to create and approve pull requests" must be enabled.
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
 
 jobs:
   watch:
@@ -36,19 +36,38 @@ jobs:
           count=$(echo "$output" | python3 -c "import sys,json; print(json.load(sys.stdin)['count'])")
           echo "new_count=$count" >> "$GITHUB_OUTPUT"
 
-      - name: Create Pull Request if updates were detected
+      - name: Commit detected updates to review branch
         if: steps.watcher.outputs.new_count != '0'
+        id: push_branch
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="automation/living-updates-$(date +%Y%m%d)"
+          git checkout -b "$BRANCH"
+          git add docs/06-living-updates/incoming/ docs/06-living-updates/sources/seen-updates.json || true
+          git commit -m "docs: add detected living update notes [$(date +%Y-%m-%d)]" || echo "nothing to commit"
+          git push origin "$BRANCH" --force
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Try to create Pull Request
+        if: steps.watcher.outputs.new_count != '0'
+        id: create_pr
+        continue-on-error: true
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "docs: add detected living update notes"
-          title: "docs: review detected platform updates"
+          title: "docs: review detected platform updates [$(date +%Y-%m-%d)]"
           body: |
-            ## Summary
-            This automated PR detected platform updates from the Living Updates source registry.
+            ## Platform Updates Detected
 
-            Review generated files under `docs/06-living-updates/incoming/`.
+            The Living Updates watcher found new items. Review the files in
+            `docs/06-living-updates/incoming/` and decide:
 
-            Decide whether to convert to an impact note, update docs, update AI guardrails, update CI/CD guidance, or archive with no action.
+            - [ ] Convert to impact note (`docs/06-living-updates/impacts/`)
+            - [ ] Write a plain-language summary (`docs/06-living-updates/summaries/`)
+            - [ ] Move to archive with no action (`docs/06-living-updates/archive/`)
+            - [ ] Update existing docs or AI guardrails
 
             Automation watches. Humans decide. Docs evolve.
           branch: automation/living-updates
@@ -57,3 +76,43 @@ jobs:
             type: documentation
             automation
             needs review
+
+      - name: Fall back to issue if PR creation is not permitted
+        if: steps.watcher.outputs.new_count != '0' && steps.create_pr.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = "${{ steps.push_branch.outputs.branch }}";
+            const count = "${{ steps.watcher.outputs.new_count }}";
+            const today = new Date().toISOString().slice(0, 10);
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `docs: review ${count} detected platform update(s) — ${today}`,
+              body: [
+                "## Platform Updates Detected",
+                "",
+                `The Living Updates watcher found **${count}** new item(s) on ${today}.`,
+                "",
+                `Review branch: \`${branch}\``,
+                "",
+                "**Files to review:** `docs/06-living-updates/incoming/`",
+                "",
+                "For each file, decide:",
+                "- [ ] Convert to impact note (`docs/06-living-updates/impacts/`)",
+                "- [ ] Write a plain-language summary (`docs/06-living-updates/summaries/`)",
+                "- [ ] Move to archive with no action (`docs/06-living-updates/archive/`)",
+                "- [ ] Update existing docs or AI guardrails",
+                "",
+                "---",
+                "",
+                "> **Why an issue instead of a PR?**",
+                "> Your repository has PR creation disabled for GitHub Actions.",
+                "> Enable it at: Settings → Actions → General → *Allow GitHub Actions to create and approve pull requests*",
+                "> Once enabled, this workflow will open PRs automatically.",
+                "",
+                "Automation watches. Humans decide. Docs evolve.",
+              ].join("\n"),
+              labels: ["documentation", "needs review"],
+            });
