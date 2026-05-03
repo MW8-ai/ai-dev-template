@@ -111,4 +111,4 @@ Before merging any PR that contains AI-generated code:
 
 ## Next Step
 
-→ [docs/06-standards/COMMIT_CONVENTION.md](docs/06-standards/COMMIT_CONVENTION.md) — commit message conventions, prefixes, and standards for keeping a readable project history
+→ [LOCAL_LLMS.md](LOCAL_LLMS.md) — run models locally for private, offline, zero-cost tasks; hardware requirements and model recommendations by task type

@@ -384,3 +384,87 @@ sources:
       - fine-tuning
       - safety
       - benchmark
+
+  # ---------------------------------------------------------------------------
+  # LOCAL LLM TOOLING
+  # Tracks new model availability and tooling updates for local inference.
+  # ---------------------------------------------------------------------------
+
+  - id: ollama-releases
+    vendor: Ollama
+    category: local-llm-tooling
+    url: https://github.com/ollama/ollama/releases.atom
+    type: rss
+    priority: medium
+    tags: [ollama, local-llm, inference, models]
+    include_keywords:
+      - release
+      - model
+      - GPU
+      - Apple
+      - Metal
+      - CUDA
+      - quantization
+      - multimodal
+      - embedding
+
+  - id: lmstudio-changelog
+    vendor: LM Studio
+    category: local-llm-tooling
+    url: https://lmstudio.ai/blog
+    type: webpage
+    priority: low
+    tags: [lmstudio, local-llm, gui, inference]
+    include_keywords:
+      - release
+      - model
+      - Apple Silicon
+      - GGUF
+      - server
+      - API
+      - vision
+
+  - id: llamacpp-releases
+    vendor: llama.cpp
+    category: local-llm-tooling
+    url: https://github.com/ggerganov/llama.cpp/releases.atom
+    type: rss
+    priority: low
+    tags: [llamacpp, local-llm, quantization, inference]
+    include_keywords:
+      - quantization
+      - GGUF
+      - Apple
+      - Metal
+      - CUDA
+      - embedding
+      - vision
+      - multimodal
+
+  - id: deepseek-releases
+    vendor: DeepSeek
+    category: ai-platform
+    url: https://github.com/deepseek-ai/DeepSeek-R1/releases.atom
+    type: rss
+    priority: medium
+    tags: [deepseek, local-llm, reasoning, open-source]
+    include_keywords:
+      - release
+      - model
+      - reasoning
+      - R1
+      - V3
+
+  - id: qwen-releases
+    vendor: Alibaba / Qwen
+    category: ai-platform
+    url: https://github.com/QwenLM/Qwen2.5/releases.atom
+    type: rss
+    priority: medium
+    tags: [qwen, local-llm, coding, open-source]
+    include_keywords:
+      - release
+      - model
+      - coder
+      - math
+      - reasoning
