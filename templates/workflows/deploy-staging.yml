@@ -1,0 +1,180 @@
+# Deploy to Staging Workflow
+#
+# Triggers automatically when a push lands on the main branch (i.e., after a PR merges).
+# This workflow: builds, migrates, deploys, runs a health check, and notifies the team.
+#
+# SETUP REQUIRED:
+#   1. Add the secrets listed in the "env" section to your GitHub repository secrets
+#      (Settings > Secrets and variables > Actions > New repository secret)
+#   2. Replace all [PLACEHOLDER] values with your actual values
+#   3. Uncomment and adapt the deploy step for your platform (AWS ECS, Render, Railway, etc.)
+
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - main                         # Triggers on every merge to main
+
+# Prevent simultaneous staging deploys (queue them instead)
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false          # Set to true if you want new deploys to cancel in-flight ones
+
+env:
+  # Replace these with your actual values or add them as GitHub Secrets
+  IMAGE_NAME: [your-image-name]      # e.g., "teamtracker-api"
+  REGISTRY: [your-registry]          # e.g., "123456789.dkr.ecr.us-east-1.amazonaws.com"
+  AWS_REGION: us-east-1              # Change to your AWS region
+  ECS_CLUSTER: staging               # Change to your ECS cluster name
+  ECS_SERVICE: [your-service-name]   # Change to your ECS service name
+  HEALTH_CHECK_URL: https://staging.[your-domain].com/health
+
+jobs:
+  deploy:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging             # Requires "staging" environment configured in GitHub settings
+                                     # This adds approval gates and environment secrets
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # ── BUILD ──────────────────────────────────────────────────────────────
+
+      - name: Set up Node.js
+        # Remove/replace this block for non-Node projects
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        # For a compiled/bundled app, build here. Remove if using Docker multi-stage build only.
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      # ── DOCKER IMAGE ───────────────────────────────────────────────────────
+
+      - name: Configure AWS credentials
+        # Remove this block if you are not using AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        # Remove this block if you are not using ECR
+        # For Docker Hub: use docker/login-action@v3 instead
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        id: build-image
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          FULL_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+
+          docker build -t $FULL_IMAGE .
+          docker push $FULL_IMAGE
+
+          # Also tag as "staging-latest" for easy identification
+          docker tag $FULL_IMAGE ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:staging-latest
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:staging-latest
+
+          echo "image=$FULL_IMAGE" >> $GITHUB_OUTPUT
+
+      # ── DATABASE MIGRATIONS ────────────────────────────────────────────────
+
+      - name: Run database migrations
+        # This step applies any pending migrations to the staging database.
+        # Remove if your project doesn't use database migrations.
+        # For Python/Django: python manage.py migrate
+        # For Ruby/Rails: bundle exec rails db:migrate
+        run: npm run db:migrate
+        env:
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+          NODE_ENV: staging
+
+      # ── DEPLOY ─────────────────────────────────────────────────────────────
+
+      - name: Deploy to AWS ECS (Staging)
+        # OPTION A: AWS ECS (uncomment and fill in)
+        # Replace [TASK_DEFINITION_FAMILY] with your ECS task definition name
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE }} \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }}
+
+          echo "Waiting for service to stabilize..."
+          aws ecs wait services-stable \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --services ${{ env.ECS_SERVICE }} \
+            --region ${{ env.AWS_REGION }}
+
+        # OPTION B: Render (comment out the above and uncomment this)
+        # run: |
+        #   curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+
+        # OPTION C: Railway (comment out Option A, uncomment this)
+        # run: |
+        #   npx @railway/cli up --service ${{ env.ECS_SERVICE }}
+
+        # OPTION D: Generic SSH deploy (comment out Option A, uncomment this)
+        # run: |
+        #   ssh deploy@staging.your-domain.com "cd /app && git pull && npm ci && pm2 restart app"
+
+      # ── HEALTH CHECK ───────────────────────────────────────────────────────
+
+      - name: Health check
+        # Poll the health endpoint until it returns 200, or fail after 2 minutes.
+        # Adjust the sleep and retry count based on your app's startup time.
+        run: |
+          echo "Waiting for staging to become healthy..."
+          MAX_RETRIES=12
+          RETRY_INTERVAL=10
+          for i in $(seq 1 $MAX_RETRIES); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" ${{ env.HEALTH_CHECK_URL }} || echo "000")
+            if [ "$STATUS" = "200" ]; then
+              echo "Health check passed (HTTP $STATUS)"
+              exit 0
+            fi
+            echo "Attempt $i/$MAX_RETRIES — HTTP $STATUS — retrying in ${RETRY_INTERVAL}s..."
+            sleep $RETRY_INTERVAL
+          done
+          echo "Health check failed after $MAX_RETRIES attempts"
+          exit 1
+
+      # ── NOTIFICATIONS ──────────────────────────────────────────────────────
+
+      - name: Notify Slack on success
+        # Remove this step if you don't use Slack
+        # Alternative: Teams, Discord, PagerDuty, email
+        if: success()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": ":white_check_mark: *Staging deploy succeeded*\n*Repo:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*Author:* ${{ github.actor }}\n*URL:* ${{ env.HEALTH_CHECK_URL }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": ":x: *Staging deploy FAILED*\n*Repo:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*Author:* ${{ github.actor }}\n*Run:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

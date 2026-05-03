@@ -1,0 +1,173 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REGISTRY: 123456789.dkr.ecr.us-east-1.amazonaws.com
+  ECR_REPOSITORY: teamtracker-api
+  ECS_CLUSTER: teamtracker-staging
+  ECS_SERVICE: teamtracker-api
+  HEALTH_CHECK_URL: https://staging.teamtracker.example.com/health
+
+jobs:
+  deploy:
+    name: Build and Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      # ── Docker ─────────────────────────────────────────────────────────────
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        id: build-image
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          FULL_IMAGE=${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG
+
+          docker build \
+            --tag $FULL_IMAGE \
+            --label "git-commit=${{ github.sha }}" \
+            --label "build-date=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            .
+
+          docker push $FULL_IMAGE
+
+          # Tag staging-latest for easy identification in ECS console
+          docker tag $FULL_IMAGE ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:staging-latest
+          docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:staging-latest
+
+          echo "image=$FULL_IMAGE" >> $GITHUB_OUTPUT
+          echo "Built and pushed: $FULL_IMAGE"
+
+      # ── Database Migrations ─────────────────────────────────────────────────
+
+      - name: Run database migrations
+        run: npm run db:migrate
+        env:
+          # Secret is the full PostgreSQL connection string stored in GitHub secrets
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+          NODE_ENV: staging
+
+      # ── Deploy ─────────────────────────────────────────────────────────────
+
+      - name: Deploy to ECS (Staging)
+        run: |
+          echo "Deploying image: ${{ steps.build-image.outputs.image }}"
+
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE }} \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }}
+
+          echo "Waiting for ECS service to stabilize..."
+          aws ecs wait services-stable \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --services ${{ env.ECS_SERVICE }} \
+            --region ${{ env.AWS_REGION }}
+
+          echo "ECS service is stable."
+
+      # ── Health Check ────────────────────────────────────────────────────────
+
+      - name: Health check staging
+        run: |
+          echo "Running health check against ${{ env.HEALTH_CHECK_URL }}"
+          MAX_RETRIES=12
+          RETRY_INTERVAL=10
+
+          for i in $(seq 1 $MAX_RETRIES); do
+            RESPONSE=$(curl -s ${{ env.HEALTH_CHECK_URL }} || echo '{}')
+            STATUS=$(echo $RESPONSE | jq -r '.status // "unknown"')
+            DB=$(echo $RESPONSE | jq -r '.db // "unknown"')
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{ env.HEALTH_CHECK_URL }} || echo "000")
+
+            if [ "$HTTP_CODE" = "200" ] && [ "$STATUS" = "ok" ] && [ "$DB" = "connected" ]; then
+              echo "Health check passed (HTTP $HTTP_CODE, status=$STATUS, db=$DB)"
+              exit 0
+            fi
+
+            echo "Attempt $i/$MAX_RETRIES — HTTP $HTTP_CODE, status=$STATUS, db=$DB — retrying in ${RETRY_INTERVAL}s..."
+            sleep $RETRY_INTERVAL
+          done
+
+          echo "ERROR: Health check failed after $MAX_RETRIES attempts"
+          exit 1
+
+      # ── Notifications ───────────────────────────────────────────────────────
+
+      - name: Notify Slack — success
+        if: success()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": ":rocket: *Staging deploy succeeded* — TeamTracker API",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: *Staging deploy succeeded*\n*Commit:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}\n*URL:* ${{ env.HEALTH_CHECK_URL }}\n*Run:* <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View in GitHub Actions>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_WEBHOOK_URL }}
+
+      - name: Notify Slack — failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": ":x: *Staging deploy FAILED* — TeamTracker API",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":x: *Staging deploy FAILED*\n*Commit:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}\n*Run:* <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View failure in GitHub Actions>\n\ncc: <!here>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_WEBHOOK_URL }}
