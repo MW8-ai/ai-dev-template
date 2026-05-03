@@ -1,0 +1,47 @@
+name: Living Updates Watch
+
+on:
+  schedule:
+    - cron: "20 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  watch:
+    name: Watch platform updates and open review PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run living updates watcher
+        run: python scripts/living_updates_watch.py --max-new 10
+
+      - name: Create Pull Request if updates were detected
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "docs: add detected living update notes"
+          title: "docs: review detected platform updates"
+          body: |
+            ## Summary
+            This automated PR detected platform updates from the Living Updates source registry.
+
+            Review generated files under `docs/06-living-updates/incoming/`.
+
+            Decide whether to convert to an impact note, update docs, update AI guardrails, update CI/CD guidance, or archive with no action.
+
+            Automation watches. Humans decide. Docs evolve.
+          branch: automation/living-updates
+          delete-branch: true
+          labels: |
+            type: documentation
+            automation
+            needs review

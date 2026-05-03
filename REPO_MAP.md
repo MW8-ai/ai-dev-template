@@ -224,6 +224,7 @@ Shell scripts for repo maintenance and validation. Run these locally or from CI/
 |---|---|
 | scripts/validate-repo.sh | Checks that all required files exist and are non-empty |
 | scripts/check_required_docs.sh | Checks whether documentation is fresh relative to recent code changes |
+| scripts/living_updates_watch.py | Fetches platform update sources, detects new items, writes draft notes to incoming/ |
 
 ---
 
@@ -238,6 +239,32 @@ Detailed standards documents that define specific rules. These go deeper than th
 | standards/testing-standards.md | Required test types, minimum coverage percentage, test naming conventions |
 | standards/documentation-standards.md | Header format, file naming, cross-reference rules, how to keep docs current |
 | standards/release-standards.md | Versioning scheme, release checklist, who can approve a release |
+
+### docs/06-living-updates/
+
+A living intelligence layer that tracks meaningful platform changes from GitHub, Anthropic, OpenAI, Google, and xAI. A scheduled Action detects updates automatically; humans review and decide whether to update team guidance.
+
+| Path | Purpose |
+|---|---|
+| README.md | System overview, the three-layer model, and the human review process |
+| SETUP.md | How to enable the automation in your repository |
+| sources/update-sources.yml | Registry of RSS feeds and web pages to monitor |
+| sources/\<vendor\>/ | Approved filed update notes organized by platform |
+| incoming/ | Auto-generated draft notes awaiting human review |
+| summaries/ | Plain-language summaries for broader team communication |
+| impacts/ | Approved guidance changes that drive doc and workflow updates |
+| templates/ | Templates for writing update notes and impact notes |
+| examples/ | Example update note showing the full format |
+| archive/ | Reviewed items with no action required |
+
+**Key impact notes:**
+
+| File | What It Captures |
+|---|---|
+| impacts/pr-reviewing.md | Updated PR review standards from GitHub's improved Files Changed UI |
+| impacts/ai-dev-workflow.md | AI-assisted development guardrails and human-approval requirements |
+
+---
 
 ### docs/05-confusion-troubleshooting/
 
