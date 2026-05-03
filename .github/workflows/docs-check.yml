@@ -9,6 +9,6 @@ jobs:
   docs-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check required docs
         run: bash scripts/check_required_docs.sh

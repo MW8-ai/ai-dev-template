@@ -13,7 +13,7 @@ jobs:
     name: Required Docs Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check required docs exist
         run: bash scripts/check_required_docs.sh
 
@@ -21,7 +21,7 @@ jobs:
     name: Secret Scanning
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Scan for secrets (trufflehog)
@@ -38,7 +38,7 @@ jobs:
     # Only run when ANTHROPIC_API_KEY is available (opt-in)
     if: ${{ vars.CLAUDE_REVIEW_ENABLED == 'true' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
