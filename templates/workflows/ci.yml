@@ -1,0 +1,158 @@
+# Continuous Integration Workflow
+#
+# Runs on every push and every pull request targeting main.
+# This workflow: lints, tests, and reports coverage.
+#
+# CUSTOMIZATION GUIDE:
+#   - Node.js project: use this file as-is (update node-version if needed)
+#   - Python project: replace "Setup Node.js" step with "Setup Python", change
+#     npm commands to pip/pytest (see comments throughout)
+#   - Ruby project: replace with "Setup Ruby" and bundle/rspec commands
+#   - Go project: replace with "Setup Go" and go test ./...
+#   - Add matrix builds to test multiple versions simultaneously
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'    # Run CI on feature branches too
+      - 'fix/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+
+# Cancel in-progress runs for the same branch to avoid wasting minutes
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        # PYTHON: uses: actions/setup-python@v5
+        #         with:
+        #           python-version: '3.12'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'          # Change to match your .nvmrc or runtime requirement
+          cache: 'npm'                # Caches node_modules between runs for speed
+
+      - name: Install dependencies
+        # PYTHON: run: pip install -r requirements-dev.txt
+        run: npm ci                   # 'npm ci' is faster and stricter than 'npm install'
+
+      - name: Run linter
+        # PYTHON: run: flake8 src/ tests/
+        # RUBY:   run: bundle exec rubocop
+        run: npm run lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: lint                       # Only run tests if lint passes (saves minutes)
+
+    # Service containers run alongside the job — remove if you don't need a database
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: testdb
+        # Wait for postgres to be ready before starting the job
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      # Uncomment if your tests require Redis
+      # redis:
+      #   image: redis:7
+      #   ports:
+      #     - 6379:6379
+
+    env:
+      # Test environment variables — use GitHub Secrets for sensitive values
+      NODE_ENV: test
+      DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+      JWT_SECRET: test-jwt-secret-not-used-in-production
+      # Add other environment variables your tests require:
+      # SOME_API_KEY: ${{ secrets.TEST_SOME_API_KEY }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run database migrations
+        # Remove this step if your project doesn't use a database
+        # PYTHON: run: python manage.py migrate --settings=config.test
+        run: npm run db:migrate
+
+      - name: Run unit tests with coverage
+        # PYTHON: run: pytest --cov=src --cov-report=xml --cov-fail-under=75
+        # RUBY:   run: bundle exec rspec --format progress
+        run: npm test -- --coverage --ci
+        # --ci flag makes Jest fail on snapshot updates and slower console output
+
+      - name: Run integration tests
+        # Remove or adjust this step based on your project's test structure
+        run: npm run test:integration
+        env:
+          # Integration tests may need additional env vars
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+
+      - name: Upload coverage report to Codecov
+        # Remove this step if you don't use Codecov
+        # Alternative: Coveralls, SonarCloud, or just store as artifact
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false       # Don't fail CI if Codecov upload fails
+
+      - name: Check coverage threshold
+        # This step fails the job if coverage drops below your minimum
+        # PYTHON: run: pytest --cov-fail-under=75
+        run: |
+          COVERAGE=$(cat coverage/coverage-summary.json | node -e \
+            "const d=require('fs').readFileSync('/dev/stdin','utf8'); \
+             console.log(JSON.parse(d).total.lines.pct)")
+          echo "Coverage: $COVERAGE%"
+          node -e "if ($COVERAGE < 75) { console.error('Coverage $COVERAGE% is below 75% minimum'); process.exit(1); }"
+
+  # Optional: type checking for TypeScript projects
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Run TypeScript type checker
+        run: npm run typecheck           # Typically: tsc --noEmit
