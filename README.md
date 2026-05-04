@@ -1,10 +1,12 @@
 # AI Dev Template
 
-![PR Checks](https://github.com/MW8-ai/ai-dev-template/actions/workflows/pr-checks.yml/badge.svg)
-![Branch Name Check](https://github.com/MW8-ai/ai-dev-template/actions/workflows/07-branch-naming.yml/badge.svg)
-![Markdown Lint](https://github.com/MW8-ai/ai-dev-template/actions/workflows/markdown-lint.yml/badge.svg)
-![Link Check](https://github.com/MW8-ai/ai-dev-template/actions/workflows/link-check.yml/badge.svg)
-![CodeQL](https://github.com/MW8-ai/ai-dev-template/actions/workflows/04-codeql.yml/badge.svg)
+[![00 · Repo Health](https://github.com/MW8-ai/ai-dev-template/actions/workflows/00-repo-health.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/00-repo-health.yml)
+[![01 · Pull Request Standards](https://github.com/MW8-ai/ai-dev-template/actions/workflows/01-pr-standards.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/01-pr-standards.yml)
+[![02 · Documentation Quality](https://github.com/MW8-ai/ai-dev-template/actions/workflows/02-docs-quality.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/02-docs-quality.yml)
+[![03 · Security and Supply Chain](https://github.com/MW8-ai/ai-dev-template/actions/workflows/03-security-supply-chain.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/03-security-supply-chain.yml)
+[![04 · CodeQL Security Analysis](https://github.com/MW8-ai/ai-dev-template/actions/workflows/04-codeql.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/04-codeql.yml)
+[![07 · Branch Naming](https://github.com/MW8-ai/ai-dev-template/actions/workflows/07-branch-naming.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/07-branch-naming.yml)
+[![08 · Commit Message Lint](https://github.com/MW8-ai/ai-dev-template/actions/workflows/08-commit-lint.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/08-commit-lint.yml)
 
 A modern developer playbook for GitHub, AI-assisted development, and production-ready workflows.
 
