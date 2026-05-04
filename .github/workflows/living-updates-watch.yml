@@ -79,7 +79,7 @@ jobs:
 
       - name: Fall back to issue if PR creation is not permitted
         if: steps.watcher.outputs.new_count != '0' && steps.create_pr.outcome == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const branch = "${{ steps.push_branch.outputs.branch }}";
