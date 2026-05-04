@@ -54,7 +54,7 @@ jobs:
         if: steps.watcher.outputs.new_count != '0'
         id: create_pr
         continue-on-error: true
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "docs: add detected living update notes"
           title: "docs: review detected platform updates [$(date +%Y-%m-%d)]"
