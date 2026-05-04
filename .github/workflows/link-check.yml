@@ -7,18 +7,40 @@ on:
   pull_request:
     branches:
       - "**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: link-check-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  link-check:
-    name: Check Markdown Links
+  local-links:
+    name: Check Local Markdown Links
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check links in all markdown files
-        uses: lycheeverse/lychee-action@v1
+      - name: Validate local markdown links
+        run: python3 scripts/check_markdown_links.py
+
+  external-links:
+    name: Check External Links
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check external links with lychee
+        uses: lycheeverse/lychee-action@v2
         with:
           args: >
             --config .lychee.toml
