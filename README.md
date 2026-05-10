@@ -34,6 +34,7 @@ Skip the basics:
 |---|---|
 | Daily workflow + PR process | [docs/03-development-workflow/](docs/03-development-workflow/) |
 | AI tool integration | [docs/04-ai-workflows/](docs/04-ai-workflows/) |
+| Tooling ecosystem, MCP, and external references | [docs/12-tooling-ecosystem/](docs/12-tooling-ecosystem/) |
 | Team standards and enforcement | [docs/06-standards/](docs/06-standards/) |
 | GitHub Actions enforcement pack | [docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md](docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md) |
 | Compliance (NIST/FIPS) | [docs/07-compliance/](docs/07-compliance/) |
@@ -48,6 +49,8 @@ Copy templates into your repository:
 templates/project/    ← core project docs (DESIGN, TESTING, DEPLOYMENT, SECURITY)
 templates/workflows/  ← GitHub Actions starters
 templates/prompts/    ← AI prompt templates
+templates/tools/      ← external repo, tool, and LLM review templates
+templates/mcp/        ← MCP server and MCP security review templates
 ```
 
 See a complete working example: [examples/enterprise-project/](examples/enterprise-project/)
@@ -60,6 +63,7 @@ See a complete working example: [examples/enterprise-project/](examples/enterpri
 - Branch → Commit → Push → Pull Request → Merge — with real examples
 - Development environment setup (Windows, Mac, VS Code, Codespaces)
 - AI-assisted development with human-in-the-loop guardrails
+- Tool and MCP intake using a reference-first review model
 - CI/CD enforcement via GitHub Actions
 - Enterprise and government-ready practices (NIST/FIPS)
 
@@ -72,6 +76,7 @@ Most repos give you code. This gives you:
 - **Structured workflows** — the professional development cycle documented end to end
 - **Reusable templates** — copy-paste starting points that work immediately
 - **AI-safe practices** — AI generates, humans review and decide — enforced, not just suggested
+- **Tool intake guardrails** — external repos, tools, MCP servers, and models are linked first and reviewed before adoption
 - **Automated enforcement** — GitHub Actions checks that catch problems before merge
 - **Living updates** — a system that adapts as GitHub, Anthropic, OpenAI, and Google ship changes
 
@@ -103,7 +108,7 @@ This repository uses GitHub Actions to enforce standards automatically on every 
 
 ```text
 docs/         Documentation: getting started, workflows, AI tools, compliance
-templates/    Copy-paste starting points for projects, workflows, and prompts
+templates/    Copy-paste starting points for projects, workflows, prompts, MCP, and tool review
 examples/     Working examples showing templates in real project structures
 scripts/      Repo validation and maintenance scripts
 .github/      GitHub Actions workflows, issue templates, PR template
