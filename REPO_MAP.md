@@ -52,10 +52,15 @@ GitHub Actions (GA) are scripts that run automatically in response to repository
 
 | File | What It Does |
 |---|---|
+| 00-repo-health.yml | Validates required structure and checks for empty/placeholder docs |
+| 01-pr-standards.yml | Validates Pull Request title, description, branch, and change expectations |
+| 02-docs-quality.yml | Runs documentation quality checks, markdown linting, and link validation |
+| 03-security-supply-chain.yml | Runs secret scanning, dependency review, and supply-chain checks |
+| 04-codeql.yml | Runs CodeQL code scanning when supported source files exist |
+| 07-branch-naming.yml | Enforces branch naming standards |
+| 08-commit-lint.yml | Enforces Conventional Commit messages and PR title format |
 | claude-code.yml | Optional: runs Claude Code review on Pull Requests |
 | docs-check.yml | Checks that documentation is up to date after file edits |
-
-Note: Additional workflow starters (repo health checks, markdown linting, link checking, required-files validation, AI-review reminders, PR checks) are available in [templates/workflows/](templates/workflows/).
 
 ### Issue Templates
 
@@ -210,6 +215,64 @@ Deep-dive reference guides for each tool used in this playbook.
 | OPENAI.md | OpenAI API and Codex CLI — authentication, usage, and rate limits |
 | ANTHROPIC.md | Claude and Claude Code — models, API access, and agent configuration |
 
+### docs/10-maintenance/
+
+Processes for keeping this template itself accurate and up to date.
+
+| File | Topic |
+|---|---|
+| KEEPING_THIS_REPO_UPDATED.md | Weekly/monthly/quarterly review schedule; signs the repo needs attention |
+| RELEASE_CADENCE.md | Versioning policy, step-by-step release process, CHANGELOG format, ownership |
+
+### docs/10-github-actions/
+
+Explains the automation and enforcement layer: repository health checks, Pull Request standards, documentation checks, security scanning, CodeQL, branch protection, and rulesets.
+
+| File | Topic |
+|---|---|
+| GITHUB_ACTIONS_ENFORCEMENT_PACK.md | Overview of the numbered enforcement workflow pack (00–06) |
+| BRANCH_PROTECTION_AND_RULESETS.md | Branch protection rules and GitHub rulesets — what to require and why |
+| BRANCH_PROTECTION_EXPANDED.md | In-depth branch protection: bypass actors, rule types, and enterprise settings |
+| CHECKS_EXPLAINED_FOR_BEGINNERS.md | What CI checks are, why they're red, and how to fix them |
+| CODEOWNERS_GUIDE.md | CODEOWNERS syntax, team ownership patterns, and review routing |
+| AUTO_CHANGELOG.md | Automated changelog generation via release-drafter |
+| LABELS_AND_AUTOMATION.md | GitHub labels: manual setup, labeler automation, and label-driven workflows |
+| WORKFLOW_BEST_PRACTICES.md | Patterns for reliable, fast, maintainable GitHub Actions workflows |
+| BRANCHING_STRATEGY.md | Trunk-based vs GitFlow vs GitHub Flow — how to choose and what to enforce |
+
+### docs/11-agents-and-skills/
+
+Designing, reviewing, and safely operating AI agents and reusable skills.
+
+| File | Topic |
+|---|---|
+| README.md | Overview and recommended reading order |
+| WHAT_ARE_AGENTS.md | Defines agents and safe agent lifecycle |
+| WHAT_ARE_SKILLS.md | Defines skills and reusable skill design |
+| AGENT_VS_WORKFLOW_VS_SCRIPT.md | Explains when to use agents, workflows, and scripts |
+| HUMAN_APPROVAL_PATTERNS.md | Approval boundaries and audit trail patterns |
+| SECURITY_BOUNDARIES.md | Security boundaries for agent access |
+| CODING_AGENT_PATTERN.md | Safe coding-agent workflow |
+| SRE_INCIDENT_RESPONDER_PATTERN.md | Incident responder agent pattern |
+| SKILL_TEMPLATE.md | Reusable skill template and checklist |
+
+### docs/12-tooling-ecosystem/
+
+Tooling ecosystem awareness, MCP governance, LLM model tracking, and reference-first intake for external repos and community resources.
+
+| File | Topic |
+|---|---|
+| README.md | Overview and reading order |
+| REFERENCE_INTAKE_POLICY.md | Link first, review second, adapt third, import last |
+| OFFICIAL_REFERENCE_REPOS.md | Official/vendor-backed repos and docs worth tracking |
+| AWESOME_LISTS_AND_DISCOVERY.md | How to use awesome lists safely for discovery |
+| TOOL_DECISION_MATRIX.md | Decision aid for choosing tools by use case and risk |
+| MCP_OVERVIEW.md | Plain-English Model Context Protocol overview |
+| MCP_SECURITY_MODEL.md | MCP permission, sandbox, secret, and approval boundaries |
+| MCP_SERVER_REVIEW_CHECKLIST.md | Checklist for reviewing MCP servers before adoption |
+| LLM_MODEL_REGISTRY.md | Template-driven registry for model capabilities and governance |
+| TOOL_ADOPTION_PLAYBOOK.md | Discover, reference, review, pilot, standardize, maintain |
+
 ---
 
 ## templates/
@@ -223,6 +286,10 @@ Ready-to-copy templates for new projects. Each template is a starting point — 
 | templates/workflows/ | GitHub Actions workflow starters for common CI/CD patterns |
 | templates/prompts/ | Reusable AI prompt templates organized by task type |
 | templates/compliance/ | Compliance document templates for NIST, FIPS, and data classification |
+| templates/agents/ | Agent specification and incident responder templates |
+| templates/skills/ | Reusable AI skill templates |
+| templates/tools/ | External repository, tool, and LLM model review templates |
+| templates/mcp/ | MCP server and MCP security review templates |
 
 ---
 
@@ -263,6 +330,8 @@ Detailed standards documents that define specific rules. These go deeper than th
 | standards/documentation-standards.md | Header format, file naming, cross-reference rules, how to keep docs current |
 | standards/release-standards.md | Versioning scheme, release checklist, who can approve a release |
 
+---
+
 ### docs/06-living-updates/
 
 A living intelligence layer that tracks meaningful platform changes from GitHub, Anthropic, OpenAI, Google, and xAI. A scheduled Action detects updates automatically; humans review and decide whether to update team guidance.
@@ -302,32 +371,3 @@ Answers the questions that send developers to Stack Overflow. Covers common pitf
 | REAL_WORLD_BLUNDERS_AND_PREVENTION.md | Actual incidents teams have had and the prevention patterns that follow |
 | FETCH_PULL_PUSH_AND_REMOTE_BRANCHES.md | Deep dive on fetch, pull, push, and remote branch tracking |
 | MERGE_METHODS_EXPLAINED.md | Merge, squash, and rebase compared with clear guidance on when to use each |
-
----
-
-### docs/10-maintenance/
-
-Processes for keeping this template itself accurate and up to date.
-
-| File | Topic |
-|---|---|
-| KEEPING_THIS_REPO_UPDATED.md | Weekly/monthly/quarterly review schedule; signs the repo needs attention |
-| RELEASE_CADENCE.md | Versioning policy, step-by-step release process, CHANGELOG format, ownership |
-
----
-
-## docs/10-github-actions/
-
-Explains the automation and enforcement layer: repository health checks, Pull Request standards, documentation checks, security scanning, CodeQL, branch protection, and rulesets.
-
-| File | Topic |
-|---|---|
-| GITHUB_ACTIONS_ENFORCEMENT_PACK.md | Overview of the numbered enforcement workflow pack (00–06) |
-| BRANCH_PROTECTION_AND_RULESETS.md | Branch protection rules and GitHub rulesets — what to require and why |
-| BRANCH_PROTECTION_EXPANDED.md | In-depth branch protection: bypass actors, rule types, and enterprise settings |
-| CHECKS_EXPLAINED_FOR_BEGINNERS.md | What CI checks are, why they're red, and how to fix them |
-| CODEOWNERS_GUIDE.md | CODEOWNERS syntax, team ownership patterns, and review routing |
-| AUTO_CHANGELOG.md | Automated changelog generation via release-drafter |
-| LABELS_AND_AUTOMATION.md | GitHub labels: manual setup, labeler automation, and label-driven workflows |
-| WORKFLOW_BEST_PRACTICES.md | Patterns for reliable, fast, maintainable GitHub Actions workflows |
-| BRANCHING_STRATEGY.md | Trunk-based vs GitFlow vs GitHub Flow — how to choose and what to enforce |
