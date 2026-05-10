@@ -34,6 +34,7 @@ Skip the basics:
 |---|---|
 | Daily workflow + PR process | [docs/03-development-workflow/](docs/03-development-workflow/) |
 | AI tool integration | [docs/04-ai-workflows/](docs/04-ai-workflows/) |
+| AI operating layer for agents, skills, prompts, context, and governance | [ai/](ai/) |
 | Tooling ecosystem, MCP, and external references | [docs/12-tooling-ecosystem/](docs/12-tooling-ecosystem/) |
 | Team standards and enforcement | [docs/06-standards/](docs/06-standards/) |
 | GitHub Actions enforcement pack | [docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md](docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md) |
@@ -53,7 +54,10 @@ templates/tools/      ← external repo, tool, and LLM review templates
 templates/mcp/        ← MCP server and MCP security review templates
 ```
 
-See a complete working example: [examples/enterprise-project/](examples/enterprise-project/)
+See complete working examples:
+
+- [examples/enterprise-project/](examples/enterprise-project/)
+- [examples/ai-enabled-team-workflow/](examples/ai-enabled-team-workflow/)
 
 ---
 
@@ -76,6 +80,7 @@ Most repos give you code. This gives you:
 - **Structured workflows** — the professional development cycle documented end to end
 - **Reusable templates** — copy-paste starting points that work immediately
 - **AI-safe practices** — AI generates, humans review and decide — enforced, not just suggested
+- **AI operating layer** — agents, skills, prompts, context, and governance are separated from human learning docs
 - **Tool intake guardrails** — external repos, tools, MCP servers, and models are linked first and reviewed before adoption
 - **Automated enforcement** — GitHub Actions checks that catch problems before merge
 - **Living updates** — a system that adapts as GitHub, Anthropic, OpenAI, and Google ship changes
@@ -107,7 +112,8 @@ This repository uses GitHub Actions to enforce standards automatically on every 
 → Full directory listing: **[REPO_MAP.md](REPO_MAP.md)**
 
 ```text
-docs/         Documentation: getting started, workflows, AI tools, compliance
+docs/         Human-facing documentation: getting started, workflows, AI tools, compliance
+ai/           AI-facing operating layer: agents, skills, prompts, context, governance
 templates/    Copy-paste starting points for projects, workflows, prompts, MCP, and tool review
 examples/     Working examples showing templates in real project structures
 scripts/      Repo validation and maintenance scripts
