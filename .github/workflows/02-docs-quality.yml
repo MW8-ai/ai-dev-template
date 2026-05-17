@@ -18,7 +18,7 @@ jobs:
     name: Markdown lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DavidAnson/markdownlint-cli2-action@v23
         with:
           globs: |
@@ -30,7 +30,7 @@ jobs:
     name: Local markdown link check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Validate local markdown links
         run: python3 scripts/check_markdown_links.py
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check external links with lychee
         uses: lycheeverse/lychee-action@v2
         with:
