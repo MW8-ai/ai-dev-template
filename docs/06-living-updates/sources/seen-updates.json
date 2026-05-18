@@ -1,21 +1,73 @@
 {
-  "last_run": "2026-05-03T19:18:50Z",
+  "last_run": "2026-05-18T12:48:34Z",
   "seen": {
+    "github-blog": {
+      "1298dce70fdffb29": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-blog-building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-proces.md",
+        "title": "Building a general-purpose accessibility agent\u2014and what we learned in the process"
+      },
+      "cc5c955ebb3a38ae": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-blog-raising-the-bar-quality-shared-responsibility-and-the-future-of-github-s-bug-bou.md",
+        "title": "Raising the bar: Quality, shared responsibility, and the future of GitHub\u2019s bug bounty program"
+      }
+    },
     "github-changelog": {
       "085000689b81759b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-github-copilot-code-review-will-start-consuming-github-actions-minutes-on-june-1.md",
         "title": "GitHub Copilot code review will start consuming GitHub Actions minutes on June 1, 2026"
       },
+      "0bd2336aaacee3cb": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-copilot-memory-supports-user-preferences-for-pro-pro-users.md",
+        "title": "Copilot Memory supports user preferences for Pro, Pro+ users"
+      },
+      "1291c8f0038d00c1": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-github-copilot-app-is-now-available-in-technical-preview.md",
+        "title": "GitHub Copilot app is now available in technical preview"
+      },
+      "13b9e140b0a20de1": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-github-actions-upcoming-image-migrations.md",
+        "title": "GitHub Actions: Upcoming image migrations"
+      },
+      "2845b9557b99cb19": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-copilot-cloud-agent-supports-auto-model-selection.md",
+        "title": "Copilot cloud agent supports auto model selection"
+      },
       "6b2cd9dd2ad12e9d": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-upcoming-deprecation-of-gpt-5-2-and-gpt-5-2-codex.md",
         "title": "Upcoming deprecation of GPT-5.2 and GPT-5.2-Codex"
       },
+      "6dae2d2d126c5a7a": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-grok-code-fast-1-deprecated.md",
+        "title": "Grok Code Fast 1 deprecated"
+      },
+      "80e97cf0d655e9b8": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-team-level-copilot-usage-metrics-now-available-via-api.md",
+        "title": "Team-level Copilot usage metrics now available via API"
+      },
       "8cec93037ceb6f5b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-gpt-5-5-is-generally-available-for-github-copilot.md",
         "title": "GPT-5.5 is generally available for GitHub Copilot"
+      },
+      "9ec461b221b8f2cd": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-gpt-5-3-codex-is-now-the-base-model-for-copilot-business-and-enterprise.md",
+        "title": "GPT-5.3-Codex is now the base model for Copilot Business and Enterprise"
+      },
+      "9f3f31b317f29965": {
+        "detected": "2026-05-18T12:48:34Z",
+        "file": "docs/06-living-updates/incoming/2026-05-18-github-changelog-introducing-copilot-cli-agent-and-unified-sessions-view-in-github-copilot-for-je.md",
+        "title": "Introducing Copilot CLI agent and unified sessions view in GitHub Copilot for JetBrains IDEs"
       },
       "ace7c3519f5d1778": {
         "detected": "2026-05-03T19:18:50Z",
