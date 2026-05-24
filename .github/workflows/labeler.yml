@@ -15,4 +15,4 @@ jobs:
 
     steps:
       - name: Label PR
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
