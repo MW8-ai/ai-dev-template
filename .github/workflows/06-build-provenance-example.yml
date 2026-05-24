@@ -29,6 +29,6 @@ jobs:
             ai-dev-template-docs.sha256
 
       - name: Generate artifact attestation
-        uses: actions/attest@v2
+        uses: actions/attest@v4
         with:
           subject-path: ai-dev-template-docs.tar.gz
