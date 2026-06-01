@@ -1,26 +1,73 @@
 {
-  "last_run": "2026-05-03T19:18:50Z",
+  "last_run": "2026-06-01T15:33:41Z",
   "seen": {
+    "github-blog": {
+      "07f45208b5efae78": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-blog-github-for-beginners-getting-started-with-git-and-github-in-vs-code.md",
+        "title": "GitHub for Beginners: Getting started with Git and GitHub in VS Code"
+      },
+      "9cd180316ec3daed": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-blog-github-recognized-as-a-leader-in-the-gartner-magic-quadrant-for-enterprise-ai-co.md",
+        "title": "GitHub recognized as a Leader in the Gartner\u00ae Magic Quadrant\u2122 for Enterprise AI Coding Agents for the third year in a row"
+      }
+    },
     "github-changelog": {
       "085000689b81759b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-github-copilot-code-review-will-start-consuming-github-actions-minutes-on-june-1.md",
         "title": "GitHub Copilot code review will start consuming GitHub Actions minutes on June 1, 2026"
       },
+      "219c601475eb2811": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-dependabot-version-updates-now-support-the-sbt-ecosystem.md",
+        "title": "Dependabot version updates now support the sbt ecosystem"
+      },
+      "2627a509d94de9e5": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-filter-secret-scanning-approval-requests-by-sort-order-and-bypass-status.md",
+        "title": "Filter secret scanning approval requests by sort order and bypass status"
+      },
+      "29d8ec098f82efbb": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption.md",
+        "title": "Copilot usage metrics API adds cohorts for AI adoption"
+      },
+      "5886e198d517b54b": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-codeql-2-25-5-improves-query-accuracy-for-github-actions.md",
+        "title": "CodeQL 2.25.5 improves query accuracy for GitHub Actions"
+      },
       "6b2cd9dd2ad12e9d": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-upcoming-deprecation-of-gpt-5-2-and-gpt-5-2-codex.md",
         "title": "Upcoming deprecation of GPT-5.2 and GPT-5.2-Codex"
+      },
+      "70b3b919b33395a0": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-hard-budget-limits-now-available-for-github-advanced-security.md",
+        "title": "Hard budget limits now available for GitHub Advanced Security"
       },
       "8cec93037ceb6f5b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-gpt-5-5-is-generally-available-for-github-copilot.md",
         "title": "GPT-5.5 is generally available for GitHub Copilot"
       },
+      "a1cd95be70aba266": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-target-copilot-models-to-organizations-with-model-rules.md",
+        "title": "Target Copilot models to organizations with model rules"
+      },
       "ace7c3519f5d1778": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-student-gpt-5-3-codex-removal-from-model-picker.md",
         "title": "Copilot Student GPT-5.3-Codex removal from model picker"
+      },
+      "cbbd3700c6208f8f": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-copilot-memory-has-more-controls-for-deletion-scope-and-the-copilot-cli.md",
+        "title": "Copilot Memory has more controls for deletion, scope, and the Copilot CLI"
       },
       "d5123b5b44f80000": {
         "detected": "2026-05-03T19:18:50Z",
@@ -41,6 +88,11 @@
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-chat-improvements-for-pull-requests.md",
         "title": "Copilot Chat improvements for pull requests"
+      },
+      "ee5671b08513edd1": {
+        "detected": "2026-06-01T15:33:41Z",
+        "file": "docs/06-living-updates/incoming/2026-06-01-github-changelog-claude-opus-4-8-is-generally-available-for-github-copilot.md",
+        "title": "Claude Opus 4.8 is generally available for GitHub Copilot"
       }
     },
     "openai-api-changelog": {
