@@ -13,7 +13,7 @@ jobs:
     name: Package docs and generate provenance attestation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Create documentation archive
         run: |
