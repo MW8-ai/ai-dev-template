@@ -1,4 +1,9 @@
-# AI Dev Template
+﻿# AI Dev Template
+
+<!-- repo-badges:start -->
+[![Visibility](https://img.shields.io/badge/visibility-public-brightgreen)](https://github.com/MW8-ai/ai-dev-template) [![GitHub last commit](https://img.shields.io/github/last-commit/MW8-ai/ai-dev-template)](https://github.com/MW8-ai/ai-dev-template/commits) [![GitHub repo size](https://img.shields.io/github/repo-size/MW8-ai/ai-dev-template)](https://github.com/MW8-ai/ai-dev-template) [![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)](https://github.com/MW8-ai/ai-dev-template) [![CI](https://github.com/MW8-ai/ai-dev-template/actions/workflows/ci.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/MW8-ai/ai-dev-template)](https://github.com/MW8-ai/ai-dev-template/blob/main/LICENSE)
+<!-- repo-badges:end -->
+
 
 [![00 · Repo Health](https://github.com/MW8-ai/ai-dev-template/actions/workflows/00-repo-health.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/00-repo-health.yml)
 [![01 · Pull Request Standards](https://github.com/MW8-ai/ai-dev-template/actions/workflows/01-pr-standards.yml/badge.svg)](https://github.com/MW8-ai/ai-dev-template/actions/workflows/01-pr-standards.yml)
@@ -186,3 +191,13 @@ A developer who works through this repository will be able to:
 - Build and manage real projects using professional workflows
 - Use AI tools responsibly and effectively
 - Apply enterprise-grade standards without rewriting them from scratch
+
+## Overview
+Reusable documentation and workflow scaffold for AI-assisted software development.
+
+## Quick Start
+Add setup and run steps for this repository.
+
+## Project Status
+Active development.
+
