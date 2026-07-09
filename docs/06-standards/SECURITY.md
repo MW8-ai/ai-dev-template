@@ -26,6 +26,7 @@ These rules apply to all projects regardless of type. More advanced requirements
 - Sanitize before use in SQL, shell commands, HTML output, file paths
 - Never use user input directly in SQL (use parameterized queries)
 - Never use user input directly in shell commands (use subprocess with arg lists, not strings)
+- **When a URL param selects a file to fetch, use an allowlist built on `new URL()` resolution, not a denylist of string patterns.** A denylist has to predict every way a browser's URL parser might normalize a string (backslash-as-slash, leading whitespace, percent-encoding) and loses that game — confirmed bypasses of exactly this mistake are documented in [`templates/security/url-param-allowlist.js`](../../templates/security/url-param-allowlist.js). Copy that file and its test suite rather than writing a new check from scratch.
 
 ### Authentication and Authorization (AuthN/AuthZ)
 
