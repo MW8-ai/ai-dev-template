@@ -44,6 +44,7 @@ Skip the basics:
 | Team standards and enforcement | [docs/06-standards/](docs/06-standards/) |
 | GitHub Actions enforcement pack | [docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md](docs/10-github-actions/GITHUB_ACTIONS_ENFORCEMENT_PACK.md) |
 | Compliance (NIST/FIPS) | [docs/07-compliance/](docs/07-compliance/) |
+| Verified security mistakes, PoCs, and the checklist they earned | [docs/13-lessons-learned/LESSONS_LEARNED.md](docs/13-lessons-learned/LESSONS_LEARNED.md) |
 
 ---
 

@@ -273,6 +273,14 @@ Tooling ecosystem awareness, MCP governance, LLM model tracking, and reference-f
 | LLM_MODEL_REGISTRY.md | Template-driven registry for model capabilities and governance |
 | TOOL_ADOPTION_PLAYBOOK.md | Discover, reference, review, pilot, standardize, maintain |
 
+### docs/13-lessons-learned/
+
+A running, append-only log of specific security mistakes actually found, actually proven with a PoC, and actually fixed — plus the checklist item each one earned. Not general advice; every entry is reproducible.
+
+| File | Topic |
+|---|---|
+| LESSONS_LEARNED.md | Entry template, incident log, and the checklist rollup |
+
 ---
 
 ## templates/
@@ -286,6 +294,7 @@ Ready-to-copy templates for new projects. Each template is a starting point — 
 | templates/workflows/ | GitHub Actions workflow starters for common CI/CD patterns |
 | templates/prompts/ | Reusable AI prompt templates organized by task type |
 | templates/compliance/ | Compliance document templates for NIST, FIPS, and data classification |
+| templates/security/ | Working (not fill-in-the-blank) code patterns for recurring security-boundary problems, with tests |
 | templates/agents/ | Agent specification and incident responder templates |
 | templates/skills/ | Reusable AI skill templates |
 | templates/tools/ | External repository, tool, and LLM model review templates |
