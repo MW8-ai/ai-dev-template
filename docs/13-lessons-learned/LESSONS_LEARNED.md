@@ -91,15 +91,31 @@ the rollup below.
 
 ---
 
-## 4. Referenced, not yet documented here
+## 4. The import that fails can be the control that protects you (jarvia, 2026-07-09)
 
-These came up in conversation the same night as entries 1–3 but happened outside what's captured in detail above — flagged so they don't get lost, not written up yet because writing an entry without the specifics would mean guessing instead of documenting:
+**Issue:** `app/tools/exec.py` (a sandboxed code-execution tool) does a bare `import resource` at module level. `resource` is POSIX-only. On Windows, the whole app crashed at startup with `ModuleNotFoundError: No module named 'resource'` whenever code execution was enabled — a confusing, undocumented failure that looked like a portability bug.
+
+**Root cause:** it isn't a portability bug — `resource` is what this tool uses to set CPU/memory/filesize/process/fd ulimits on code it's about to execute (security layer #4 of 7 in its own defense-in-depth model, per its module docstring). The instinctive fix for a confusing crash — wrap the import in `try/except ImportError: resource = None` — silently removes a containment control from exactly the code path that runs attacker-adjacent input, and does it silently: no error, no warning, the app just starts and executes code with zero limits on the one platform where nothing else in the file protects you either (the same function also calls the POSIX-only `os.setsid()` and gets passed as `subprocess.Popen`'s POSIX-only `preexec_fn`, so this was never a one-import fix regardless).
+
+**PoC:** not an exploit PoC — a verification one. Confirmed on the actual affected platform, not simulated: `import app.tools.exec` on Windows raised the bare `ModuleNotFoundError` before this fix (confusing, no guidance) and the new documented `RuntimeError` after (clear, chained via `from` so the original error is still visible to anyone who digs in). Separately confirmed the app still starts normally with the tool disabled (`JARVIA_TOOLS_ENABLED=false`), so the fix doesn't collaterally break the unrelated common case.
+
+**Fix:** `try/except ImportError` that raises a clear, documented `RuntimeError` explaining what's missing, why it's a security control rather than an optional import, and what to do about it (disable tools, or run on a supported platform) — instead of either the confusing bare stdlib traceback or, worse, silently downgrading to unprotected execution.
+
+**Verification:** ran the actual import on the actual unsupported platform (this repo's own dev environment is Windows) both before and after the fix, rather than reasoning about what Python "should" do — confirmed the failure mode changed from confusing-but-safe to clear-and-safe, and confirmed the unaffected path (tools disabled) still works.
+
+**Checklist item:** when a dependency import fails and the fix under consideration is "catch it and continue," ask what that dependency was *for* before writing the except clause. If the answer touches auth, resource limits, sandboxing, or any other control — not just formatting or a nice-to-have — the correct fix almost always fails loud (a clear, documented, immediate error) or properly implements the equivalent control on the new platform. It is never a silent no-op. The import that fails is sometimes the thing that was protecting you.
+
+---
+
+## 5. Referenced, not yet documented here
+
+These came up in conversation the same week as entries 1–4 but happened outside what's captured in detail above — flagged so they don't get lost, not written up yet because writing an entry without the specifics would mean guessing instead of documenting:
 
 - A permissions/access-control catch involving SharePoint.
 - A coding agent catching an inaccurate claim about a "3D file."
 - Termux catching a frozen Pages deployment.
 
-Fill these in with the same rigor as 1–3 (Issue / Root cause / PoC / Fix / Verification) the next time there's context to do it properly.
+Fill these in with the same rigor as 1–4 (Issue / Root cause / PoC / Fix / Verification) the next time there's context to do it properly.
 
 ---
 
@@ -110,3 +126,4 @@ Fast version of every entry above — run through this before calling a review d
 - [ ] Any URL-shaped input that selects a fetch target is validated by resolving it with the platform's URL parser and checking the *resolved* origin/path/extension — not by regex or string methods on the raw value.
 - [ ] Any LLM prompt in an automated pipeline that includes untrusted text has the model's tool/action capability set to the minimum the task needs (ideally none) — delimiters alone are not a security boundary.
 - [ ] Any "confirmed fixed" or "still broken" result from a live browser re-test is backed by checking what code actually executed (function-source diff, content hash), not just a page reload.
+- [ ] Before catching an exception and continuing, know what the failing import/call was *for*. If it's a control (auth, resource limits, sandboxing) rather than a nice-to-have, the fix fails loud and documented — never a silent no-op that leaves the control absent.
