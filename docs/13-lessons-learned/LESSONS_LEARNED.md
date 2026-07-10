@@ -2,11 +2,43 @@
 
 A running log of specific, verified mistakes caught during real security review — not general advice, not a copy of OWASP. Every entry here is something that actually happened, was actually proven (not assumed), and was actually fixed. The point isn't to re-read this once; it's to turn each entry into a checklist item you actually apply on the next project.
 
+**The meta-lesson, stated once:** "I applied the change" and "the change is live" are different sentences. "The scan passed" and "the scan ran on the current code" are different sentences. Nearly every entry below lives in the gap between one of those pairs.
+
 ## How to use this doc
 
 - **Before a security review or a "is this safe to publish" pass:** skim the checklist rollup at the bottom first. It's the fast version of everything below.
+- **Debugging "my change isn't showing up," "the test passed," or "is this safe to publish"?** Check **Preflight checklists** just below — they're ordered, and skipping to the end of the order is exactly how the incidents in this doc happened.
 - **When you find something new:** add an entry using the template below. Keep the PoC. A lesson without a reproducible example decays into a vague feeling within a month.
 - **This is append-only.** Don't delete old entries even if the underlying tool/library changes — the pattern of the mistake usually outlives the specific tool.
+
+## Preflight checklists
+
+Use these before you start debugging. The entries below are the stories that made each step necessary.
+
+**Before you debug "my change isn't showing up":**
+1. Is it committed? `git log --oneline -1`
+2. Is it pushed? Compare `git rev-parse HEAD` against `git ls-remote origin main`.
+3. Did the deploy run? Check the deploy workflow's Actions tab for a run against this commit.
+4. Is the server actually serving it? `curl -s $URL/file | grep <marker>` — curl has no cache and no service worker, so it can't lie to you the way a browser can.
+5. Only now suspect the browser. Incognito is the honest witness (no service worker registered, straight to network).
+
+Never skip to step 5. Steps 3 and 4 are where the corpses are — see entries 6 and 7.
+
+**Before you trust "the tests passed" (yours or an agent's):**
+- Did the test load the file on disk right now, or a cached/older copy? Dump the live function's source and diff it against disk.
+- Does `cache: 'no-store'` actually cover the load path under test? It governs `fetch()`. It does not govern `<script src>`.
+- Was the scan run against the working tree only, or against git history too? A deleted secret still exists in history.
+
+**Before you write a security guard on untrusted input:**
+- Are you pattern-matching strings (denylist) or resolving and checking properties (allowlist)? Denylists lose permanently — see entries 1 and 5.
+- Have you tested against the real deployment path (subpath vs. root), not a synthetic assumption?
+- Does an LLM read attacker-controlled text anywhere downstream? If yes, delimiters are not the defense — capability removal is (entry 2).
+
+**Before publishing any repo:**
+- `gitleaks detect --source . --redact` — full history, not just the current tree. A deleted secret is a leaked secret.
+- Does any file fingerprint a real environment (employer topology, internal hostnames, product names)? Ship samples, not facts.
+- Old history containing the above? A fresh repo from a clean export beats a history rewrite — see entry 9.
+- License decided *before* going public. Relicensing after forks exist only binds future versions, not what's already out there.
 
 ### Entry template
 
@@ -123,15 +155,137 @@ the rollup below.
 
 ---
 
-## 6. Referenced, not yet documented here
+## 6. Cache-first service worker serves permanent staleness (architecture-anatomy, 2026-07-07)
 
-These came up in conversation the same week as entries 1–4 but happened outside what's captured in detail above — flagged so they don't get lost, not written up yet because writing an entry without the specifics would mean guessing instead of documenting:
+**Issue:** the site never updated. Hard refresh didn't help. Reloading twice didn't help. Every other layer — code, repo, CDN — was already correct; the browser was faithfully doing what it was told.
+
+**Root cause:** the service worker's fetch handler was `if (cached) return cached;`. Once a URL was cached, that exact copy was served forever — the network was never consulted again for that URL. This is a "cache-first, never revalidate" strategy, and it silently turns the *first* cache write for any file into that file's permanent content.
+
+**PoC:** none needed beyond the symptom — deployed a change, confirmed via `curl` that the server had the new file, confirmed the live site still executed the old one. The gap between "the server has it" and "the client is running it" was the entire bug.
+
+**Fix:** switched to stale-while-revalidate — serve the cached copy instantly for responsiveness, but always kick off a background fetch that updates the cache for next time:
+
+```js
+e.respondWith(caches.match(e.request).then(cached => {
+  const net = fetch(e.request).then(r => {
+    if (r.ok && e.request.method === 'GET') { const c = r.clone();
+      caches.open(CACHE).then(k => k.put(e.request, c)); }
+    return r;
+  }).catch(() => cached);
+  return cached || net;   // fresh on next visit, never more than one visit stale
+}));
+```
+
+**Verification:** deployed a subsequent change, loaded the site (got the stale copy as expected, by design), reloaded a second time, confirmed the new copy was now served — one stale visit maximum, not permanent staleness.
+
+**Checklist item:** a cache-version-name bump (e.g. `CACHE = 'app-v1.8.1'`) should be a safety net for forcing a clean slate, not the *only* mechanism by which users ever get updates. If bumping the cache name is the only way content changes, the caching strategy itself is wrong — fix the strategy, don't rely on remembering to bump a string every release.
+
+---
+
+## 7. GitHub Pages "Actions" source with no deploy workflow freezes silently (architecture-anatomy, 2026-07-08)
+
+**Issue:** `curl` against the live site returned content from weeks earlier. The repo was current. No error appeared anywhere — no failed Actions run, no warning banner, nothing.
+
+**Root cause:** the repo's Pages **Source** setting was "GitHub Actions," but no workflow in the repo actually deployed to Pages. With this source selected, GitHub simply keeps serving the last deployment that ever succeeded (potentially from a much earlier "classic branch" deploy) — indefinitely, with no indication that new commits aren't reaching production. There's no failed run to notice, because no run is even attempted.
+
+**PoC:** `curl -s $URL/sw.js | grep CACHE` showed an old cache-version string; `git show HEAD:sw.js` on the same repo showed the current one. Running this as the very first diagnostic step — before touching a browser at all — ruled out every caching-layer explanation (entries 3 and 6) in one command, because curl has no service worker and no HTTP cache to blame.
+
+**Fix:** added an explicit `pages.yml` (checkout → configure-pages → build/upload-pages-artifact → deploy-pages) with `workflow_dispatch:` included, so there's always a manual "deploy now" button instead of depending solely on push-triggered automation.
+
+**Verification:** pushed a trivial change, confirmed a workflow run appeared in the Actions tab for that commit, confirmed `curl` reflected the new content once the run completed.
+
+**Checklist item:** after pointing Pages Source at "GitHub Actions," verify a workflow run actually exists for your latest commit in the Actions tab. "No runs listed" is itself a failure state — it looks exactly like "nothing to see here" until you know to check.
+
+---
+
+## 8. An escaping fix that lived in one file and not its sibling, plus a name collision waiting to happen (architecture-anatomy, 2026-07-08)
+
+**Issue:** during the entry-1 XSS fix, a newer file already had an `esc()`-style helper wrapping externally-sourced data before `innerHTML` writes; an older sibling file with the same catalog-loading logic had roughly 30 unescaped interpolations of the same kind of data, because the escaping lesson had only ever been applied where it was first learned.
+
+**Root cause:** a class of fix that gets applied to one file doesn't propagate to structurally similar files by itself. Compounding it: a same-named `esc()` already existed in the codebase doing something unrelated (Mermaid diagram quote-swapping) — a name collision that, if the new escaping helper had reused the name, would have silently called the wrong function in at least one of the two contexts.
+
+**PoC:** grepped both files for every `innerHTML` assignment and every template-literal interpolation of catalog-derived fields; the newer file's sinks were all wrapped, the older file's were not — same shape of code, same class of user-influenced input, different outcome, purely because of which file had been touched more recently.
+
+**Fix:** enumerated every sink in both files explicitly (printing the list before patching, rather than patching while scanning, because scanning-while-patching is exactly how a sink gets missed) and wrapped all of them — content and attribute contexts alike (`data-peer="${escHtml(id)}"` counts as much as a text node) — with one `escHtml()` given a name distinct from the pre-existing, unrelated `esc()`.
+
+**Verification:** re-grepped both files after the fix for any remaining unwrapped interpolation of catalog-derived data; zero remained in either file.
+
+**Checklist item:** when a security fix is a *pattern* (escape at the sink, validate at the boundary), grep every sibling file for the same pattern the same hour you fix the first instance — don't trust that "I'll get to the others" survives context-switching. Give every helper function a name specific enough that nothing else in the codebase could plausibly already own it.
+
+---
+
+## 9. Git history remembers what the working tree forgot (architecture-anatomy, 2026-07-07)
+
+**Issue:** a file that fingerprinted a real environment (internal product/vendor naming, in this case inside the author's own design-doc example) existed in earlier commits even after being edited out of the current tree.
+
+**Root cause:** deleting or editing a file only changes what the *current checkout* shows. Every prior commit is still reachable through `git log`, `git show <sha>:<path>`, or a plain clone — a secret or a fingerprint "removed" by a new commit is not removed, it's relocated one command away.
+
+**PoC:** `git log --all --full-history -- <path>` and `git show <earlier-sha>:<path>` both surfaced the pre-edit content with the fingerprinted example still in it, despite `HEAD` being clean.
+
+**Fix:** for a first publication of a repo whose history was never meant to be public, `git init` a fresh repository from the sanitized working tree rather than rewriting the existing history (`filter-branch`/`filter-repo`) — a fresh repo can't leak what it never contained, and it sidesteps the class of mistake where a history rewrite misses a spot. As a standing control against recurrence, added a CI fingerprint gate: grep for a maintained list of environment-specific terms across the diff, fail the commit on a hit. Its first catch was the author's own design doc, using a real (if hypothetical-sounding) product name in an example — the gate working as intended, not a false positive, because "hypothetical example" and "public document" don't actually protect against a reader recognizing a real name.
+
+**Verification:** confirmed the fresh repo's `git log` contains only the sanitized history (one initial commit, no prior fingerprinted content reachable by any ref); confirmed the CI gate fails a deliberately reintroduced test string and passes a genericized version of the same sentence.
+
+**Checklist item:** before publishing any repo, `gitleaks detect --source .` (history, not just tree) and a fingerprint grep across full history, not just `HEAD`. If either turns up dirty history, prefer a fresh repo over a rewrite unless there's a specific reason (star count, issue history, CI integrations) the old repo's identity must be preserved.
+
+---
+
+## 10. Version drift, and versions that lie (architecture-anatomy, 2026-07-08)
+
+**Issue:** several independent symptoms of the same root problem — a CHANGELOG sitting five releases behind reality, a distributed zip claiming v0.9 while the source repo was at v0.11, and a UI displaying a hardcoded "REV B" label regardless of what was actually deployed.
+
+**Root cause:** version identifiers that live in more than one place, updated by memory rather than enforcement, drift apart the moment someone forgets one of the places. A hardcoded UI version label is the worst case — it actively asserts something false about what's running, rather than just being silently outdated.
+
+**PoC:** compared the UI's displayed "REV B" against the actual deployed `APP_VERSION` constant in the same bundle — they disagreed, meaning the label had been true at some point and then left behind by a later change that updated the real version but not the display string.
+
+**Fix:** one `VERSION` (or `APP_VERSION`/`VIEW_VERSION`) source of truth per repo that everything else reads from, never a second hardcoded copy; a CI gate that fails the commit if `src/` changed but `VERSION`/`CHANGELOG` didn't; the live version rendered directly in the UI so "did this deploy?" is answerable by looking at the corner of the screen instead of guessing; and a release ritual where app version, view version, and service-worker cache name (entry 6) bump together as one atomic step, or not at all — one lagging behind the others reproduces an entry-6/7-class ghost hunt for a completely different reason.
+
+**Verification:** confirmed the CI version-gate fails a deliberately crafted commit that touches `src/` without touching `VERSION`, and passes the same diff once `VERSION` is bumped alongside it.
+
+**Checklist item:** a version string that's typed in more than one place is a version string that will eventually be wrong in at least one of them — read from a single source, and gate the commit, not the release, on it staying in sync.
+
+---
+
+## 11. UTF-8 without a BOM plus PowerShell 5.1 turns punctuation into a string terminator (tooling, 2026-07-08)
+
+**Issue:** a PowerShell script failed with `The string is missing the terminator` reported on its *last* line — nowhere near the actual problem, which made it a genuinely confusing failure to debug from the error message alone.
+
+**Root cause:** the script contained an em dash (`—`) inside a UTF-8 file with no BOM. PowerShell 5.1, lacking a BOM to signal the encoding, read the file as ANSI/CP1252 instead. Under that misreading, the em dash's bytes decode to `â€"`, whose final character happens to be a curly close-quote character — which PowerShell 5.1 accepts as a valid string-delimiter character. That one punctuation mark silently terminated a string early, and every quote after it in the file was then parsed with inverted meaning.
+
+**PoC:** isolated the em dash in a minimal repro script, confirmed the same "missing terminator" error at a location unrelated to the dash's actual position; removed the dash (replaced with a plain hyphen), confirmed the script parsed cleanly.
+
+**Fix:** for any script destined to run under Windows PowerShell 5.1 specifically: stick to pure ASCII, save as UTF-8 *with* BOM if non-ASCII is unavoidable, and prefer single-quoted strings where no variable expansion is needed (they're less sensitive to this class of mis-decoding). Verified at the byte level, not by eye, since smart quotes and em dashes are visually indistinguishable from their ASCII cousins in most editors: `assert not [b for b in data[3:] if b > 127]`.
+
+**Verification:** ran the byte-level ASCII assertion against the fixed script (passed) and against the original (failed, correctly flagging the offending byte range).
+
+**Checklist item:** smart quotes and em dashes belong in prose, never in a script destined for a Windows shell. Lint for non-ASCII bytes in `.ps1` (and, defensively, `.sh`) files rather than trusting an editor's font to reveal the difference.
+
+---
+
+## 12. Web-UI file uploads silently drop dotfiles (architecture-anatomy, 2026-07-08)
+
+**Issue:** using GitHub's "Add files via upload" web UI to add a `.github/workflows/` directory and a `.gitignore` appeared to succeed — no error, normal-looking commit — but neither ever actually arrived in the repo. CI looked configured (the files existed locally) but never ran, because nothing had actually been pushed.
+
+**Root cause:** the web upload flow silently excludes dot-prefixed paths in at least some client/browser combinations, with no error surfaced to the user — the commit it creates simply doesn't include them, and the UI gives no indication anything was skipped.
+
+**PoC:** compared the local directory listing (workflows and `.gitignore` present) against `git ls-tree -r HEAD` on the repo after the web upload (both absent) — a silent, complete discrepancy between "what I dragged in" and "what got committed."
+
+**Fix:** push dotfiles from an actual git client instead of the web upload UI — any real `git add`/`git commit`/`git push` flow (including from a mobile terminal) makes dotfiles behave like any other tracked path, because the exclusion is specific to the web upload flow, not to git itself.
+
+**Verification:** re-added the same files via `git push` from a command line, confirmed both `.github/workflows/` and `.gitignore` present in `git ls-tree -r HEAD`, confirmed the CI workflow subsequently produced a run.
+
+**Checklist item:** after any web-based file upload to a repo, verify dot-prefixed paths actually landed (`git ls-tree` or the repo's file browser with "show hidden files" logic in mind) — don't infer success from the absence of an error message. A gate that silently isn't running reads as more dangerous than no gate at all, because it produces false confidence instead of an honest gap.
+
+---
+
+## 13. Referenced, not yet documented here
+
+These came up in conversation the same week as the entries above but happened outside what's captured in detail here — flagged so they don't get lost, not written up yet because writing an entry without the specifics would mean guessing instead of documenting:
 
 - A permissions/access-control catch involving SharePoint.
 - A coding agent catching an inaccurate claim about a "3D file."
-- Termux catching a frozen Pages deployment.
 
-Fill these in with the same rigor as 1–4 (Issue / Root cause / PoC / Fix / Verification) the next time there's context to do it properly.
+Fill these in with the same rigor as the entries above (Issue / Root cause / PoC / Fix / Verification) the next time there's context to do it properly.
 
 ---
 
@@ -144,3 +298,20 @@ Fast version of every entry above — run through this before calling a review d
 - [ ] Any "confirmed fixed" or "still broken" result from a live browser re-test is backed by checking what code actually executed (function-source diff, content hash), not just a page reload.
 - [ ] Before catching an exception and continuing, know what the failing import/call was *for*. If it's a control (auth, resource limits, sandboxing) rather than a nice-to-have, the fix fails loud and documented — never a silent no-op that leaves the control absent.
 - [ ] Any security-relevant validation is an allowlist ("accept only the one correct shape"), never a denylist ("reject known-bad shapes"). If you're writing a regex or an enumerated list of bad values to reject, stop and define the correct shape instead.
+- [ ] A service worker's fetch handler revalidates in the background (stale-while-revalidate) rather than serving a cached response forever — a cache-version bump should be a safety net, not the only path to an update.
+- [ ] After configuring GitHub Pages with an Actions source, confirm a deploy workflow run actually exists for the latest commit — "no runs" looks identical to "nothing to see" until you check the Actions tab.
+- [ ] When a fix is a *pattern* (escape at the sink, validate at the boundary), grep every structurally similar file for the same pattern the same session — don't rely on remembering to circle back.
+- [ ] Before publishing a repo, scan full git history (not just the working tree) for secrets and environment fingerprints; prefer a fresh repo over a history rewrite when the history was never meant to be public.
+- [ ] Version identifiers live in exactly one source of truth per repo, with a CI gate that fails the commit if code changed but the version didn't — never a second hardcoded copy (especially not one rendered in the UI).
+- [ ] Scripts destined for Windows PowerShell 5.1 stay pure ASCII (or UTF-8 with a BOM) — a stray em dash or smart quote can silently terminate a string and invert everything after it.
+- [ ] After any web-based file upload to a repo, verify dot-prefixed paths (`.github/`, `.gitignore`) actually landed — the web upload UI can silently drop them with no error.
+
+## Verification habits worth institutionalizing
+
+These aren't tied to a single entry — they're the habits that caught most of the entries above, worth keeping active on every project:
+
+- **curl is the honest witness.** No cache, no service worker, no opinions. Keep a one-line site-check script per deployed project and reach for it before touching a browser.
+- **Incognito is the second witness.** No service worker registered, straight to network — the fastest way to rule out client-side staleness.
+- **Diff the code under test against the code on disk** before believing a surprising test result, pass or fail.
+- **An agent's "clean" is a hypothesis, not a verdict.** Re-run the interesting cases yourself. The best sessions have every layer catching something: a human catching an agent, an agent catching a false claim, a reviewer catching a denylist, a test catching its own stale cache. Nobody gets trusted by default; everything gets verified.
+- **Refuse to inflate.** The strongest finding in a review is more credible sitting next to a claim that was tested and found *false* (entry 2's shell-injection non-finding is the model) than sitting alone. Reporting "I checked and it's not exploitable" is itself evidence of rigor — omitting it isn't neutral, it's a missed chance to show the work.
