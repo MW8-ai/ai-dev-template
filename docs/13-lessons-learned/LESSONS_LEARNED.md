@@ -107,7 +107,23 @@ the rollup below.
 
 ---
 
-## 5. Referenced, not yet documented here
+## 5. Denylist is a reflex, not a design choice (fleet-review tooling, 2026-07-09)
+
+**Issue:** the fleet-review automation's own Tier 1 unpinned-GitHub-Actions check (`scan_tier1.py`, internal tooling, not a published repo) used a regex denylist: flag a `uses:` line if the ref matched `@v[0-9]+`, `@main`, or `@master`. It missed the single most common real-world unpinned shape — a dotted semver tag like `@v4.1.1` or `@v5.0.0` — because `v[0-9]+` only matches a bare major version, not the dotted form almost every real workflow actually pins to. The check would have reported the fleet's own actions as pinned when they weren't.
+
+**Root cause:** this is the same mistake as entry 1 (architecture-anatomy's catalog-URL guard), a different mechanism, the same underlying reflex: reaching for "does this look bad?" (enumerate the bad shapes, reject a match) instead of "does this look exactly right?" (define the one correct shape, reject everything else). A denylist's failure mode is silent and gets worse over time — every ref shape nobody thought to enumerate passes by default, including shapes that didn't exist yet when the check was written. An allowlist's failure mode is loud and gets better over time — anything not proven correct is rejected, so new/unanticipated input fails safe.
+
+**PoC:** ran the original regex (`r"uses:\s*\S+@(v[0-9]+|main|master)\s*$"`) against 5 test lines. `@v4` and `@main` were correctly flagged; `@v4.1.1`, `@v5.0.0`, and a real full-SHA pin (`@00155c9dc586f34d189adc83d3ac2698c2ec551f # v3.95.8`, this repo's own trufflehog pin from entry 2's fix) all returned no match — the first two should have been flagged as unpinned and weren't; the third correctly wasn't flagged, but only by accident of not matching a denylist pattern, not because the check recognized a SHA.
+
+**Fix:** rewrote as an allowlist: extract the ref after the last `@` in every `uses:` line, and require it to fully match `^[0-9a-f]{40}$` (case-insensitive). Anything else — `v4`, `v4.1.1`, `main`, a tag scheme invented next year — is unpinned, full stop. No enumeration to maintain.
+
+**Verification:** re-ran the same 7 test cases (the original 5 plus a local-path action and a second real SHA pin) against the new logic — all 7 correct, including the two the denylist got wrong.
+
+**Checklist item:** any validation phrased as "reject if it matches a bad pattern" should be rewritten as "accept only if it matches the one correct pattern, reject everything else" — especially for anything security-relevant (URLs, pinned refs, escaped output, allowed origins). This is now the third time this exact reflex produced a real bug in one week (entry 1, this entry, and — same underlying pattern — the render-only-status design in the fleet-review findings schema itself, where "does the finding still have a waiver?" had to become "does the finding still have a *valid, current* waiver, re-derived every time?" rather than a flag set once and trusted). If you catch yourself writing a regex or a list of bad values for a security check, stop and ask what the *one correct shape* is instead.
+
+---
+
+## 6. Referenced, not yet documented here
 
 These came up in conversation the same week as entries 1–4 but happened outside what's captured in detail above — flagged so they don't get lost, not written up yet because writing an entry without the specifics would mean guessing instead of documenting:
 
@@ -127,3 +143,4 @@ Fast version of every entry above — run through this before calling a review d
 - [ ] Any LLM prompt in an automated pipeline that includes untrusted text has the model's tool/action capability set to the minimum the task needs (ideally none) — delimiters alone are not a security boundary.
 - [ ] Any "confirmed fixed" or "still broken" result from a live browser re-test is backed by checking what code actually executed (function-source diff, content hash), not just a page reload.
 - [ ] Before catching an exception and continuing, know what the failing import/call was *for*. If it's a control (auth, resource limits, sandboxing) rather than a nice-to-have, the fix fails loud and documented — never a silent no-op that leaves the control absent.
+- [ ] Any security-relevant validation is an allowlist ("accept only the one correct shape"), never a denylist ("reject known-bad shapes"). If you're writing a regex or an enumerated list of bad values to reject, stop and define the correct shape instead.
