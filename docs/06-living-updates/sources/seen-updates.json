@@ -1,26 +1,73 @@
 {
-  "last_run": "2026-05-03T19:18:50Z",
+  "last_run": "2026-07-13T12:17:35Z",
   "seen": {
+    "github-blog": {
+      "59327c4780d929e0": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-blog-better-tools-made-copilot-code-review-worse-here-s-how-we-actually-improved-it.md",
+        "title": "Better tools made Copilot code review worse. Here\u2019s how we actually improved it."
+      },
+      "fae685152dc23107": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-blog-how-github-gave-every-repository-a-durable-owner.md",
+        "title": "How GitHub gave every repository a durable owner"
+      }
+    },
     "github-changelog": {
       "085000689b81759b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-github-copilot-code-review-will-start-consuming-github-actions-minutes-on-june-1.md",
         "title": "GitHub Copilot code review will start consuming GitHub Actions minutes on June 1, 2026"
       },
+      "0a9039f97860f73b": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-innersource-security-advisories-are-generally-available.md",
+        "title": "Innersource security advisories are generally available"
+      },
+      "3b9af427006001a0": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-clearer-names-for-secret-scanning-detector-types.md",
+        "title": "Clearer names for secret scanning detector types"
+      },
+      "403d33f480384c89": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-new-pull-requests-dashboard-is-now-generally-available.md",
+        "title": "New pull requests dashboard is now generally available"
+      },
+      "415effdf54273512": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-openai-s-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot.md",
+        "title": "OpenAI\u2019s GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot"
+      },
       "6b2cd9dd2ad12e9d": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-upcoming-deprecation-of-gpt-5-2-and-gpt-5-2-codex.md",
         "title": "Upcoming deprecation of GPT-5.2 and GPT-5.2-Codex"
+      },
+      "6f62296fd9411771": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-enterprise-managed-opentelemetry-export-for-vs-code-and-cli.md",
+        "title": "Enterprise-managed OpenTelemetry export for VS Code and CLI"
       },
       "8cec93037ceb6f5b": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-gpt-5-5-is-generally-available-for-github-copilot.md",
         "title": "GPT-5.5 is generally available for GitHub Copilot"
       },
+      "a9df40e28937747f": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection.md",
+        "title": "CodeQL 2.26.0 adds Kotlin 2.4.0 support and AI prompt injection detection"
+      },
       "ace7c3519f5d1778": {
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-student-gpt-5-3-codex-removal-from-model-picker.md",
         "title": "Copilot Student GPT-5.3-Codex removal from model picker"
+      },
+      "c972b6468a9fe87a": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-github-mobile-improved-filters-and-sorting-for-copilot-sessions.md",
+        "title": "GitHub Mobile: Improved filters and sorting for Copilot sessions"
       },
       "d5123b5b44f80000": {
         "detected": "2026-05-03T19:18:50Z",
@@ -41,6 +88,11 @@
         "detected": "2026-05-03T19:18:50Z",
         "file": "docs/06-living-updates/incoming/2026-05-03-github-changelog-copilot-chat-improvements-for-pull-requests.md",
         "title": "Copilot Chat improvements for pull requests"
+      },
+      "f9454198537947ed": {
+        "detected": "2026-07-13T12:17:35Z",
+        "file": "docs/06-living-updates/incoming/2026-07-13-github-changelog-ask-copilot-for-a-repository-overview.md",
+        "title": "Ask Copilot for a repository overview"
       }
     },
     "openai-api-changelog": {
