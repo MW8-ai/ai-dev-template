@@ -6,6 +6,7 @@
 
 - `.claude/settings.json` — materialized the permissions/hooks example already documented in `CLAUDE.md` (previously undocumented as missing; hooks and allow/deny rules were prose-only)
 - `AGENTS.md` — `Verification` section listing the exact copy-pasteable commands agents should run before calling work done
+- `docs/13-lessons-learned/LESSONS_LEARNED.md` — logged three open CI/tooling issues found while working PR #36 (Secret File Guard flagging its own required `.env.example`, `Apply Labels` missing its config, CodeQL analyzing with no JS/TS present), tracked but not yet fixed
 
 ## [1.0.0] — 2026-05-03
 

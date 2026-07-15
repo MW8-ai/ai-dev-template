@@ -289,6 +289,18 @@ Fill these in with the same rigor as the entries above (Issue / Root cause / PoC
 
 ---
 
+## 14. Open CI/tooling issues, found but not yet fixed (ai-dev-template, 2026-07-15)
+
+Discovered while working PR #36. Unlike the entries above, these are diagnosed and reproduced but *not yet fixed* — flagged here so they stay tracked instead of being silently re-discovered later. Promote each to its own fully-fixed, numbered entry once someone actually fixes and verifies it.
+
+- **Secret File Guard matches its own required file.** `.github/workflows/secret-file-guard.yml`'s glob (`-name ".env.*"`) matches the checked-in, required `.env.example`, so the job fails on every PR in this repo regardless of diff content. Reproduced locally: `find . -type f -name ".env.*" -not -path "./.git/*"` returns `.env.example` and `examples/api-project/.env.example`. Likely fix: exclude `*.example` from the glob, or check file content instead of filename.
+- **`Apply Labels Based on Changed Files` fails on every PR.** `.github/workflows/labeler.yml` runs `actions/labeler@v6` with no `.github/labeler.yml` config visible in the repo; the action needs a config mapping paths to labels to do anything. Not investigated further — needs someone to either add the config or drop the workflow.
+- **CodeQL's `javascript-typescript` analyze job fails with nothing to analyze.** `.github/workflows/04-codeql.yml` has a `has_javascript` detection step, but the analyze job still ran (and failed) on a PR touching zero JS/TS files. Likely cause: the analyze job's `if` condition isn't actually wired to the detection step's output, or CodeQL's init step errors outright on zero source files instead of being skipped.
+
+None of these affect what the template *teaches* — this repo has no source project of its own to break — but they mean every PR currently shows red checks unrelated to its actual content, which erodes the signal CI is supposed to provide.
+
+---
+
 ## Checklist rollup
 
 Fast version of every entry above — run through this before calling a review done:
