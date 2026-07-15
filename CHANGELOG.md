@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- `.claude/settings.json` — materialized the permissions/hooks example already documented in `CLAUDE.md` (previously undocumented as missing; hooks and allow/deny rules were prose-only)
+- `AGENTS.md` — `Verification` section listing the exact copy-pasteable commands agents should run before calling work done
+
 ## [1.0.0] — 2026-05-03
 
 ### Added
