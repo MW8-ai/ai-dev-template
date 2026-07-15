@@ -63,7 +63,7 @@ REQUIRED_WORKFLOWS = [
     ".github/workflows/05-actions-lint.yml",
 ]
 
-BRANCH_PATTERN = re.compile(r"^(feature|bugfix|fix|hotfix|docs|chore|release|security|experiment)/[a-z0-9._-]+$")
+BRANCH_PATTERN = re.compile(r"^(feature|bugfix|fix|hotfix|docs|chore|release|security|experiment|claude)/[a-z0-9._-]+$")
 
 PLACEHOLDER_PATTERNS = [
     re.compile(r"^\s*(todo|tbd|placeholder|coming soon)\s*$", re.IGNORECASE),
