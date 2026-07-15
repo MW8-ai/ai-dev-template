@@ -43,6 +43,21 @@ End every task with:
 4. Risks/assumptions
 5. Suggested next step
 
+## Verification
+
+Before calling work done, run:
+
+```text
+bash scripts/validate-repo.sh
+python3 scripts/check_markdown_links.py
+python3 scripts/enforce_repo_policy.py --mode repo-health
+python3 scripts/enforce_repo_policy.py --mode docs-content
+```
+
+`enforce_repo_policy.py` also runs with `--mode pr-metadata` and `--mode changed-files` in CI against PR-specific data; those two aren't meaningful to run locally.
+
+See `TESTING.md` for what must pass before merge.
+
 ## Constraint Hygiene
 
 If this file grows too large, do not keep appending. Move specific guidance into focused docs and reference them here.
