@@ -147,6 +147,7 @@ Using AI tools safely and effectively in your development workflow.
 | HUMAN_IN_LOOP.md | When and how to review AI output before it enters your codebase |
 | LOCAL_LLMS.md | Running AI models locally — tools, hardware requirements, Apple Silicon benchmarks, model recommendations |
 | AI_CERTIFICATIONS.md | Vendor AI certifications with costs, status, and living-updates tracking (Microsoft, AWS, Google, NVIDIA, CompTIA) |
+| AGENTS_AND_SKILLS.md | Building Claude agents — tool use, managed agents, multi-agent patterns, skills design, SRE incident responder example |
 
 ### docs/05-project-types/
 
