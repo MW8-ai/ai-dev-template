@@ -2,7 +2,7 @@
 
 A comparison of the major AI coding tools, when to use each, and the safety rules that apply to all of them.
 
-Related docs: [CLAUDE_CODE.md](./CLAUDE_CODE.md) | [GITHUB_COPILOT.md](./GITHUB_COPILOT.md) | [OPENAI_CODEX.md](./OPENAI_CODEX.md) | [HUMAN_IN_LOOP.md](./HUMAN_IN_LOOP.md) | [PROMPT_STRATEGIES.md](./PROMPT_STRATEGIES.md)
+Related docs: [CLAUDE_CODE.md](./CLAUDE_CODE.md) | [GITHUB_COPILOT.md](./GITHUB_COPILOT.md) | [OPENAI_CODEX.md](./OPENAI_CODEX.md) | [HUMAN_IN_LOOP.md](./HUMAN_IN_LOOP.md) | [PROMPT_STRATEGIES.md](./PROMPT_STRATEGIES.md) | [AGENTS_AND_SKILLS.md](./AGENTS_AND_SKILLS.md)
 
 ---
 
