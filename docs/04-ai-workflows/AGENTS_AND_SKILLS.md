@@ -266,6 +266,7 @@ For agents with long context (tool schemas, memory dumps), caching the stable pr
 
 ## Further Reading
 
+- [CLAUDE_API_CHANGELOG.md](./CLAUDE_API_CHANGELOG.md) — current models, extended thinking, Files API, Citations, Batch API, MCP
 - [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook) — working examples
 - [Managed Agents SRE Example](https://platform.claude.com/cookbook/managed-agents-sre-incident-responder)
 - [Claude API Tool Use Docs](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)

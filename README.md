@@ -143,14 +143,16 @@ Detected by the [Living Updates system](docs/06-living-updates/README.md) — up
 
 | Date | Source | Update |
 |---|---|---|
+| 2026-08-10 | Anthropic | Claude Sonnet 5 and Opus 5 now GA — current recommended models for coding |
+| 2026-08-10 | Anthropic | Managed Agents GA — server-hosted agents with persistent memory and skill composition |
+| 2026-08-10 | Anthropic | Files API GA — upload documents once, reference by ID across requests |
+| 2026-08-10 | Anthropic | Extended + interleaved thinking GA — model reasoning between tool calls |
+| 2026-08-10 | Anthropic | Tool Runner GA — SDK handles tool-use loop automatically |
+| 2026-08-10 | Anthropic | MCP (Model Context Protocol) open standard — growing ecosystem of server integrations |
 | 2026-05-03 | GitHub Copilot | GPT-5.5 now GA — strongest on multi-step agentic coding tasks |
-| 2026-05-03 | GitHub Copilot | GPT-5.2 and GPT-5.2-Codex deprecation announced |
 | 2026-05-03 | GitHub Copilot | Copilot code review will consume Actions minutes from June 1 |
-| 2026-05-03 | GitHub Copilot | Copilot Chat now has richer context and diff awareness in PRs |
 | 2026-05-03 | GitHub Copilot | Inline agent mode in preview for JetBrains IDEs |
-| 2026-05-03 | GitHub Copilot | Cloud agent 20% faster with Actions custom images |
 | 2026-05-03 | OpenAI | API changelog updated — check for model and rate limit changes |
-| 2026-05-03 | OpenAI | Codex CLI changelog updated |
 
 → [Review all incoming notes](docs/06-living-updates/incoming/) · [How the system works](docs/06-living-updates/README.md) · [Tracked sources](docs/06-living-updates/sources/update-sources.yml)
 
