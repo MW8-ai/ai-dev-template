@@ -3,6 +3,9 @@ name: CI Template Placeholder
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   placeholder:
     runs-on: ubuntu-latest
