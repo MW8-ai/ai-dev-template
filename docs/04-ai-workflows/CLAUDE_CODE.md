@@ -284,4 +284,4 @@ See `docs/09_claude_native/SUBAGENT_PATTERNS.md` for full patterns including con
 
 ## Next Step
 
-→ [docs/04-ai-workflows/GITHUB_COPILOT.md](docs/04-ai-workflows/GITHUB_COPILOT.md) — setup and usage guide for GitHub Copilot: inline completions, Copilot Chat, and editor integration
+→ [docs/04-ai-workflows/GITHUB_COPILOT.md](GITHUB_COPILOT.md) — setup and usage guide for GitHub Copilot: inline completions, Copilot Chat, and editor integration

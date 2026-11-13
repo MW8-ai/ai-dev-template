@@ -73,4 +73,4 @@ All AI tools are usable. Additional requirements:
 
 ## Next Step
 
-→ [Government and regulated environments](docs/05-project-types/GOVERNMENT.md)
+→ [Government and regulated environments](GOVERNMENT.md)

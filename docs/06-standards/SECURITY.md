@@ -52,4 +52,4 @@ These rules apply to all projects regardless of type. More advanced requirements
 
 ## Next Step
 
-→ [See the team's opinionated defaults for branch naming, merge strategy, and PR rules](docs/06-standards/OPINIONATED_DEFAULTS.md)
+→ [See the team's opinionated defaults for branch naming, merge strategy, and PR rules](OPINIONATED_DEFAULTS.md)

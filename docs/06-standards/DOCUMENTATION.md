@@ -56,4 +56,4 @@
 
 ## Next Step
 
-→ [Security baseline standards](docs/06-standards/SECURITY.md)
+→ [Security baseline standards](SECURITY.md)

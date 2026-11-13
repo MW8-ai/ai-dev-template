@@ -274,4 +274,4 @@ You ran a `git` command outside of a Git repository folder. Either `cd` into you
 
 ## Next Step
 
-→ [docs/01-getting-started/BRANCH_PULL_MERGE.md](docs/01-getting-started/BRANCH_PULL_MERGE.md) — learn how branches work and how to merge changes safely
+→ [docs/01-getting-started/BRANCH_PULL_MERGE.md](BRANCH_PULL_MERGE.md) — learn how branches work and how to merge changes safely

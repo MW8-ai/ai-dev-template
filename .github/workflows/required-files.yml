@@ -8,6 +8,9 @@ on:
     branches:
       - "**"
 
+permissions:
+  contents: read
+
 jobs:
   check-project-docs:
     name: Check Required Project Documentation

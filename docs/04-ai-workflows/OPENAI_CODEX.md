@@ -209,4 +209,4 @@ codex "explain each line of this Dockerfile — respond as a numbered list with 
 
 ## Next Step
 
-→ [docs/04-ai-workflows/CLAUDE_CODE.md](docs/04-ai-workflows/CLAUDE_CODE.md) — setup and usage guide for Claude Code: multi-file tasks, CLAUDE.md configuration, hooks, and slash commands
+→ [docs/04-ai-workflows/CLAUDE_CODE.md](CLAUDE_CODE.md) — setup and usage guide for Claude Code: multi-file tasks, CLAUDE.md configuration, hooks, and slash commands

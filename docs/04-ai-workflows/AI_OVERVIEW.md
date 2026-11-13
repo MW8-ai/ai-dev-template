@@ -80,4 +80,4 @@ These rules apply regardless of which tool you use:
 
 ## Next Step
 
-→ [docs/04-ai-workflows/OPENAI_CODEX.md](docs/04-ai-workflows/OPENAI_CODEX.md) — setup and usage guide for OpenAI Codex CLI: terminal-based coding assistance and prompt tips
+→ [docs/04-ai-workflows/OPENAI_CODEX.md](OPENAI_CODEX.md) — setup and usage guide for OpenAI Codex CLI: terminal-based coding assistance and prompt tips

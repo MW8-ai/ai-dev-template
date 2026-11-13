@@ -354,4 +354,4 @@ After this, the file stays on your disk but Git ignores it. Your teammates shoul
 
 ## Next Step
 
-→ [docs/05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md](docs/05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md) — deeper troubleshooting for common Git and GitHub pitfalls
+→ [docs/05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md](../05-confusion-troubleshooting/COMMON_PITFALLS_AND_TROUBLESHOOTING.md) — deeper troubleshooting for common Git and GitHub pitfalls

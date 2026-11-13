@@ -177,4 +177,4 @@ Most teams spend weeks debating conventions and end up with inconsistent ones an
 
 ## Next Step
 
-→ [Compliance documentation for regulated environments](docs/07-compliance/NIST_OVERVIEW.md)
+→ [Compliance documentation for regulated environments](../07-compliance/NIST_OVERVIEW.md)
