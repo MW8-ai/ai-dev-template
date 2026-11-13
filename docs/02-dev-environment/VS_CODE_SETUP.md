@@ -191,4 +191,4 @@ Create this file at `.vscode/extensions.json` in your project root and commit it
 
 ## Next Step
 
-→ [docs/02-dev-environment/GIT_CLI_SETUP.md](docs/02-dev-environment/GIT_CLI_SETUP.md) — full Git CLI command reference organized by workflow stage
+→ [docs/02-dev-environment/GIT_CLI_SETUP.md](GIT_CLI_SETUP.md) — full Git CLI command reference organized by workflow stage

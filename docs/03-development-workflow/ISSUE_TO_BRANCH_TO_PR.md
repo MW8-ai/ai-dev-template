@@ -152,4 +152,4 @@ Check that the issue was auto-closed. If not, close it manually with a comment l
 
 ## Next Step
 
-→ [docs/03-development-workflow/DAILY_WORKFLOW.md](docs/03-development-workflow/DAILY_WORKFLOW.md) — the daily git routine: morning sync, committing, pushing, and end-of-day habits
+→ [docs/03-development-workflow/DAILY_WORKFLOW.md](DAILY_WORKFLOW.md) — the daily git routine: morning sync, committing, pushing, and end-of-day habits

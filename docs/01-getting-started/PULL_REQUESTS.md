@@ -195,5 +195,5 @@ Deleted branches are not gone — Git keeps all their commits. You can restore a
 
 Set up your development environment:
 
-- Windows → [docs/02-dev-environment/WINDOWS_SETUP.md](docs/02-dev-environment/WINDOWS_SETUP.md)
-- Mac → [docs/02-dev-environment/MAC_SETUP.md](docs/02-dev-environment/MAC_SETUP.md)
+- Windows → [docs/02-dev-environment/WINDOWS_SETUP.md](../02-dev-environment/WINDOWS_SETUP.md)
+- Mac → [docs/02-dev-environment/MAC_SETUP.md](../02-dev-environment/MAC_SETUP.md)

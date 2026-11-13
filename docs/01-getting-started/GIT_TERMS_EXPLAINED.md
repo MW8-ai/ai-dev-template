@@ -321,4 +321,4 @@ git log --oneline
 
 ## Next Step
 
-→ [docs/01-getting-started/MISCONCEPTIONS.md](docs/01-getting-started/MISCONCEPTIONS.md) — clear up the most common misunderstandings about Git and GitHub
+→ [docs/01-getting-started/MISCONCEPTIONS.md](MISCONCEPTIONS.md) — clear up the most common misunderstandings about Git and GitHub

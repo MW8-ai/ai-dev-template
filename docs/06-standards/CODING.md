@@ -58,4 +58,4 @@ Write code that a new team member can read and understand without asking you. Pr
 
 ## Next Step
 
-→ [Code review standards](docs/06-standards/REVIEW.md)
+→ [Code review standards](REVIEW.md)

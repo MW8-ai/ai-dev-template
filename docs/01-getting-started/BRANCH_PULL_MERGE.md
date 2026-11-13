@@ -170,4 +170,4 @@ Modern editors like VS Code show conflicts with Accept Current / Accept Incoming
 
 ## Next Step
 
-→ [docs/01-getting-started/PULL_REQUESTS.md](docs/01-getting-started/PULL_REQUESTS.md) — open your first pull request and navigate the code review process
+→ [docs/01-getting-started/PULL_REQUESTS.md](PULL_REQUESTS.md) — open your first pull request and navigate the code review process

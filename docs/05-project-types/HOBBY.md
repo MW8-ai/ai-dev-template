@@ -63,4 +63,4 @@ Optional. Consider:
 
 ## Next Step
 
-→ [Ready for team projects? See enterprise requirements](docs/05-project-types/ENTERPRISE.md)
+→ [Ready for team projects? See enterprise requirements](ENTERPRISE.md)

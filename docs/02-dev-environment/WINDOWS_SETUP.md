@@ -183,4 +183,4 @@ git commit -m "Fix README filename capitalization"
 
 ## Next Step
 
-→ [docs/02-dev-environment/VS_CODE_SETUP.md](docs/02-dev-environment/VS_CODE_SETUP.md) — install essential extensions and configure VS Code for development
+→ [docs/02-dev-environment/VS_CODE_SETUP.md](VS_CODE_SETUP.md) — install essential extensions and configure VS Code for development

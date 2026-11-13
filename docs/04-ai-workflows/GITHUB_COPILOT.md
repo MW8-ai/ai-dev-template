@@ -181,4 +181,4 @@ Apply for the free plan at: https://education.github.com/pack (students) or thro
 
 ## Next Step
 
-→ [docs/04-ai-workflows/PROMPT_STRATEGIES.md](docs/04-ai-workflows/PROMPT_STRATEGIES.md) — how to write effective AI prompts: patterns, anatomy of a good prompt, and what to never include
+→ [docs/04-ai-workflows/PROMPT_STRATEGIES.md](PROMPT_STRATEGIES.md) — how to write effective AI prompts: patterns, anatomy of a good prompt, and what to never include

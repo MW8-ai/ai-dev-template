@@ -49,4 +49,4 @@ Code review is not quality control — it's knowledge sharing, risk reduction, a
 
 ## Next Step
 
-→ [Testing standards and coverage requirements](docs/06-standards/TESTING.md)
+→ [Testing standards and coverage requirements](TESTING.md)
