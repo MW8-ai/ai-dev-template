@@ -74,4 +74,4 @@ Government projects have special considerations:
 
 ## Next Step
 
-→ [Read the compliance documentation](docs/07-compliance/NIST_OVERVIEW.md)
+→ [Read the compliance documentation](../07-compliance/NIST_OVERVIEW.md)

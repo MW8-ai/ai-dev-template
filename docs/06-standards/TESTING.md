@@ -60,4 +60,4 @@ Name tests so failures are self-documenting:
 
 ## Next Step
 
-→ [Documentation standards](docs/06-standards/DOCUMENTATION.md)
+→ [Documentation standards](DOCUMENTATION.md)

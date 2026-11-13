@@ -526,4 +526,4 @@ git undo     # undo last commit, keep changes
 
 ## Next Step
 
-→ [docs/02-dev-environment/SSH_KEYS_AND_AUTH.md](docs/02-dev-environment/SSH_KEYS_AND_AUTH.md) — set up SSH key authentication so Git can communicate securely with GitHub
+→ [docs/02-dev-environment/SSH_KEYS_AND_AUTH.md](SSH_KEYS_AND_AUTH.md) — set up SSH key authentication so Git can communicate securely with GitHub

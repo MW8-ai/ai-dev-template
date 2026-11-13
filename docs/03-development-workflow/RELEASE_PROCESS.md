@@ -218,4 +218,4 @@ When a critical bug is found in production and `main` already has unreleased cha
 
 ## Next Step
 
-→ [docs/03-development-workflow/RELEASE_VERSIONING.md](docs/03-development-workflow/RELEASE_VERSIONING.md) — semantic versioning rules, release labels, and rollback planning
+→ [docs/03-development-workflow/RELEASE_VERSIONING.md](RELEASE_VERSIONING.md) — semantic versioning rules, release labels, and rollback planning
